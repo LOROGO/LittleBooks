@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "890702319618",
+    "project_id": "littlebooks",
+    "storage_bucket": "littlebooks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890702319618:android:1559935c0b0f56476c971b",
+        "android_client_info": {
+          "package_name": "com.example.littlebooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890702319618-opik5pfpdag6hodc8178ji07nh57je8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALTXUnSjsvvQP5jR7TX8W65hyCQivj_Y4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890702319618-opik5pfpdag6hodc8178ji07nh57je8s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
