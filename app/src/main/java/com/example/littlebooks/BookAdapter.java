@@ -104,9 +104,6 @@ public class BookAdapter extends FirebaseRecyclerAdapter<Books, BookAdapter.view
             nazov = itemView.findViewById(R.id.nazovKnihy);
             autor = itemView.findViewById(R.id.autorKnihy);
             obrazok = itemView.findViewById(R.id.obrazok);
-            pocetStran = itemView.findViewById(R.id.pocetStran);
-            srdiecko = itemView.findViewById(R.id.srdiecko1);
-            score1 = itemView.findViewById(R.id.score1);
         }
     }
 }

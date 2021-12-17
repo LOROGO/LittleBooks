@@ -13,13 +13,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
     //pridat adapter a prepojenie knih
     FirebaseAuth fAuth;
+    MainAdapter adapter;
+
+    DatabaseReference mbase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +35,20 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         recyclerView = findViewById(R.id.recyclerView);
 
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //POMOC@@@@@@@@@@
+
+        FirebaseRecyclerOptions<Main> options
+                = new FirebaseRecyclerOptions.Builder<Main>()
+                .setQuery(mbase.child("Books"), Main.class)
+                .build();
+
+        adapter = new MainAdapter(options, MainActivity.this);
+
+        recyclerView.setAdapter(adapter);
 
 /*
         fAuth = FirebaseAuth.getInstance();
