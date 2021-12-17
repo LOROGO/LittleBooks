@@ -16,6 +16,7 @@ public class MojeKnihy extends AppCompatActivity {
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
     FavoriteAdapter adapter;
+
     DatabaseReference mbase;
 
     @Override
