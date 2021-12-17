@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebd3f294-528a-477c-8883-c527c9a9989f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/LittleBooks.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/LittleBooks.app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_17_2021_2_02_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_17_2021_2_02_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +16,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[89UDU18720002752]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -30,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,9 +34,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="223FUYuydqaYnZxb4NYQPLW7UZL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -132,15 +126,11 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mainAdapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="mainAdapter" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="669" y="106" width="742" height="827" key="#app" timestamp="1639746293225">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="669" y="106" width="742" height="827" key="#app/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639746293225" />
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1639746360618">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639746360618" />
     <state x="266" y="100" width="1140" height="556" key="AVDManager" timestamp="1639059040759">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -153,22 +143,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="347" y="355" width="333" height="312" key="Github.ShareDialog/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639744954325" />
-    <state width="566" height="426" key="GridCell.Tab.0.bottom" timestamp="1639746373145">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="566" height="426" key="GridCell.Tab.0.bottom/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639746373145" />
-    <state width="566" height="426" key="GridCell.Tab.0.center" timestamp="1639746373145">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="566" height="426" key="GridCell.Tab.0.center/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639746373145" />
-    <state width="566" height="426" key="GridCell.Tab.0.left" timestamp="1639746373145">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="566" height="426" key="GridCell.Tab.0.left/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639746373145" />
-    <state width="566" height="426" key="GridCell.Tab.0.right" timestamp="1639746373145">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="566" height="426" key="GridCell.Tab.0.right/-1920.329.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1639746373145" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1639745214018">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
