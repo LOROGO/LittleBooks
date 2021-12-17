@@ -6,13 +6,18 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebd3f294-528a-477c-8883-c527c9a9989f" name="Default Changelist" comment="" />
+    <list default="true" id="ebd3f294-528a-477c-8883-c527c9a9989f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlebooks/MainAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/LittleBooks.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/LittleBooks.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/littlebooks/MojeKnihy.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlebooks/MojeKnihy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[89UDU18720002752]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -22,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -120,6 +126,10 @@
       <updated>1639058379784</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mainAdapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="mainAdapter" />
   </component>
   <component name="WindowStateProjectService">
     <state x="266" y="100" width="1140" height="556" key="AVDManager" timestamp="1639059040759">
