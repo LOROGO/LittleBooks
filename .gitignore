@@ -1,5 +1,7 @@
 # Project exclude paths
 /.gradle/
+android/local.properties
+.android/local.properties
 bin
 gen
 target
