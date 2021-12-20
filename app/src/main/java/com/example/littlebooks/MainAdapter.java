@@ -74,7 +74,6 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Main, MainAdapter.viewh
     public MainAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         System.out.println("parent = " + parent + ", viewType = " + viewType);
         Toast.makeText(context, "oncreate", Toast.LENGTH_LONG).show();
-        context.test.setText("Mam ta v pici juraj");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_book_main, parent, false);
         return new MainAdapter.viewholder(view);
     }

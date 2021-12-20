@@ -1,5 +1,49 @@
-package com.example.littlebooks;
+package com.example.littlebooks.ui.dashboard;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+
+import com.example.littlebooks.Account;
+import com.example.littlebooks.AdapterProcess;
+import com.example.littlebooks.BooksActivity;
+import com.example.littlebooks.MainActivity;
+import com.example.littlebooks.MainAdapter;
+import com.example.littlebooks.ModelMainData;
+import com.example.littlebooks.MojeKnihy;
+import com.example.littlebooks.NewBook;
+import com.example.littlebooks.R;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -36,7 +80,9 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
-public class MainActivity extends AppCompatActivity {
+public class DashboardFragment extends Fragment {
+
+    private DashboardViewModel dashboardViewModel;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
     //pridat adapter a prepojenie knih
@@ -44,19 +90,20 @@ public class MainActivity extends AppCompatActivity {
     MainAdapter adapter;
     ImageView pozadie;
 
-
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        pozadie = findViewById(R.id.imageView3);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        recyclerView = findViewById(R.id.recyclerViewMain);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        dashboardViewModel =
+                new ViewModelProvider(this).get(DashboardViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        Toast.makeText(MainActivity.this, "oncreate", Toast.LENGTH_LONG);
+        pozadie = root.findViewById(R.id.imageView3);
+        drawerLayout = root.findViewById(R.id.drawer_layout);
+        recyclerView = root.findViewById(R.id.recyclerViewMain);
+
+        Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG);
 
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -86,21 +133,16 @@ public class MainActivity extends AppCompatActivity {
             new Async().execute();
 
         }catch (Exception e){
-            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
         }
+        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
 
-
-/*
-        fAuth = FirebaseAuth.getInstance();
-        if (fAuth.getCurrentUser()==null)logout();*/
-
+            }
+        });
+        return root;
     }
-
-    /*public void logout(){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), Register.class));
-        finish();
-    }*/
 
     public class Async extends AsyncTask<Void, Void, Void> {
 
@@ -124,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 ResultSet resultSet = statement.executeQuery("SELECT id_kniha, nazov, obrazok FROM kniha limit 30");
                 while(resultSet.next()) {
 
-                   // records += resultSet.getString(1) + " " + resultSet.getString(2) + "\n";
+                    // records += resultSet.getString(1) + " " + resultSet.getString(2) + "\n";
                     knihy.add(new ModelMainData(
                             resultSet.getString(1),
                             resultSet.getString(2),
@@ -137,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             catch(Exception e)
             {
                 error = e.toString();
-           }
+            }
 
             return null;
 
@@ -146,17 +188,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            mKnihy = knihy;
-            for (int i = 0; i < knihy.size(); i++) {
-                Log.d("knihy", knihy.get(i).toString());
-            }
 
-            // Toast.makeText(MainActivity.this, Integer.toString(knihy.size()),Toast.LENGTH_LONG).show();
-            populateRecyclerView();
+        protected void onPostExecute(Void aVoid) {
+            if (!knihy.isEmpty()) {
+                mKnihy = knihy;
+                for (int i = 0; i < knihy.size(); i++) {
+                    Log.d("knihy", knihy.get(i).toString());
+                }
+
+                // Toast.makeText(MainActivity.this, Integer.toString(knihy.size()),Toast.LENGTH_LONG).show();
+                populateRecyclerView();
+            }else Log.e("AsyncPostEx", error);
             super.onPostExecute(aVoid);
 
         }
+
+
+
+
+
     }
 
     public void ClickMenu(View view){
@@ -179,26 +229,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void ClickBooks(View view){
-        MainActivity.redirectActivity(this, BooksActivity.class);
+        MainActivity.redirectActivity(getActivity(), BooksActivity.class);
     }
 
     public void ClickAccount(View view){
-        MainActivity.redirectActivity(this, Account.class);
+        MainActivity.redirectActivity(getActivity(), Account.class);
     }
 
     public void ClickNewBook(View view){
-        startActivity(new Intent(this, NewBook.class));
+        startActivity(new Intent(getActivity(), NewBook.class));
     }
 
     public void ClickLogout(View view){
-        logout(this);
+        logout(getActivity());
     }
 
     public void ClickMojeKnihy(View view){
-        MainActivity.redirectActivity(this, MojeKnihy.class);
+        MainActivity.redirectActivity(getActivity(), MojeKnihy.class);
     }
 
-    public void ClickDomov(View view){recreate();}
+    public void ClickDomov(View view){
+        //recreate();
+    }
 
 
     public static void logout(final Activity activity){
@@ -223,11 +275,7 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        closeDrawer(drawerLayout);
-    }
+
 
     public static void redirectActivity(Activity activity, Class aClass) {
         Intent intent = new Intent(activity, aClass);
@@ -235,13 +283,11 @@ public class MainActivity extends AppCompatActivity {
         activity.startActivity(intent);
     }
     public void populateRecyclerView(){
-        AdapterProcess adapter = new AdapterProcess(mKnihy, MainActivity.this);
+        AdapterProcess adapter = new AdapterProcess(mKnihy, getActivity());
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapter);
         // Set layout manager to position the items
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-        /*RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL);
-        recyclerView.addItemDecoration(itemDecoration);*/
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new SlideInLeftAnimator());
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);

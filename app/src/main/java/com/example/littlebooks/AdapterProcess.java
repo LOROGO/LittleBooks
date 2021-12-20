@@ -59,7 +59,8 @@ public class AdapterProcess extends
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Intent i = new Intent(con, NewActivity.class);
+
+             /*        Intent i = new Intent(con, test02.class);
                 i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
                 con.startActivity(i);*/
             }
@@ -67,7 +68,9 @@ public class AdapterProcess extends
         holder.obrazok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(con, MainActivityT.class);
+                i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
+                con.startActivity(i);
             }
         });
     }

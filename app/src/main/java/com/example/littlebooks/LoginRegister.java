@@ -27,7 +27,7 @@ public class LoginRegister extends AppCompatActivity {
 
 
         if (firebaseAuth.getCurrentUser()!=null){
-            Intent main = new Intent(getApplicationContext(), MainActivity.class);
+            Intent main = new Intent(getApplicationContext(), MainActivityT.class);
             startActivity(main);
         }
         buttonReg.setOnClickListener(new View.OnClickListener() {
