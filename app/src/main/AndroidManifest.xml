@@ -11,15 +11,15 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.LittleBooks">
-        <activity android:name=".Login"/>
+        <activity android:name=".test"></activity>
+        <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".LoginRegister"/>
+        <activity android:name=".LoginRegister" />
         <activity android:name=".BooksActivity" />
         <activity android:name=".MojeKnihy" />
-        <activity android:name=".NewBook"/>
-        <activity android:name=".Account"/>
-        <activity android:name=".Obsah"/>
-
+        <activity android:name=".NewBook" />
+        <activity android:name=".Account" />
+        <activity android:name=".Obsah" />
         <activity android:name=".SplashAcitivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
