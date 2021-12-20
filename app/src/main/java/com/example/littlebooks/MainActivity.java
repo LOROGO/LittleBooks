@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     MainAdapter adapter;
     ImageView pozadie;
-    TextView test;
+
 
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         recyclerView = findViewById(R.id.recyclerViewMain);
 
-        test = findViewById(R.id.test);
         Toast.makeText(MainActivity.this, "oncreate", Toast.LENGTH_LONG);
 
 
@@ -152,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < knihy.size(); i++) {
                 Log.d("knihy", knihy.get(i).toString());
             }
-            test.setText(mKnihy.get(1).getNazov());
 
             // Toast.makeText(MainActivity.this, Integer.toString(knihy.size()),Toast.LENGTH_LONG).show();
             populateRecyclerView();

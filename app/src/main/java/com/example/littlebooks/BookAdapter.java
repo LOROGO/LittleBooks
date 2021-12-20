@@ -44,14 +44,14 @@ public class BookAdapter extends FirebaseRecyclerAdapter<Books, BookAdapter.view
 
         String imageUri = null;
         imageUri = model.getObrazok();
-        Picasso.with(context).load(imageUri).into(holder.obrazok);
+        //Picasso.with(context).load(imageUri).into(holder.obrazok);
 
         holder.nazov.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Obsah.class);
+                /*Intent intent = new Intent(context, Obsah.class);
                 intent.putExtra("Nazov", getRef(position).getKey());
-                context.startActivity(intent);
+                context.startActivity(intent);*/
             }
         });
 
