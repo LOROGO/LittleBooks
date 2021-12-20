@@ -1,10 +1,12 @@
 package com.example.littlebooks;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,9 +27,11 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Main, MainAdapter.viewh
     MainActivity context;
     DatabaseReference mdatabase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/").child("Favorite");
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    @SuppressLint("SetTextI18n")
     public MainAdapter(@NonNull FirebaseRecyclerOptions<Main> options, MainActivity context){
         super(options);
         this.context = context;
+
     }
 
     @Override
@@ -39,6 +43,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Main, MainAdapter.viewh
         imageUri = model.getObrazok();
         Picasso.with(context).load(imageUri).into(holder.obrazok);
 
+
         holder.nazov.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,12 +52,30 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Main, MainAdapter.viewh
                 context.startActivity(intent);
             }
         });
+
+        mdatabase.child(firebaseAuth.getUid()).child(getRef(position).getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull final DataSnapshot snapshot) {
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) holder.itemView.getLayoutParams();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public MainAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_hl_stranka, parent, false);
+        System.out.println("parent = " + parent + ", viewType = " + viewType);
+        Toast.makeText(context, "oncreate", Toast.LENGTH_LONG).show();
+        context.test.setText("Mam ta v pici juraj");
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_book_main, parent, false);
         return new MainAdapter.viewholder(view);
     }
 

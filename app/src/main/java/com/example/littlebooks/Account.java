@@ -3,6 +3,8 @@ package com.example.littlebooks;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 public class Account extends AppCompatActivity {
     DrawerLayout drawerLayout;
     TextView meno, email, verifyMsg;
-    Button resendCode;
+    Button resendCode, testB;
 
     DatabaseReference mUserDatabase;
     FirebaseUser mCurrentUser;
     FirebaseAuth fAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class Account extends AppCompatActivity {
         email = findViewById(R.id.email);
         resendCode = findViewById(R.id.resendCode);
         verifyMsg = findViewById(R.id.verifyMsg);
+
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -60,6 +64,8 @@ public class Account extends AppCompatActivity {
 
             }
         });
+
+
 
         FirebaseUser user = fAuth.getCurrentUser();
 
