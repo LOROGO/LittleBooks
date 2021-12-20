@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         @Override
-
         protected void onPostExecute(Void aVoid) {
             mKnihy = knihy;
             for (int i = 0; i < knihy.size(); i++) {
@@ -160,11 +159,6 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
 
         }
-
-
-
-
-
     }
 
     public void ClickMenu(View view){
@@ -248,9 +242,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         // Set layout manager to position the items
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-        RecyclerView.ItemDecoration itemDecoration = new
-                DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL);
-        recyclerView.addItemDecoration(itemDecoration);
+        /*RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL);
+        recyclerView.addItemDecoration(itemDecoration);*/
         recyclerView.setItemAnimator(new SlideInLeftAnimator());
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
