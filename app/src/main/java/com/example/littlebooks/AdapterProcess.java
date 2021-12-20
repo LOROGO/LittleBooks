@@ -1,6 +1,7 @@
 package com.example.littlebooks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,9 @@ public class AdapterProcess extends
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(con, "click", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(con, NewActivity.class);
+                i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
+                con.startActivity(i);
             }
         });
         holder.obrazok.setOnClickListener(new View.OnClickListener() {
