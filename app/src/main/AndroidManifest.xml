@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.LittleBooks">
-        <activity android:name=".test"></activity>
+        <activity android:name=".DetailKnihy"></activity>
+        <activity android:name=".test" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".LoginRegister" />
