@@ -47,7 +47,7 @@ public class AdapterProcess extends
         ModelMainData kniha = mKnihy.get(holder.getAdapterPosition());
 
         // Set item views based on your views and data model
-        holder.nazovKnihy.setText(mKnihy.get(holder.getAdapterPosition()).getNazov().trim());
+        holder.nazovKnihy.setText(mKnihy.get(holder.getAdapterPosition()).getNazov());
 
         String imageUri = null;
         imageUri = "http:"+mKnihy.get(position).getObrazok().split(".jpg")[0]+".jpg";
@@ -55,18 +55,6 @@ public class AdapterProcess extends
 
         Picasso.with(con).load(imageUri).into(holder.obrazok);
         Log.d("knihyAdapter", "Kniha "+mKnihy.get(holder.getAdapterPosition()).toString()+"\n");
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(con, "click", Toast.LENGTH_LONG).show();
-            }
-        });
-        holder.obrazok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
