@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pozadie = findViewById(R.id.imageView3);
+        //pozadie = findViewById(R.id.imageView3);
         drawerLayout = findViewById(R.id.drawer_layout);
         recyclerView = findViewById(R.id.recyclerViewMain);
 

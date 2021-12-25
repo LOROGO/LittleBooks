@@ -95,16 +95,14 @@ public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        pozadie = root.findViewById(R.id.imageView3);
+        //pozadie = root.findViewById(R.id.imageView3);
         drawerLayout = root.findViewById(R.id.drawer_layout);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
 
         Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG);
-
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
