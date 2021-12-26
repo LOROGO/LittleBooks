@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.littlebooks.old.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +41,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth fAuth;
     String userID;
     FirebaseUser current_user;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +98,7 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             current_user = fAuth.getCurrentUser();
                             userID = fAuth.getCurrentUser().getUid();
-                            DatabaseReference mdatabase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/").child("Users").child(userID);
+                            /*DatabaseReference mdatabase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/").child("Users").child(userID);
 
                             Map<String, String> user = new HashMap<>();
                             user.put("name", menoo);
@@ -102,12 +109,37 @@ public class Register extends AppCompatActivity {
                                     Log.d(TAG, "onSuccesss: user Profile is created for "+userID);
                                     Toast.makeText(Register.this, "Používateľ vytvorený", Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            });*/
 
-                            Intent mainIntent = new Intent(Register.this, MainActivity.class);
-                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(mainIntent);
-                            finish();
+                            String url = "";
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                                    response -> {
+                                        Intent mainIntent = new Intent(Register.this, MainActivity.class);
+                                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(mainIntent);
+                                        finish();
+                                        },
+                                    error -> {
+                                        Log.d("RegE", error.toString());
+
+                                    }
+                                    ){
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("action", "newUser");
+                                    params.put("uid", userID);
+                                    params.put("name", menoo);
+                                    params.put("priezvisko", "123");
+                                    params.put("nickname", "");
+                                    params.put("email", emaill);
+                                    return params;
+                                }
+                            };
+                            requestQueue = Volley.newRequestQueue(Register.this);
+                            requestQueue.add(stringRequest);
+
+
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }

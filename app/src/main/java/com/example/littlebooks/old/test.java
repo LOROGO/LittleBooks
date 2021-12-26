@@ -1,4 +1,4 @@
-package com.example.littlebooks;
+package com.example.littlebooks.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.littlebooks.R;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

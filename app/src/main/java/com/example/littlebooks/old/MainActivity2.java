@@ -1,7 +1,8 @@
-package com.example.littlebooks;
+package com.example.littlebooks.old;
 
 import android.os.Bundle;
 
+import com.example.littlebooks.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

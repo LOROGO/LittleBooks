@@ -1,9 +1,10 @@
-package com.example.littlebooks;
+package com.example.littlebooks.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.littlebooks.R;
 import com.example.littlebooks.ui.main.Test02Fragment;
 
 public class test02 extends AppCompatActivity {

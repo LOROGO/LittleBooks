@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,9 +25,10 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterProcess;
+import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.BooksActivity;
-import com.example.littlebooks.MainActivity;
-import com.example.littlebooks.MainAdapter;
+import com.example.littlebooks.old.MainActivity;
+import com.example.littlebooks.old.MainAdapter;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
@@ -44,43 +43,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Display;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.gcm.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements BackgroundTask.ApiCallback {
 
     private DashboardViewModel dashboardViewModel;
     DrawerLayout drawerLayout;
@@ -89,6 +62,7 @@ public class DashboardFragment extends Fragment {
     FirebaseAuth fAuth;
     MainAdapter adapter;
     ImageView pozadie;
+
 
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
@@ -103,6 +77,13 @@ public class DashboardFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerViewMain);
 
         Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG);
+
+
+        BackgroundTask bs = new BackgroundTask("kniha", "select", "2", "get_knihy4");
+        bs.setApiCallback(this);
+        String a = String.valueOf(bs.execute());
+
+
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
@@ -128,7 +109,7 @@ public class DashboardFragment extends Fragment {
 
         // Create adapter passing in the sample user data
         try {
-            new Async().execute();
+            //new Async().execute();
 
         }catch (Exception e){
             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
@@ -141,6 +122,35 @@ public class DashboardFragment extends Fragment {
         });
         return root;
     }
+
+    @Override
+    public void populateLay(JSONArray obj) {
+        List<ModelMainData> knihy = new ArrayList<>();
+        if (obj!=null){
+        for (int i = 0; i < obj.length(); i++) {
+            try {
+                JSONObject a = obj.getJSONObject(i);
+                knihy.add(new ModelMainData(
+
+                        a.getString("id_kniha"),
+                        a.getString("nazov"),
+                        a.getString("obrazok")
+                        ));
+            }catch (Exception e){
+                Log.e("PopulateRec", e.getMessage());
+            }
+
+        }
+        AdapterProcess adapter = new AdapterProcess(knihy, getActivity());
+        // Attach the adapter to the recyclerview to populate items
+        recyclerView.setAdapter(adapter);
+        // Set layout manager to position the items
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+
+    }}
 
     public class Async extends AsyncTask<Void, Void, Void> {
 

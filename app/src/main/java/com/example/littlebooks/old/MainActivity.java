@@ -1,9 +1,8 @@
-package com.example.littlebooks;
+package com.example.littlebooks.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,13 +15,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.gcm.Task;
+import com.example.littlebooks.Account;
+import com.example.littlebooks.AdapterProcess;
+import com.example.littlebooks.BooksActivity;
+import com.example.littlebooks.ModelMainData;
+import com.example.littlebooks.MojeKnihy;
+import com.example.littlebooks.NewBook;
+import com.example.littlebooks.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

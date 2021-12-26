@@ -60,15 +60,15 @@ public class AdapterProcess extends
             @Override
             public void onClick(View v) {
 
-             /*        Intent i = new Intent(con, test02.class);
+                     Intent i = new Intent(con, DetailKnihy.class);
                 i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
-                con.startActivity(i);*/
+                con.startActivity(i);
             }
         });
         holder.obrazok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(con, MainActivityT.class);
+                Intent i = new Intent(con, DetailKnihy.class);
                 i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
                 con.startActivity(i);
             }

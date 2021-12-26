@@ -1,4 +1,4 @@
-package com.example.littlebooks;
+package com.example.littlebooks.old;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,9 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.littlebooks.Main;
+import com.example.littlebooks.Obsah;
+import com.example.littlebooks.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
