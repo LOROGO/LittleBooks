@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
-        //getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Log.d("Home", "home");
         //pozadie = root.findViewById(R.id.imageView3);
@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         });
         return root;
     }
-/*
+
     Activity a;
     @Override
     public void onAttach(Context context) {
@@ -132,7 +132,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             a = (Activity) context;
         }
 
-    }*/
+    }
 
     @Override
     public void populateLay(JSONArray obj) {
