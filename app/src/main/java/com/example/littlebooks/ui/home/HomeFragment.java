@@ -2,6 +2,7 @@ package com.example.littlebooks.ui.home;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +70,9 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+        //getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         Log.d("Home", "home");
         //pozadie = root.findViewById(R.id.imageView3);
         drawerLayout = root.findViewById(R.id.drawer_layout);
@@ -117,6 +122,17 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         });
         return root;
     }
+/*
+    Activity a;
+    @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+        if(context instanceof Activity){
+            a = (Activity) context;
+        }
+
+    }*/
 
     @Override
     public void populateLay(JSONArray obj) {
