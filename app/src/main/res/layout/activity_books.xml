@@ -35,9 +35,9 @@
 
         </ImageButton>
 
-        <include
+        <!--<include
             android:id="@+id/include"
-            layout="@layout/main_toolbar" />
+            layout="@layout/main_toolbar" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBooks"
