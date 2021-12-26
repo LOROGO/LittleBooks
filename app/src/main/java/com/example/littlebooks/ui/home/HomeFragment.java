@@ -2,7 +2,6 @@ package com.example.littlebooks.ui.home;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +30,6 @@ import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterProcess;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.BooksActivity;
-import com.example.littlebooks.MainActivityT;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
@@ -66,17 +63,10 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-       getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        //new KeyboardUtil(a,root.findViewById(R.id.fragment));
-
-
 
         Log.d("Home", "home");
         //pozadie = root.findViewById(R.id.imageView3);
@@ -126,16 +116,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             }
         });
         return root;
-    }
-    Activity a;
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-        if(context instanceof Activity){
-            a = (Activity) context;
-        }
-
     }
 
     @Override
