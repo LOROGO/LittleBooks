@@ -102,18 +102,12 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
         // Initialize contacts
 
-        // Create adapter passing in the sample user data
-
+        //zavolanie a poslanie parametrov do triedy Background task ktora komunikuje s php
         BackgroundTask bs = new BackgroundTask("kniha", "select", "2", "get_knihy4", "");
         bs.setApiCallback(this);
-        String a = String.valueOf(bs.execute());
+        bs.execute();
 
-        try {
-            //new Async().execute();
 
-        }catch (Exception e){
-            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-        }
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -134,12 +128,15 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
     }
 
+    //metoda zavolana z background tasku
     @Override
     public void populateLay(JSONArray obj) {
+        //vytvorenie noveho listu
         List<ModelMainData> knihy = new ArrayList<>();
         if (obj!=null){
             for (int i = 0; i < obj.length(); i++) {
                 try {
+                    //spracuje json a da do listu
                     JSONObject a = obj.getJSONObject(i);
                     knihy.add(new ModelMainData(
 
@@ -152,6 +149,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
                 }
 
             }
+            //posle list do adapteru a nastavi adapter pre recyclerview
             AdapterProcess adapter = new AdapterProcess(knihy, getActivity());
             // Attach the adapter to the recyclerview to populate items
             recyclerView.setAdapter(adapter);

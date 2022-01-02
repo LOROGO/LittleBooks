@@ -22,7 +22,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     JSONArray obj;
     ApiCallback apiCallback;
 
-
+    //konstruktor - prva metoda,kt sa zavola - urobi url ktora vola php
     public BackgroundTask(String table, String action, String scr, String php, String podmienka){
         if (podmienka.isEmpty())
         url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr;
@@ -32,32 +32,25 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
 
     }
 
+    //riesi interface idk
     public void setApiCallback(ApiCallback apiCallback){
         this.apiCallback = apiCallback;
     }
 
-
+    //nic
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
     }
-
+    //nic
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
 
-
+    //metoda ktora sa zavola po dokonceni poziadavky - vola interface dole
     @Override
     protected void onPostExecute(String aVoid) {
-        /*AdapterProcess adapter = new AdapterProcess(mKnihy, activity);
-        // Attach the adapter to the recyclerview to populate items
-        recyclerView.setAdapter(adapter);
-        // Set layout manager to position the items
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setItemAnimator(new SlideInLeftAnimator());
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerView);*/
         super.onPostExecute(aVoid);
         apiCallback.populateLay(obj);
         try {
@@ -70,7 +63,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
         }
     }
 
-
+    //riesi poziadavku, dostane odpoved z php a spracuje zo stringu na JSON
     @Override
     protected String doInBackground(Void... voids) {
         Log.d("BackG", "...");
@@ -107,6 +100,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
 
         return json_string;
     }
+    //interface - zavola metodu populateLay z metody kde bola trieda zavolana - home fragment / detail knihy
     public interface ApiCallback{
         void populateLay(JSONArray obj);
     }

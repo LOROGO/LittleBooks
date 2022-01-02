@@ -23,6 +23,7 @@ public class AdapterProcess extends
     public Context con;
 
     public AdapterProcess(List<ModelMainData> knihy, Context context) {
+        //1. zavola sa tato metoda, ulozi ten poslany zoznam do lokalnej premennej mKnihy
         mKnihy = knihy;
         Log.d("KnihySize", Integer.toString(getItemCount()));
         con = context;
@@ -30,12 +31,9 @@ public class AdapterProcess extends
 
     @Override
     public AdapterProcess.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //vytvorenie viewu idk
         LayoutInflater inflater = LayoutInflater.from(con);
-
-        // Inflate the custom layout
         View knihyView = inflater.inflate(R.layout.single_book_main, parent, false);
-
-        // Return a new holder instance
 
         return new AdapterProcess.ViewHolder(knihyView);
 
@@ -44,18 +42,21 @@ public class AdapterProcess extends
     // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(AdapterProcess.ViewHolder holder, int position) {
-        // Get the data model based on position
+
+        //
         ModelMainData kniha = mKnihy.get(holder.getAdapterPosition());
 
-        // Set item views based on your views and data model
+        // nastavenie nazvu holder.getAdapterPosition je cisclo itemviewu ktory chceme naplnit datami, ktore zoberieme z mKnihy
         holder.nazovKnihy.setText(mKnihy.get(holder.getAdapterPosition()).getNazov().trim());
 
+        //nastavenie obrazka to split je tam preto lebo v db mame ze napr obrazky/obrazok1.jpg+a kopec bludov za tym takze takto len tie bludy dame prec
         String imageUri = null;
         imageUri = "http:"+mKnihy.get(position).getObrazok().split(".jpg")[0]+".jpg";
         Log.d("knihyObrazok", "Kniha "+imageUri+"\n");
 
         Picasso.with(con).load(imageUri).into(holder.obrazok);
         Log.d("knihyAdapter", "Kniha "+mKnihy.get(holder.getAdapterPosition()).toString()+"\n");
+        
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,18 +87,14 @@ public class AdapterProcess extends
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
+    //2. zadefinovanie premennych z layoutu
         public TextView nazovKnihy;
         public ImageView obrazok;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
-            super(itemView);
 
+        public ViewHolder(View itemView) {
+        // ulozenie tych veci z layoutu u know idk
+            super(itemView);
             nazovKnihy = (TextView) itemView.findViewById(R.id.nazovKnihy);
             obrazok = itemView.findViewById(R.id.obrazok);
         }
