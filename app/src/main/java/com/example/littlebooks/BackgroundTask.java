@@ -16,7 +16,7 @@ import java.net.URL;
 
 public class BackgroundTask extends AsyncTask<Void, Void, String> {
     String url;
-    String json_string = "http://165.227.134.175/get_knihy2.php";
+    String json_string = "http://165.227.134.175/getKnihy.php";
 
 
     JSONArray obj;

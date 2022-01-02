@@ -60,7 +60,7 @@ public class AdapterProcess extends
             @Override
             public void onClick(View v) {
 
-                     Intent i = new Intent(con, DetailKnihy.class);
+                Intent i = new Intent(con, DetailKnihy.class);
                 i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
                 con.startActivity(i);
             }
