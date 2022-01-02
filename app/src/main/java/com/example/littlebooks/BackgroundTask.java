@@ -23,8 +23,11 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     ApiCallback apiCallback;
 
 
-    public BackgroundTask(String table, String action, String scr, String php){
+    public BackgroundTask(String table, String action, String scr, String php, String podmienka){
+        if (podmienka.isEmpty())
         url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr;
+        else
+            url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&podmienka="+podmienka;
         Log.d("url", url);
 
     }

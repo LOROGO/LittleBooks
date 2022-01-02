@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
         // Create adapter passing in the sample user data
 
-        BackgroundTask bs = new BackgroundTask("kniha", "select", "2", "get_knihy4");
+        BackgroundTask bs = new BackgroundTask("kniha", "select", "2", "get_knihy4", "");
         bs.setApiCallback(this);
         String a = String.valueOf(bs.execute());
 

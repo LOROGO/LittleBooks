@@ -59,7 +59,7 @@ public class AdapterProcess extends
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("id_kniha_jurko", mKnihy.get(holder.getAdapterPosition()).getId());
                 Intent i = new Intent(con, DetailKnihy.class);
                 i.putExtra("id",mKnihy.get(holder.getAdapterPosition()).getId());
                 con.startActivity(i);

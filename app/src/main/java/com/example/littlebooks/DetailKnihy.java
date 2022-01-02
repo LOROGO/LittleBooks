@@ -11,10 +11,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DetailKnihy extends AppCompatActivity {
+public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback {
     TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia;
     ImageView obrazokKnihy;
     java.sql.Connection conn;
@@ -46,7 +49,7 @@ public class DetailKnihy extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String id = "";
         if (extras != null) {
-             id = extras.getString("key");
+             id = extras.getString("id");
         }
         try {
 
@@ -54,6 +57,9 @@ public class DetailKnihy extends AppCompatActivity {
         }catch (Exception e){
             Log.e("DetailKnihy", e.toString());
         }
+        BackgroundTask backgroundTask = new BackgroundTask("kniha", "select", "1","get_knihy4", "id_kniha="+id.toString());
+        backgroundTask.setApiCallback(this);
+        backgroundTask.execute();
 
     }
     public void GetTextFromSQL(View view){
@@ -70,5 +76,21 @@ public class DetailKnihy extends AppCompatActivity {
         }catch (Exception e){
 
         }
+    }
+
+    @Override
+    public void populateLay(JSONArray obj) {
+
+        try {
+            JSONObject a = obj.getJSONObject(0);
+            nazovKnihy.append(a.getString("nazov"));
+            //nazovKnihy.setText(nazovKnihy.getText()+a.getString("nazov"));
+            Log.d("popDet", a.getString("nazov"));
+
+
+        }catch (Exception e){
+            Log.d("popDet", e.getMessage());
+        }
+
     }
 }
