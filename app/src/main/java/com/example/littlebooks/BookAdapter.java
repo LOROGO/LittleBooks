@@ -1,7 +1,6 @@
 package com.example.littlebooks;
 
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.littlebooks.Books;
-import com.example.littlebooks.BooksActivity;
-import com.example.littlebooks.Obsah;
-import com.example.littlebooks.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 public class BookAdapter extends FirebaseRecyclerAdapter<Books, BookAdapter.viewholder> {
     BooksActivity context;
@@ -106,9 +100,9 @@ public class BookAdapter extends FirebaseRecyclerAdapter<Books, BookAdapter.view
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
-            nazov = itemView.findViewById(R.id.nazovKnihy);
-            autor = itemView.findViewById(R.id.autorKnihy);
-            obrazok = itemView.findViewById(R.id.obrazok);
+            nazov = itemView.findViewById(R.id.menoPouzivatela);
+            autor = itemView.findViewById(R.id.recenziaPopis);
+            obrazok = itemView.findViewById(R.id.pouzivatel);
         }
     }
 }

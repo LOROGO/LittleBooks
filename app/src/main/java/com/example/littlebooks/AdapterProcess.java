@@ -6,10 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -95,8 +93,8 @@ public class AdapterProcess extends
         public ViewHolder(View itemView) {
         // ulozenie tych veci z layoutu u know idk
             super(itemView);
-            nazovKnihy = (TextView) itemView.findViewById(R.id.nazovKnihy);
-            obrazok = itemView.findViewById(R.id.obrazok);
+            nazovKnihy = (TextView) itemView.findViewById(R.id.menoPouzivatela);
+            obrazok = itemView.findViewById(R.id.pouzivatel);
         }
     }
 }

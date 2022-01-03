@@ -48,7 +48,7 @@ public class NewBook extends AppCompatActivity {
         meno = findViewById(R.id.meno);
         nazov = findViewById(R.id.nazov);
         button = findViewById(R.id.button);
-        obrazok = findViewById(R.id.obrazok);
+        obrazok = findViewById(R.id.pouzivatel);
         pocetStran = findViewById(R.id.pocetStran);
         obsah = findViewById(R.id.obsah);
         progressDialog = new ProgressDialog(this);

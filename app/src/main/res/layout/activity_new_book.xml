@@ -74,7 +74,7 @@
             app:layout_constraintWidth_percent=".8" />
 
         <ImageButton
-            android:id="@+id/obrazok"
+            android:id="@+id/pouzivatel"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             app:layout_constraintBottom_toTopOf="@+id/meno"

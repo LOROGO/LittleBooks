@@ -32,7 +32,7 @@
             app:layout_constraintVertical_bias="0.33"/>
 
         <ImageView
-            android:id="@+id/obrazok"
+            android:id="@+id/pouzivatel"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginLeft="10dp"
@@ -48,7 +48,7 @@
             app:srcCompat="@drawable/beedl" />
 
         <TextView
-            android:id="@+id/nazovKnihy"
+            android:id="@+id/menoPouzivatela"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|top"
@@ -59,7 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/obrazok"
+            app:layout_constraintTop_toBottomOf="@+id/pouzivatel"
             app:layout_constraintVertical_bias="0.25" />
 
         <androidx.constraintlayout.widget.Barrier

@@ -87,8 +87,8 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Main, MainAdapter.viewh
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
-            nazov = itemView.findViewById(R.id.nazovKnihy);
-            obrazok = itemView.findViewById(R.id.obrazok);
+            nazov = itemView.findViewById(R.id.menoPouzivatela);
+            obrazok = itemView.findViewById(R.id.pouzivatel);
         }
     }
 }

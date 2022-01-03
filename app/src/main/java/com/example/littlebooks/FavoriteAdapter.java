@@ -114,9 +114,9 @@ public class FavoriteAdapter extends FirebaseRecyclerAdapter<FavoriteBook, Favor
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
-            nazov = itemView.findViewById(R.id.nazovKnihy);
-            autor = itemView.findViewById(R.id.autorKnihy);
-            obrazok = itemView.findViewById(R.id.obrazok);
+            nazov = itemView.findViewById(R.id.menoPouzivatela);
+            autor = itemView.findViewById(R.id.recenziaPopis);
+            obrazok = itemView.findViewById(R.id.pouzivatel);
             pocetStran = itemView.findViewById(R.id.pocetStran);
             srdiecko = itemView.findViewById(R.id.srdiecko1);
         }
