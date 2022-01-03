@@ -35,7 +35,7 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/obrazok"
+            android:id="@+id/pouzivatel"
             android:layout_width="120dp"
             android:layout_height="176dp"
             android:src="@drawable/queens_gambit"
@@ -54,8 +54,8 @@
             android:text="VALTER TEVIS"
             android:textColor="@color/white"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/obrazok"
-            app:layout_constraintTop_toTopOf="@+id/obrazok"
+            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
+            app:layout_constraintTop_toTopOf="@+id/pouzivatel"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="55dp"/>
 
@@ -68,7 +68,7 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/obrazok"
+            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
             app:layout_constraintTop_toBottomOf="@+id/text"
             android:layout_marginTop="8dp"/>
 
@@ -80,7 +80,7 @@
             android:text="Drama"
             android:textStyle="italic"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/obrazok"
+            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
             app:layout_constraintTop_toBottomOf="@+id/text1"
             android:layout_marginTop="15dp"/>
 
@@ -96,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/obrazok"
+            app:layout_constraintTop_toBottomOf="@+id/pouzivatel"
             app:layout_constraintVertical_bias="0.9" />
 
         <TextView
@@ -107,7 +107,7 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/obrazok"
+            app:layout_constraintBottom_toTopOf="@+id/pouzivatel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +121,7 @@
             android:text="VIAC"
             android:textColor="@color/white"
             android:textSize="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/obrazok"
+            app:layout_constraintBottom_toTopOf="@+id/pouzivatel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -137,7 +137,7 @@
             app:layout_constraintBottom_toTopOf="@+id/recyclerViewMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/obrazok"
+            app:layout_constraintTop_toBottomOf="@+id/pouzivatel"
             app:layout_constraintVertical_bias="0.9"
             app:layout_constraintHorizontal_bias="0.8"/>
 
@@ -159,22 +159,12 @@
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="italic|bold"
-            app:layout_constraintBottom_toTopOf="@+id/obrazok"
+            app:layout_constraintBottom_toTopOf="@+id/pouzivatel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2" />
-
-        <!--<SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
 
         <EditText
             android:id="@+id/editTextTextPersonName"
@@ -198,7 +188,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/obrazok" />
+            app:layout_constraintTop_toBottomOf="@+id/pouzivatel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

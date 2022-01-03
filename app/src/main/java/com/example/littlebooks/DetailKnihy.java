@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -34,7 +33,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         pocetStran2 = findViewById(R.id.pocetStran2);
         autor = findViewById(R.id.autor);
         autor2 = findViewById(R.id.autor2);
-        nazovKnihy = findViewById(R.id.nazovKnihy);
+        nazovKnihy = findViewById(R.id.menoPouzivatela);
         nazovKnihy2 = findViewById(R.id.nazovKnihy2);
         obsah = findViewById(R.id.obsah);
         obsah2 = findViewById(R.id.obsah2);

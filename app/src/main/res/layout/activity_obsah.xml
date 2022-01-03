@@ -16,17 +16,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F6EBE6">
+        android:layout_height="match_parent">
 
         <!--<include
             android:id="@+id/include"
             layout="@layout/main_toolbar" />-->
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:background="@drawable/hornepozadie2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="555dp"
             android:background="@drawable/dolnepozadie"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +117,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
-            android:id="@+id/nazovKnihy"
+            android:id="@+id/menoPouzivatela"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Názov knihy:"
@@ -128,7 +135,7 @@
             android:text="Dámsky gambit"
             android:textColor="@color/white"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/nazovKnihy"
+            app:layout_constraintStart_toEndOf="@+id/menoPouzivatela"
             app:layout_constraintTop_toBottomOf="@+id/autor2"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"/>
@@ -142,12 +149,12 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/nazovKnihy"
+            app:layout_constraintTop_toBottomOf="@+id/menoPouzivatela"
             android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/obsah2"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:text="obsah"
             android:textColor="@color/white"
