@@ -79,9 +79,7 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
         Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG);
 
 
-        BackgroundTask bs = new BackgroundTask("kniha", "select", "2", "get_knihy4", "");
-        bs.setApiCallback(this);
-        String a = String.valueOf(bs.execute());
+
 
 
 

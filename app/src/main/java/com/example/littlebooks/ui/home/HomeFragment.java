@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     ImageButton back;
     Transition mainTrans;
     Transition mainTrans2;
+    View root;
 
 
     DatabaseReference mbase;
@@ -89,7 +90,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
 
         sceneMain = Scene.getSceneForLayout(root.findViewById(R.id.rootFrameLayoutMain), R.layout.main_basic, getContext());
         sceneSearch = Scene.getSceneForLayout(root.findViewById(R.id.rootFrameLayoutMain), R.layout.main_search, getContext());
@@ -207,7 +208,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             bs.setApiCallback(this);
             bs.execute();
         }
-        else populateRecView(mKnihy);
+        else populateRecView(mKnihy, root);
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -297,12 +298,13 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             }
             mKnihy = knihy;
             //posle list do adapteru a nastavi adapter pre recyclerview
-            populateRecView(knihy);
+            populateRecView(knihy, root);
 
 
         }}
 
-        public void populateRecView(List<ModelMainData> knihy){
+        public void populateRecView(List<ModelMainData> knihy, View root){
+        recyclerView = root.findViewById(R.id.recyclerViewMain);
         if (currentScene == sceneMain){
             AdapterProcess adapter = new AdapterProcess(knihy, getActivity());
             // Attach the adapter to the recyclerview to populate items
@@ -322,7 +324,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
             recyclerView.setItemAnimator(new SlideInLeftAnimator());
             SnapHelper snapHelper = new LinearSnapHelper();
-            snapHelper.attachToRecyclerView(recyclerView);
+            //snapHelper.attachToRecyclerView(recyclerView);
         }
 
 
