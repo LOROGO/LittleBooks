@@ -6,7 +6,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.littlebooks.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -26,4 +28,5 @@ public class MainActivityT extends AppCompatActivity {
 
 
     }
+
 }

@@ -25,6 +25,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/testov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="160dp"
+                android:layout_marginBottom="139dp"
+                android:text="TEEEEEST" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

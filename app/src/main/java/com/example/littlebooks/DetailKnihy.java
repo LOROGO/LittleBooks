@@ -46,6 +46,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         obsah.setPaintFlags(obsah.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         recenzia.setPaintFlags(recenzia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        
+
         Bundle extras = getIntent().getExtras();
         String id = "";
         if (extras != null) {
@@ -57,7 +59,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }catch (Exception e){
             Log.e("DetailKnihy", e.toString());
         }
-        BackgroundTask backgroundTask = new BackgroundTask("kniha", "select", "1","get_knihy4", "id_kniha="+id.toString());
+        BackgroundTask backgroundTask = new BackgroundTask("kniha", "select", "1","get_knihy4", "id_kniha="+id.toString(), "");
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
 

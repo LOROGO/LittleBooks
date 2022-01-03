@@ -111,26 +111,32 @@ public class Register extends AppCompatActivity {
                                 }
                             });*/
 
-                            String url = "";
+                            String url = "http://165.227.134.175/user1.php";
                             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                                     response -> {
-                                        Intent mainIntent = new Intent(Register.this, MainActivity.class);
-                                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(mainIntent);
-                                        finish();
-                                        },
+                                        Log.d("RegR", response.toString());
+                                        if (response.equals("ok")){
+
+                                            Intent mainIntent = new Intent(Register.this, MainActivity.class);
+                                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(mainIntent);
+                                            finish();
+                                            startActivity(new Intent(getApplicationContext(), MainActivityT.class));
+
+                                        }
+                                    },
                                     error -> {
                                         Log.d("RegE", error.toString());
 
                                     }
-                                    ){
+                            ){
                                 @Override
                                 protected Map<String, String> getParams() throws AuthFailureError {
                                     Map<String, String> params = new HashMap<>();
                                     params.put("action", "newUser");
                                     params.put("uid", userID);
-                                    params.put("name", menoo);
-                                    params.put("priezvisko", "123");
+                                    params.put("meno", menoo);
+                                    params.put("priezvisko", "banas");
                                     params.put("nickname", "");
                                     params.put("email", emaill);
                                     return params;
@@ -139,9 +145,12 @@ public class Register extends AppCompatActivity {
                             requestQueue = Volley.newRequestQueue(Register.this);
                             requestQueue.add(stringRequest);
 
+                            Intent mainIntent = new Intent(Register.this, MainActivity.class);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+                            finish();
 
-
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivityT.class));
                         }
                         else {
                             Toast.makeText(Register.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

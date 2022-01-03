@@ -16,19 +16,29 @@ import java.net.URL;
 
 public class BackgroundTask extends AsyncTask<Void, Void, String> {
     String url;
-    String json_string = "http://165.227.134.175/getKnihy.php";
+    String json_string;
+
 
 
     JSONArray obj;
     ApiCallback apiCallback;
 
     //konstruktor - prva metoda,kt sa zavola - urobi url ktora vola php
-    public BackgroundTask(String table, String action, String scr, String php, String podmienka){
-        if (podmienka.isEmpty())
-        url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr;
-        else
-            url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&podmienka="+podmienka;
-        Log.d("url", url);
+    public BackgroundTask(String table, String action, String scr, String php, String podmienka, String search){
+        Log.d("url" ,"search "+search);
+        if (podmienka.isEmpty()&&search.isEmpty()) {
+            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
+            Log.d("url1", url);
+        }
+        else if (search.isEmpty()) {
+            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&podmienka=" + podmienka;
+            Log.d("url2", url);
+        }else{
+            url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
+            Log.d("url3", url);
+        }
+
+
 
     }
 

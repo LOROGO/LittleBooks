@@ -8,8 +8,8 @@
     android:id="@+id/drawer_layout"
     tools:context=".ui.home.HomeFragment"
     android:isScrollContainer="true">
-
-    <ScrollView
+   
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -19,9 +19,11 @@
         android:layout_height="match_parent"
         android:background="#F6EBE6">
 
-        <!--<include
+
+
+        &lt;!&ndash;<include
             android:id="@+id/include"
-            layout="@layout/main_toolbar"/>-->
+            layout="@layout/main_toolbar"/>&ndash;&gt;
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -115,7 +117,7 @@
             app:layout_constraintVertical_bias="0.95" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/viac"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VIAC"
@@ -166,7 +168,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2" />
 
-        <!--<SearchView
+        &lt;!&ndash;<SearchView
             android:id="@+id/search_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -174,7 +176,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />&ndash;&gt;
 
         <EditText
             android:id="@+id/editTextTextPersonName"
@@ -212,6 +214,13 @@
 
         <include
             layout="@layout/main_nav_drawer"/>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
+
+    <FrameLayout
+        android:id="@+id/rootFrameLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
