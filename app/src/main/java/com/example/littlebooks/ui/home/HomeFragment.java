@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.transition.Scene;
 import android.transition.Transition;
@@ -17,13 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,26 +36,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.littlebooks.Account;
-import com.example.littlebooks.AdapterProcess;
+import com.example.littlebooks.Adapter;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.BooksActivity;
-import com.example.littlebooks.MainActivityT;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
-import com.example.littlebooks.ui.dashboard.DashboardFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -227,6 +217,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         searchBar = root.findViewById(R.id.editTextTextPersonName);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         back = root.findViewById(R.id.backButton);
+
         searchBar.requestFocus();
         InputMethodManager imm = (InputMethodManager)a.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
@@ -306,7 +297,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         public void populateRecView(List<ModelMainData> knihy, View root){
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         if (currentScene == sceneMain){
-            AdapterProcess adapter = new AdapterProcess(knihy, getActivity());
+            Adapter adapter = new Adapter(knihy, getActivity());
             // Attach the adapter to the recyclerview to populate items
             recyclerView.setAdapter(adapter);
             // Set layout manager to position the items
@@ -316,7 +307,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             SnapHelper snapHelper = new LinearSnapHelper();
             snapHelper.attachToRecyclerView(recyclerView);
         }else {
-            AdapterProcess adapter = new AdapterProcess(knihy, getActivity());
+            Adapter adapter = new Adapter(knihy, getActivity());
             // Attach the adapter to the recyclerview to populate items
             recyclerView.setAdapter(adapter);
             // Set layout manager to position the items
@@ -406,7 +397,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         activity.startActivity(intent);
     }
     public void populateRecyclerView(){
-        AdapterProcess adapter = new AdapterProcess(mKnihy, getActivity());
+        Adapter adapter = new Adapter(mKnihy, getActivity());
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapter);
         // Set layout manager to position the items

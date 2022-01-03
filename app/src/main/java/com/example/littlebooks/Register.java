@@ -98,18 +98,7 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             current_user = fAuth.getCurrentUser();
                             userID = fAuth.getCurrentUser().getUid();
-                            /*DatabaseReference mdatabase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/").child("Users").child(userID);
 
-                            Map<String, String> user = new HashMap<>();
-                            user.put("name", menoo);
-                            user.put("email", emaill);
-                            mdatabase.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccesss: user Profile is created for "+userID);
-                                    Toast.makeText(Register.this, "Používateľ vytvorený", Toast.LENGTH_SHORT).show();
-                                }
-                            });*/
 
                             String url = "http://165.227.134.175/user1.php";
                             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

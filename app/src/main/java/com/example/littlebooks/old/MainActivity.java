@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.littlebooks.Account;
-import com.example.littlebooks.AdapterProcess;
+import com.example.littlebooks.Adapter;
 import com.example.littlebooks.BooksActivity;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         activity.startActivity(intent);
     }
     public void populateRecyclerView(){
-        AdapterProcess adapter = new AdapterProcess(mKnihy, MainActivity.this);
+        Adapter adapter = new Adapter(mKnihy, MainActivity.this);
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapter);
         // Set layout manager to position the items

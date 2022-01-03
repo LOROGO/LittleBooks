@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.littlebooks.Account;
-import com.example.littlebooks.AdapterProcess;
+import com.example.littlebooks.Adapter;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.BooksActivity;
 import com.example.littlebooks.old.MainActivity;
@@ -139,7 +139,7 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
             }
 
         }
-        AdapterProcess adapter = new AdapterProcess(knihy, getActivity());
+        Adapter adapter = new Adapter(knihy, getActivity());
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapter);
         // Set layout manager to position the items
@@ -289,7 +289,7 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
         activity.startActivity(intent);
     }
     public void populateRecyclerView(){
-        AdapterProcess adapter = new AdapterProcess(mKnihy, getActivity());
+        Adapter adapter = new Adapter(mKnihy, getActivity());
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapter);
         // Set layout manager to position the items

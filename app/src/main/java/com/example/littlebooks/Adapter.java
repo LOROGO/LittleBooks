@@ -15,12 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdapterProcess extends
-        RecyclerView.Adapter<AdapterProcess.ViewHolder> {
+public class Adapter extends
+        RecyclerView.Adapter<Adapter.ViewHolder> {
     public List<ModelMainData> mKnihy;
     public Context con;
 
-    public AdapterProcess(List<ModelMainData> knihy, Context context) {
+    public Adapter(List<ModelMainData> knihy, Context context) {
         //1. zavola sa tato metoda, ulozi ten poslany zoznam do lokalnej premennej mKnihy
         mKnihy = knihy;
         Log.d("KnihySize", Integer.toString(getItemCount()));
@@ -28,18 +28,18 @@ public class AdapterProcess extends
     }
 
     @Override
-    public AdapterProcess.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //vytvorenie viewu idk
         LayoutInflater inflater = LayoutInflater.from(con);
         View knihyView = inflater.inflate(R.layout.single_book_main, parent, false);
 
-        return new AdapterProcess.ViewHolder(knihyView);
+        return new Adapter.ViewHolder(knihyView);
 
     }
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(AdapterProcess.ViewHolder holder, int position) {
+    public void onBindViewHolder(Adapter.ViewHolder holder, int position) {
 
         //
         ModelMainData kniha = mKnihy.get(holder.getAdapterPosition());

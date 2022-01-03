@@ -58,7 +58,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }catch (Exception e){
             Log.e("DetailKnihy", e.toString());
         }
-        BackgroundTask backgroundTask = new BackgroundTask("kniha", "select", "1","get_knihy4", "id_kniha="+id.toString(), "");
+        BackgroundTask backgroundTask = new BackgroundTask("kniha", "select", "1","get_knihy4", "id_kniha="+id, "");
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
 
@@ -84,8 +84,12 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
         try {
             JSONObject a = obj.getJSONObject(0);
-            nazovKnihy.append(a.getString("nazov"));
-            //nazovKnihy.setText(nazovKnihy.getText()+a.getString("nazov"));
+            //meno editextu.append(a.getString("meno stlpca v tabulke")); - append pridava text na koniec napr ked je ze Nazov: po append je to Nazov: Basne
+            nazovKnihy2.setText(a.getString("nazov"));
+
+
+
+
             Log.d("popDet", a.getString("nazov"));
 
 
