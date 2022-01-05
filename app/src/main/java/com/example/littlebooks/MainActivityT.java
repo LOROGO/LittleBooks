@@ -34,14 +34,14 @@ public class MainActivityT extends AppCompatActivity {
         list.add(new NotificationsFragment());
         list.add(new DashboardFragment());
 
-        //pager = findViewById(R.id.pager);
+        pager = findViewById(R.id.main_tabPager);
         pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
 
         pager.setAdapter(pagerAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        //NavController navController = Navigation.findNavController(this, R.id.main_tabPager);
+        //NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
     }
 }
