@@ -38,7 +38,7 @@
             app:srcCompat="@drawable/user" />
 
         <TextView
-            android:id="@+id/menoPouzivatela"
+            android:id="@+id/nazovKnihy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -56,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
-            android:text="Praj si pod stromček 2022 a zvíťaz Nový rok. Aj preto som si tento diar zaobstarala skôr. Je z roka na rok prepracovanejší a dôkladnejšie spracovaný."
+            android:hint="Sem napíšte svoju recenziu..."
             app:layout_constraintStart_toEndOf="@+id/pouzivatel"
-            app:layout_constraintTop_toBottomOf="@+id/menoPouzivatela"
+            app:layout_constraintTop_toBottomOf="@+id/nazovKnihy"
             android:textColor="@color/black"/>
 
         <ImageView
@@ -69,7 +69,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:srcCompat="@drawable/rating5" />
+            app:srcCompat="@drawable/rating" />
 
         <View
             android:layout_width="180dp"

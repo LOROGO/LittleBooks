@@ -37,9 +37,6 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
             url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
             Log.d("url3", url);
         }
-
-
-
     }
 
     //riesi interface idk

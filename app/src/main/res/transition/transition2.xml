@@ -4,7 +4,7 @@
         android:slideEdge="bottom"
         android:duration="600">
         <targets>
-            <target android:targetId="@+id/editTextTextPersonName" />
+            <target android:targetId="@+id/vyhladavanie" />
         </targets>
     </slide>
     <autoTransition  />

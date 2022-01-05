@@ -100,7 +100,7 @@ public class BookAdapter extends FirebaseRecyclerAdapter<Books, BookAdapter.view
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
-            nazov = itemView.findViewById(R.id.menoPouzivatela);
+            nazov = itemView.findViewById(R.id.nazovKnihy);
             autor = itemView.findViewById(R.id.recenziaPopis);
             obrazok = itemView.findViewById(R.id.pouzivatel);
         }

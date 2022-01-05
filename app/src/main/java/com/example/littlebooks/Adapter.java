@@ -93,7 +93,7 @@ public class Adapter extends
         public ViewHolder(View itemView) {
         // ulozenie tych veci z layoutu u know idk
             super(itemView);
-            nazovKnihy = (TextView) itemView.findViewById(R.id.menoPouzivatela);
+            nazovKnihy = (TextView) itemView.findViewById(R.id.nazovKnihy);
             obrazok = itemView.findViewById(R.id.pouzivatel);
         }
     }

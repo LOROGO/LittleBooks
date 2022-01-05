@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,26 +28,24 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_obsah);
+        setContentView(R.layout.activity_detail_knihy);
 
         zaner = findViewById(R.id.zaner);
         pocetStran = findViewById(R.id.pocetStran);
         pocetStran2 = findViewById(R.id.pocetStran2);
         autor = findViewById(R.id.autor);
         autor2 = findViewById(R.id.autor2);
-        nazovKnihy = findViewById(R.id.menoPouzivatela);
+        nazovKnihy = findViewById(R.id.nazovKnihy);
         nazovKnihy2 = findViewById(R.id.nazovKnihy2);
         obsah = findViewById(R.id.obsah);
-        obsah2 = findViewById(R.id.obsah2);
+        //obsah2 = findViewById(R.id.obsah2);
         obrazokKnihy = findViewById(R.id.obrazokKnihy);
-        recenzia = findViewById(R.id.recenzia);
+        //recenzia = findViewById(R.id.recenzia);
 
         autor.setPaintFlags(autor.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         nazovKnihy.setPaintFlags(nazovKnihy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         obsah.setPaintFlags(obsah.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        recenzia.setPaintFlags(recenzia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
-        
+        //recenzia.setPaintFlags(recenzia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         Bundle extras = getIntent().getExtras();
         String id = "";
@@ -85,10 +85,12 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         try {
             JSONObject a = obj.getJSONObject(0);
             //meno editextu.append(a.getString("meno stlpca v tabulke")); - append pridava text na koniec napr ked je ze Nazov: po append je to Nazov: Basne
-            nazovKnihy2.setText(a.getString("nazov"));
-
-
-
+            nazovKnihy2.setText(a.getString("autor"));
+            autor2.setText(a.getString("nazov"));
+            //obsah2.setText(a.getString("obsah"));
+            //zaner.setText(a.getString("zaner"));
+            pocetStran.setText(a.getString("pocet_stran"));
+            //obrazokKnihy.setImageResource(Integer.parseInt(a.getString("obrazok ")));
 
             Log.d("popDet", a.getString("nazov"));
 

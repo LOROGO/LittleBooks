@@ -11,7 +11,7 @@
     <slide
         android:duration="100">
         <targets>
-            <target android:targetId="@+id/editTextTextPersonName" />
+            <target android:targetId="@+id/vyhladavanie" />
         </targets>
     </slide>
     </transitionSet>

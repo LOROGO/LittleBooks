@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.littlebooks.Main;
-import com.example.littlebooks.Obsah;
 import com.example.littlebooks.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -87,7 +86,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Main, MainAdapter.viewh
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
-            nazov = itemView.findViewById(R.id.menoPouzivatela);
+            nazov = itemView.findViewById(R.id.nazovKnihy);
             obrazok = itemView.findViewById(R.id.pouzivatel);
         }
     }

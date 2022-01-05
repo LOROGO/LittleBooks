@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.littlebooks.old.Obsah;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -114,7 +115,7 @@ public class FavoriteAdapter extends FirebaseRecyclerAdapter<FavoriteBook, Favor
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
-            nazov = itemView.findViewById(R.id.menoPouzivatela);
+            nazov = itemView.findViewById(R.id.nazovKnihy);
             autor = itemView.findViewById(R.id.recenziaPopis);
             obrazok = itemView.findViewById(R.id.pouzivatel);
             pocetStran = itemView.findViewById(R.id.pocetStran);

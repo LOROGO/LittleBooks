@@ -79,10 +79,6 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
         Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG);
 
 
-
-
-
-
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".DetailKnihy"
+    tools:context=".old.Obsah"
     android:isScrollContainer="true">
 
     <ScrollView
@@ -18,170 +18,170 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--<include
-            android:id="@+id/include"
-            layout="@layout/main_toolbar" />-->
+        <!-- <include
+             android:id="@+id/include"
+             layout="@layout/main_toolbar" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:background="@drawable/hornepozadie2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="360dp"
+             android:background="@drawable/hornepozadie2"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="555dp"
-            android:background="@drawable/dolnepozadie"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+         <RelativeLayout
+             android:id="@+id/relativeLayout"
+             android:layout_width="match_parent"
+             android:layout_height="555dp"
+             android:background="@drawable/dolnepozadie"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent">
 
-        </RelativeLayout>
+         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/obrazokKnihy"
-            android:layout_width="166dp"
-            android:layout_height="245dp"
-            android:src="@drawable/queens_gambit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.13"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            android:background="@drawable/shadow"/>
+         <ImageView
+             android:id="@+id/obrazokKnihy"
+             android:layout_width="166dp"
+             android:layout_height="245dp"
+             android:src="@drawable/queens_gambit"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.13"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintVertical_bias="0.2"
+             android:background="@drawable/shadow"/>
 
-        <TextView
-            android:id="@+id/zaner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dráma"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-            android:layout_marginTop="20dp"/>
+         <TextView
+             android:id="@+id/zaner"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Dráma"
+             android:textColor="@color/white"
+             android:textSize="18dp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.8"
+             app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+             android:layout_marginTop="20dp"/>
 
-        <TextView
-            android:id="@+id/pocetStran"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="216"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/pocetStran2"
-            app:layout_constraintTop_toBottomOf="@+id/zaner"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"/>
+         <TextView
+             android:id="@+id/pocetStran"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="216"
+             android:textColor="@color/white"
+             android:textSize="18dp"
+             app:layout_constraintEnd_toStartOf="@+id/pocetStran2"
+             app:layout_constraintTop_toBottomOf="@+id/zaner"
+             android:layout_marginRight="5dp"
+             android:layout_marginTop="15dp"/>
 
-        <TextView
-            android:id="@+id/pocetStran2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="strán"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/zaner"
-            android:layout_marginTop="15dp"/>
+         <TextView
+             android:id="@+id/pocetStran2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="strán"
+             android:textColor="@color/white"
+             android:textSize="18dp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.8"
+             app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/zaner"
+             android:layout_marginTop="15dp"/>
 
-        <TextView
-            android:id="@+id/autor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Autor:"
-            android:textStyle="italic"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/obrazokKnihy"
-            android:layout_marginTop="20dp"/>
+         <TextView
+             android:id="@+id/autor"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Autor:"
+             android:textStyle="italic"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/obrazokKnihy"
+             android:layout_marginTop="20dp"/>
 
-        <TextView
-            android:id="@+id/autor2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Walter Tevis"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/autor"
-            app:layout_constraintTop_toBottomOf="@+id/obrazokKnihy"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"/>
+         <TextView
+             android:id="@+id/autor2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Walter Tevis"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             app:layout_constraintStart_toEndOf="@+id/autor"
+             app:layout_constraintTop_toBottomOf="@+id/obrazokKnihy"
+             android:layout_marginTop="20dp"
+             android:layout_marginLeft="10dp"/>
 
-        <TextView
-            android:id="@+id/menoPouzivatela"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Názov knihy:"
-            android:textStyle="italic"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/autor"
-            android:layout_marginTop="20dp"/>
+         <TextView
+             android:id="@+id/menoPouzivatela"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Názov knihy:"
+             android:textStyle="italic"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/autor"
+             android:layout_marginTop="20dp"/>
 
-        <TextView
-            android:id="@+id/nazovKnihy2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dámsky gambit"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/menoPouzivatela"
-            app:layout_constraintTop_toBottomOf="@+id/autor2"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"/>
+         <TextView
+             android:id="@+id/nazovKnihy2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Dámsky gambit"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             app:layout_constraintStart_toEndOf="@+id/menoPouzivatela"
+             app:layout_constraintTop_toBottomOf="@+id/autor2"
+             android:layout_marginTop="20dp"
+             android:layout_marginLeft="10dp"/>
 
-        <TextView
-            android:id="@+id/obsah"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Obsah:"
-            android:textStyle="italic"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/menoPouzivatela"
-            android:layout_marginTop="20dp" />
+         <TextView
+             android:id="@+id/obsah"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Obsah:"
+             android:textStyle="italic"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/menoPouzivatela"
+             android:layout_marginTop="20dp" />
 
-        <TextView
-            android:id="@+id/obsah2"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:text="obsah"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/obsah"
-            android:layout_marginTop="20dp"/>
+         <TextView
+             android:id="@+id/obsah2"
+             android:layout_width="350dp"
+             android:layout_height="wrap_content"
+             android:text="obsah"
+             android:textColor="@color/white"
+             android:textSize="15dp"
+             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/obsah"
+             android:layout_marginTop="20dp"/>
 
-        <TextView
-            android:id="@+id/recenzia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recenzie"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/obsah2"
-            android:layout_marginTop="20dp"/>
+         <TextView
+             android:id="@+id/recenzia"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Recenzie"
+             android:textColor="@color/white"
+             android:textSize="20dp"
+             android:textStyle="italic"
+             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/obsah2"
+             android:layout_marginTop="20dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewRecenzia"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
-            app:layout_constraintTop_toBottomOf="@+id/recenzia" />
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/recyclerViewRecenzia"
+             android:layout_width="match_parent"
+             android:layout_height="200dp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="@+id/obrazokKnihy"
+             app:layout_constraintTop_toBottomOf="@+id/recenzia" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

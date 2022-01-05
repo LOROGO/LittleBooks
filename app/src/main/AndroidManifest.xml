@@ -26,7 +26,7 @@
         <activity android:name=".MojeKnihy" />
         <activity android:name=".NewBook" />
         <activity android:name=".Account" />
-        <activity android:name=".Obsah" />
+        <activity android:name=".old.Obsah" />
         <activity android:name=".SplashAcitivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

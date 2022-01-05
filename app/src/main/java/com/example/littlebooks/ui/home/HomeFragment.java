@@ -27,6 +27,8 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -43,6 +45,7 @@ import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
+import com.example.littlebooks.ui.main.Test02Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -59,7 +62,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     private HomeViewModel homeViewModel;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
-    //pridat adapter a prepojenie knih
     FirebaseAuth fAuth;
     ImageView pozadie;
     TextView viac;
@@ -77,8 +79,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         root = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -87,6 +88,13 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         sceneMain.enter();
         mainTrans = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition1);
         mainTrans2 = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition2);
+
+        /*FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+        transaction.replace(R.id.fragment_home, fragmet);
+        transaction.addToBackStack(null);
+        transaction.commit();*/
+
 
         createSceneMain(root);
         mainTrans2.addListener(new Transition.TransitionListener() {
@@ -185,12 +193,11 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         return root;
     }
 
-
     public void createSceneMain(View root){
 
         drawerLayout = root.findViewById(R.id.drawer_layout);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
-        searchBar = root.findViewById(R.id.editTextTextPersonName);
+        searchBar = root.findViewById(R.id.vyhladavanie);
 
         //zavolanie a poslanie parametrov do triedy Background task ktora komunikuje s php
         if (mKnihy==null) {
@@ -214,7 +221,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
     }
     public void createSceneSearch(View root){
-        searchBar = root.findViewById(R.id.editTextTextPersonName);
+        searchBar = root.findViewById(R.id.vyhladavanie);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         back = root.findViewById(R.id.backButton);
 

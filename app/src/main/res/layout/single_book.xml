@@ -41,7 +41,7 @@
             app:srcCompat="@drawable/beedl" />
 
         <TextView
-            android:id="@+id/menoPouzivatela"
+            android:id="@+id/nazovKnihy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
             android:layout_marginTop="8dp"
             android:text="J.K. Rowling"
             app:layout_constraintStart_toEndOf="@+id/pouzivatel"
-            app:layout_constraintTop_toBottomOf="@+id/menoPouzivatela" />
+            app:layout_constraintTop_toBottomOf="@+id/nazovKnihy" />
 
         <TextView
             android:id="@+id/score1"
