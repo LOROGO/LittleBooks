@@ -16,9 +16,7 @@
         <activity
             android:name=".old.MainActivity2"
             android:label="@string/title_activity_main2" />
-        <activity android:name=".old.test02" />
         <activity android:name=".DetailKnihy" />
-        <activity android:name=".old.test" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".LoginRegister" />
