@@ -11,13 +11,13 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/dashboardFragment"
+        android:id="@+id/fragment_dashboard"
         android:name="com.example.littlebooks.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
-        android:id="@+id/test02Fragment"
-        android:name="com.example.littlebooks.ui.main.Test02Fragment"
+        android:id="@+id/fragment_user"
+        android:name="com.example.littlebooks.ui.main.UserFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/fragment_user" />
 </navigation>

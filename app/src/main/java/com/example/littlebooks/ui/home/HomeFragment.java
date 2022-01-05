@@ -27,8 +27,6 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -45,7 +43,6 @@ import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
-import com.example.littlebooks.ui.main.Test02Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -88,6 +85,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         sceneMain.enter();
         mainTrans = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition1);
         mainTrans2 = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition2);
+        currentScene = sceneMain;
 
         /*FragmentTransaction transaction = supportFragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);

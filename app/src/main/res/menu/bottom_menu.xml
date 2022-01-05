@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="1"
+    <item android:title="Home"
         android:id="@+id/fragment_home"
         android:icon="@drawable/ic_home_black_24dp"/>
-    <item android:title="2"
-        android:id="@+id/test02Fragment"
+    <item android:title="User"
+        android:id="@+id/fragment_user"
         android:icon="@drawable/ic_account"/>
-    <item android:title="3"
-        android:id="@+id/dashboardFragment"
+    <item android:title="Cock"
+        android:id="@+id/fragment_dashboard"
         android:icon="@drawable/ic_favorite"
         />
 </menu>

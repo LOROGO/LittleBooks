@@ -12,7 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.littlebooks.ui.dashboard.DashboardFragment;
 import com.example.littlebooks.ui.home.HomeFragment;
-import com.example.littlebooks.ui.main.Test02Fragment;
+import com.example.littlebooks.ui.main.UserFragment;
 import com.example.littlebooks.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,7 +24,7 @@ public class MainActivityT extends AppCompatActivity {
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
 
-    Test02Fragment test02Fragment;
+    UserFragment fragmentuser;
     DashboardFragment dashboardFragment;
     HomeFragment homeFragment;
     MenuItem prevMenuItem;
@@ -53,10 +53,10 @@ public class MainActivityT extends AppCompatActivity {
                             case R.id.fragment_home:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.test02Fragment:
+                            case R.id.fragment_user:
                                 viewPager.setCurrentItem(1);
                                 break;
-                            case R.id.dashboardFragment:
+                            case R.id.fragment_dashboard:
                                 viewPager.setCurrentItem(2);
                                 break;
                         }
@@ -108,11 +108,11 @@ public class MainActivityT extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         dashboardFragment =new DashboardFragment();
-        test02Fragment =new Test02Fragment();
+        fragmentuser =new UserFragment();
         homeFragment =new HomeFragment();
-        adapter.addFragment(dashboardFragment);
-        adapter.addFragment(test02Fragment);
         adapter.addFragment(homeFragment);
+        adapter.addFragment(fragmentuser);
+        adapter.addFragment(dashboardFragment);
         viewPager.setAdapter(adapter);
     }
 }

@@ -14,25 +14,25 @@ import android.view.ViewGroup;
 
 import com.example.littlebooks.R;
 
-public class Test02Fragment extends Fragment {
+public class UserFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private UserViewModel mViewModel;
 
-    public static Test02Fragment newInstance() {
-        return new Test02Fragment();
+    public static UserFragment newInstance() {
+        return new UserFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_user, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         // TODO: Use the ViewModel
     }
 
