@@ -184,6 +184,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         InputMethodManager imm = (InputMethodManager)a.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(searchBar, 0);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,9 +192,9 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
                 imm.hideSoftInputFromWindow(root.getWindowToken(), 0);
                 TransitionManager.go(sceneMain, mainTrans2);
                 currentScene = sceneMain;
-
             }
         });
+
         searchBar.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == 66) {

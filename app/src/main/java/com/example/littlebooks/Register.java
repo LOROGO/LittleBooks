@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
 
     TextView nazov, podnadpis, alreadyExist;
-    EditText email, password1, meno, password2;
+    EditText email, password1, meno, password2, priezvisko;
     Button button;
     FirebaseAuth fAuth;
     String userID;
@@ -54,6 +54,7 @@ public class Register extends AppCompatActivity {
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
         meno = findViewById(R.id.meno);
+        priezvisko = findViewById(R.id.priezvisko);
         button = findViewById(R.id.button);
         alreadyExist = findViewById(R.id.alreadyExist);
 
@@ -66,6 +67,7 @@ public class Register extends AppCompatActivity {
                 String passwordd = password1.getText().toString().trim();
                 String passworddd = password2.getText().toString().trim();
                 final String menoo = meno.getText().toString().trim();
+                final String priezviskoo = priezvisko.getText().toString().trim();
 
                 if (TextUtils.isEmpty(emaill)){
                     email.setError("Vyplňte toto pole!");
@@ -74,6 +76,11 @@ public class Register extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(menoo)){
                     meno.setError("Vyplňte toto pole!");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(priezviskoo)){
+                    priezvisko.setError("Vyplňte toto pole!");
                     return;
                 }
 
@@ -125,8 +132,7 @@ public class Register extends AppCompatActivity {
                                     params.put("action", "newUser");
                                     params.put("uid", userID);
                                     params.put("meno", menoo);
-                                    params.put("priezvisko", "banas");
-                                    params.put("nickname", "");
+                                    params.put("priezvisko", priezviskoo);
                                     params.put("email", emaill);
                                     return params;
                                 }
@@ -134,10 +140,10 @@ public class Register extends AppCompatActivity {
                             requestQueue = Volley.newRequestQueue(Register.this);
                             requestQueue.add(stringRequest);
 
-                            Intent mainIntent = new Intent(Register.this, MainActivity.class);
+                            /*Intent mainIntent = new Intent(Register.this, MainActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
-                            finish();
+                            finish();*/
 
                             startActivity(new Intent(getApplicationContext(), MainActivityT.class));
                         }
