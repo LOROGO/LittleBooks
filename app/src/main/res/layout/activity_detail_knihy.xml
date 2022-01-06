@@ -208,10 +208,11 @@
                 android:layout_marginStart="30dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/recenzia"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/recenzia">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -230,8 +231,8 @@
                     android:id="@+id/pouzivatel"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="centerCrop"
@@ -256,15 +257,15 @@
                     android:id="@+id/recenziaPopis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginRight="28dp"
                     android:hint="Sem napíšte svoju recenziu..."
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     app:layout_constraintEnd_toEndOf="@+id/srdiecko1"
                     app:layout_constraintStart_toEndOf="@+id/pouzivatel"
-                    app:layout_constraintTop_toBottomOf="@+id/meno"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginRight="28dp"/>
+                    app:layout_constraintTop_toBottomOf="@+id/meno" />
 
                 <ImageView
                     android:id="@+id/srdiecko1"
@@ -278,12 +279,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <!--<androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewRecenzia"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent" />-->
-
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                android:layout_marginTop="15dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
