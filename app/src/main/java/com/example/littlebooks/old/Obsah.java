@@ -9,11 +9,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.littlebooks.Account;
-import com.example.littlebooks.BooksActivity;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
-import com.example.littlebooks.old.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

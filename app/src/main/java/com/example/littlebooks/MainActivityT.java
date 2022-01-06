@@ -6,43 +6,28 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.littlebooks.ui.dashboard.DashboardFragment;
 import com.example.littlebooks.ui.home.HomeFragment;
 import com.example.littlebooks.ui.main.UserFragment;
-import com.example.littlebooks.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivityT extends AppCompatActivity {
-    public List<ModelMainData> knihy;
     private ViewPager viewPager;
-    private PagerAdapter pagerAdapter;
 
     UserFragment fragmentuser;
     DashboardFragment dashboardFragment;
     HomeFragment homeFragment;
     MenuItem prevMenuItem;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_t);
 
-        List<Fragment> list = new ArrayList<>();
-        list.add(new HomeFragment());
-        list.add(new NotificationsFragment());
-        list.add(new DashboardFragment());
-
         viewPager = findViewById(R.id.main_tabPager);
-        //pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
-
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -90,17 +75,6 @@ public class MainActivityT extends AppCompatActivity {
 
             }
         });
-
-       /*  //Disable ViewPager Swipe
-       viewPager.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                return true;
-            }
-        });
-        */
 
         setupViewPager(viewPager);
     }

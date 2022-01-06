@@ -19,8 +19,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,13 +36,12 @@ import androidx.recyclerview.widget.SnapHelper;
 import com.example.littlebooks.Account;
 import com.example.littlebooks.Adapter;
 import com.example.littlebooks.BackgroundTask;
-import com.example.littlebooks.BooksActivity;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
+import com.example.littlebooks.old.BooksActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -59,21 +56,15 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     private HomeViewModel homeViewModel;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
-    FirebaseAuth fAuth;
-    ImageView pozadie;
-    TextView viac;
     EditText searchBar;
     Scene sceneMain;
     static Scene sceneSearch;
     Scene currentScene;
-    ViewGroup rootFrameLayM;
     ImageButton back;
     Transition mainTrans;
-    Transition mainTrans2;
+    Transition mainTrans2;          //prechody
     View root;
 
-
-    DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,12 +77,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         mainTrans = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition1);
         mainTrans2 = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition2);
         currentScene = sceneMain;
-
-        /*FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-        transaction.replace(R.id.fragment_home, fragmet);
-        transaction.addToBackStack(null);
-        transaction.commit();*/
 
 
         createSceneMain(root);
@@ -129,38 +114,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
             @Override
             public void onTransitionEnd(Transition transition) {
-                /*searchBar = root.findViewById(R.id.editTextTextPersonName);
-                back = root.findViewById(R.id.backButton);
-                searchBar.requestFocus();
-                InputMethodManager imm = (InputMethodManager)a.getSystemService(
-                        Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(searchBar, 0);
-                back.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TransitionManager.go(sceneMain, mainTrans2);
-
-                    }
-                });
-                searchBar.setOnKeyListener(new View.OnKeyListener() {
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-                        if (keyCode == 66) {
-                            InputMethodManager imm =  (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                            Toast.makeText(getContext(), searchBar.getText(), Toast.LENGTH_LONG).show();
-                            searchBar.clearFocus();
-                            return true; //this is required to stop sending key event to parent
-                        }
-                        return false;
-                    }
-                });
-
-
-
-
-
-
-                Toast.makeText(getContext(), "som tu", Toast.LENGTH_LONG).show();*/
                 createSceneSearch(root);
             }
 
@@ -180,7 +133,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             }
         });
 
-// VSETKY VECI PISANE DO ONCREATU SA TRZ PISU DO CREATESCENEMAIN() ALEBBO SCREATESCENESEARCH() PODLA TOHO O KTORY LAYOUT SA JEDNA
+// VSETKY VECI PISANE DO ONCREATU SA TRZ PISU DO CREATESCENEMAIN() ALEBO SCREATESCENESEARCH() PODLA TOHO O KTORY LAYOUT SA JEDNA
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -191,7 +144,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         return root;
     }
 
-    public void createSceneMain(View root){
+    public void createSceneMain(View root){             //scena1
 
         drawerLayout = root.findViewById(R.id.drawer_layout);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
@@ -218,7 +171,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         });
 
     }
-    public void createSceneSearch(View root){
+    public void createSceneSearch(View root){       //scena2
         searchBar = root.findViewById(R.id.vyhladavanie);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         back = root.findViewById(R.id.backButton);
@@ -250,7 +203,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             }
         });
     }
-
 
 
     private void searchRequest(String text) {
@@ -295,8 +247,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             mKnihy = knihy;
             //posle list do adapteru a nastavi adapter pre recyclerview
             populateRecView(knihy, root);
-
-
         }}
 
         public void populateRecView(List<ModelMainData> knihy, View root){
@@ -322,10 +272,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             SnapHelper snapHelper = new LinearSnapHelper();
             //snapHelper.attachToRecyclerView(recyclerView);
         }
-
-
-        }
-
+    }
 
 
     public void ClickMenu(View view){
@@ -393,7 +340,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         });
         builder.show();
     }
-
 
 
     public static void redirectActivity(Activity activity, Class aClass) {

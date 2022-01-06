@@ -20,7 +20,6 @@
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".LoginRegister" />
-        <activity android:name=".BooksActivity" />
         <activity android:name=".MojeKnihy" />
         <activity android:name=".NewBook" />
         <activity android:name=".Account" />

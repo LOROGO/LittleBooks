@@ -6,17 +6,12 @@ import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.android.volley.toolbox.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback {
     TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia;
@@ -62,21 +57,6 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
 
-    }
-    public void GetTextFromSQL(View view){
-        try {
-            Connect connect = new Connect();
-            conn = connect.connectionClass();
-            if (connect !=null){
-                String query = "Select * from kniha where id = 1";
-                Statement st = conn.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                //nazov.setText(rs.getString(2));
-            }
-
-        }catch (Exception e){
-
-        }
     }
 
     @Override

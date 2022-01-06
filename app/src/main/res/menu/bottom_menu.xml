@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Home"
+    <item android:title="Domov"
         android:id="@+id/fragment_home"
         android:icon="@drawable/ic_home_black_24dp"/>
-    <item android:title="User"
+    <item android:title="Profil"
         android:id="@+id/fragment_user"
         android:icon="@drawable/ic_account"/>
-    <item android:title="Cock"
+    <item android:title="Kategórie"
         android:id="@+id/fragment_dashboard"
         android:icon="@drawable/ic_favorite"
         />
