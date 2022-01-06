@@ -126,7 +126,7 @@ public class Register extends AppCompatActivity {
                                     }
                             ){
                                 @Override
-                                protected Map<String, String> getParams() throws AuthFailureError {
+                                protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
                                     Map<String, String> params = new HashMap<>();
                                     params.put("action", "newUser");
                                     params.put("uid", userID);

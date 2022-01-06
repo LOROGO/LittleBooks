@@ -49,7 +49,7 @@ public class Adapter extends
 
         //nastavenie obrazka to split je tam preto lebo v db mame ze napr obrazky/obrazok1.jpg+a kopec bludov za tym takze takto len tie bludy dame prec
         String imageUri = null;
-        imageUri = "http:"+mKnihy.get(position).getObrazok().split(".jpg")[0]+".jpg";
+        imageUri = mKnihy.get(position).getObrazok();
         Log.d("knihyObrazok", "Kniha "+imageUri+"\n");
 
         Picasso.with(con).load(imageUri).into(holder.obrazok);
