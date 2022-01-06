@@ -15,15 +15,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BackgroundTask extends AsyncTask<Void, Void, String> {
-    public String url;
-    public String json_string;
+    public String url= "";
+    public String json_string= "";
 
-    public String table;
-    public String action;
-    public String php;
-    public String podmienka;
-    public String search;
-    public String scr;
+    public String table= "";
+    public String action= "";
+    public String php= "";
+    public String podmienka= "";
+    public String search= "";
+    public String scr= "";
 
     JSONArray obj;
     ApiCallback apiCallback;
