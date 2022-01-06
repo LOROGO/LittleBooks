@@ -30,34 +30,45 @@
         app:layout_constraintTop_toBottomOf="@+id/user"
         android:layout_marginTop="15dp"/>
 
-    <Button
+    <TextView
         android:id="@+id/oblubene"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Obľúbené"
+        android:text="OBĽÚBENÉ"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="45dp"
         android:layout_marginTop="20dp"/>
 
-    <Button
+    <TextView
         android:id="@+id/chcemPrecitat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prečítať "
+        android:text="PREČÍTAŤ"
         app:layout_constraintEnd_toStartOf="@+id/precitane"
         app:layout_constraintStart_toEndOf="@+id/oblubene"
         app:layout_constraintTop_toBottomOf="@+id/userName"
         android:layout_marginTop="20dp"/>
 
-    <Button
+    <TextView
         android:id="@+id/precitane"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prečítané"
+        android:text="PREČÍTANÉ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName"
-        android:layout_marginRight="25dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="20dp"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chcemPrecitat"
         android:layout_marginTop="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -67,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chcemPrecitat"
+        app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="30dp"/>
 
