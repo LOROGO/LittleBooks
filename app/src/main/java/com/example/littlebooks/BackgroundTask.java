@@ -15,28 +15,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BackgroundTask extends AsyncTask<Void, Void, String> {
-    String url;
-    String json_string;
+    public String url;
+    public String json_string;
 
-
+    public String table;
+    public String action;
+    public String php;
+    public String podmienka;
+    public String search;
+    public String scr;
 
     JSONArray obj;
     ApiCallback apiCallback;
 
     //konstruktor - prva metoda,kt sa zavola - urobi url ktora vola php
-    public BackgroundTask(String table, String action, String scr, String php, String podmienka, String search){
-        Log.d("url" ,"search "+search);
-        if (podmienka.isEmpty()&&search.isEmpty()) {
-            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
-            Log.d("url1", url);
-        }
-        else if (search.isEmpty()) {
-            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&podmienka=" + podmienka;
-            Log.d("url2", url);
-        }else{
-            url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
-            Log.d("url3", url);
-        }
+    public BackgroundTask(){
+
     }
 
     //riesi interface idk
@@ -48,6 +42,18 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        if (podmienka.isEmpty()&&search.isEmpty()) {
+            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
+            Log.d("url1", url);
+        }
+        else if (search.isEmpty()) {
+            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&podmienka=" + podmienka;
+            Log.d("url2", url);
+        }else{
+            url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
+            Log.d("url3", url);
+        }
+
     }
     //nic
     @Override
@@ -55,20 +61,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
         super.onProgressUpdate(values);
     }
 
-    //metoda ktora sa zavola po dokonceni poziadavky - vola interface dole
-    @Override
-    protected void onPostExecute(String aVoid) {
-        super.onPostExecute(aVoid);
-        apiCallback.populateLay(obj);
-        try {
-            Log.d("JSON", obj.getJSONObject(1).getString("nazov"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        catch (NullPointerException e){
 
-        }
-    }
 
     //riesi poziadavku, dostane odpoved z php a spracuje zo stringu na JSON
     @Override
@@ -107,6 +100,22 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
 
         return json_string;
     }
+    //metoda ktora sa zavola po dokonceni poziadavky - vola interface dole
+    @Override
+    protected void onPostExecute(String aVoid) {
+        super.onPostExecute(aVoid);
+        apiCallback.populateLay(obj);
+        try {
+            Log.d("JSON", obj.getJSONObject(1).getString("nazov"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e){
+
+        }
+    }
+
+
     //interface - zavola metodu populateLay z metody kde bola trieda zavolana - home fragment / detail knihy
     public interface ApiCallback{
         void populateLay(JSONArray obj);

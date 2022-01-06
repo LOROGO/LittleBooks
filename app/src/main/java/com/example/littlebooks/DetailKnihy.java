@@ -1,7 +1,5 @@
 package com.example.littlebooks;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -10,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,7 +54,12 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }catch (Exception e){
             Log.e("DetailKnihy", e.toString());
         }
-        BackgroundTask backgroundTask = new BackgroundTask("kniha", "select", "1","get_knihy4", "id_kniha="+id, "");
+        BackgroundTask backgroundTask = new BackgroundTask();
+        backgroundTask.table = "kniha";
+        backgroundTask.action = "select";
+        backgroundTask.scr = "1";
+        backgroundTask.php = "get_knihy4";
+        backgroundTask.podmienka = "id_kniha="+id;
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
 
