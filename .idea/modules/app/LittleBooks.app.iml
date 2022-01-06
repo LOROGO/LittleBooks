@@ -168,5 +168,6 @@
     <orderEntry type="library" name="Gradle: com.google.firebase:protolite-well-known-types:17.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.grpc:grpc-android:1.28.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.multidex:multidex:2.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.sdsmdg.harjot:longshadows:1.0.1@aar" level="project" />
   </component>
 </module>

@@ -5,14 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LittleBooks">
-        <activity android:name=".MainActivityT"></activity>
+        android:theme="@style/Theme.LittleBooks"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".MainActivityT" />
         <activity
             android:name=".old.MainActivity2"
             android:label="@string/title_activity_main2" />

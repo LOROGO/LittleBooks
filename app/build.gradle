@@ -69,6 +69,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    implementation 'com.sdsmdg.harjot:longshadows:1.0.1'
+
 }
 repositories {
     mavenCentral()

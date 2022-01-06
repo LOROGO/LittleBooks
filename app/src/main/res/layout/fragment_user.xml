@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/test02"
@@ -7,14 +8,67 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.UserFragment">
 
+    <ImageView
+        android:id="@+id/user"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="35dp"/>
+
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test02Fragment"
+        android:text="Meno Priezvisko"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/oblubene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Obľúbené"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/chcemPrecitat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prečítať "
+        app:layout_constraintEnd_toStartOf="@+id/precitane"
+        app:layout_constraintStart_toEndOf="@+id/oblubene"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/precitane"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prečítané"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/chcemPrecitat"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
