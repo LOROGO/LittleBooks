@@ -1,5 +1,8 @@
 package com.example.littlebooks;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +15,7 @@ import com.example.littlebooks.ui.dashboard.DashboardFragment;
 import com.example.littlebooks.ui.home.HomeFragment;
 import com.example.littlebooks.ui.main.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivityT extends AppCompatActivity {
@@ -21,6 +25,7 @@ public class MainActivityT extends AppCompatActivity {
     DashboardFragment dashboardFragment;
     HomeFragment homeFragment;
     MenuItem prevMenuItem;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,9 @@ public class MainActivityT extends AppCompatActivity {
         setContentView(R.layout.activity_main_t);
 
         viewPager = findViewById(R.id.main_tabPager);
+
+        fAuth = FirebaseAuth.getInstance();
+        if (fAuth.getCurrentUser()==null)logout(MainActivityT.this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -79,6 +87,28 @@ public class MainActivityT extends AppCompatActivity {
         setupViewPager(viewPager);
     }
 
+    public static void logout(final Activity activity){
+        FirebaseAuth.getInstance().signOut();
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Odhlásenie");
+        builder.setMessage("Ste si istý, že sa chcete odhlásiť?");
+        builder.setPositiveButton("Áno", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseAuth.getInstance().signOut();
+                activity.finishAffinity();
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         dashboardFragment =new DashboardFragment();
@@ -89,4 +119,5 @@ public class MainActivityT extends AppCompatActivity {
         adapter.addFragment(dashboardFragment);
         viewPager.setAdapter(adapter);
     }
+
 }

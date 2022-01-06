@@ -8,6 +8,7 @@
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/activity_obsah.xml" value="1.25" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/fragment_dashboard.xml" value="0.1308876811594203" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/fragment_user.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/main_basic.xml" value="0.325" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/main_fragment.xml" value="0.32447916666666665" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/main_search.xml" value="0.33" />
@@ -15,7 +16,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
