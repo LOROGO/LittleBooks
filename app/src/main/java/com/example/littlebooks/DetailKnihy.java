@@ -92,12 +92,9 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
 
         BackgroundTask backgroundTask1 = new BackgroundTask(4);
-        backgroundTask1.action = "selectReview";
+        backgroundTask1.action = "getReviews";
         backgroundTask1.php = "recenzia";
-        backgroundTask1.uid = fAuth.getUid();
         backgroundTask1.id_kniha = id;
-        backgroundTask1.popis = recenziaPopis.getText().toString();
-        backgroundTask1.hodnotenie = "5";
         backgroundTask1.setApiCallback1(this);
         backgroundTask1.execute();
 

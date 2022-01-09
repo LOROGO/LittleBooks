@@ -65,7 +65,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
             Log.d("url3", url);
         }
         else if (vyber==4){//recenzia
-            url ="http://159.223.112.133/"+php+".php?uid="+uid+"&id_kniha="+id_kniha+"&popis="+popis+"&hodnotenie="+hodnotenie;
+            url ="http://159.223.112.133/"+php+".php?id_kniha="+id_kniha+"&action="+action;
         }
 
     }
