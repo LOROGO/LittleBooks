@@ -57,12 +57,11 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
 
     }
 
+    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return mReview.size();
     }
-
-    // Returns the total count of items in the list
 
 
     // Provide a direct reference to each of the views within a data item

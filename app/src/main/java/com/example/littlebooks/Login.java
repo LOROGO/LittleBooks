@@ -23,7 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
-    TextView nazov, podnadpis, alreadyExist, forgotPass;
+    TextView nazov, podnadpis, podnadpis2, alreadyExist, forgotPass;
     EditText email, pass;
     Button button;
     FirebaseAuth fAuth;
@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity {
 
         nazov = findViewById(R.id.nazov);
         podnadpis = findViewById(R.id.podnadpis);
+        podnadpis2 = findViewById(R.id.podnadpis2);
         email = findViewById(R.id.email);
         pass = findViewById(R.id.pass);
         button = findViewById(R.id.button);
@@ -42,6 +43,11 @@ public class Login extends AppCompatActivity {
         forgotPass = findViewById(R.id.forgotPass);
 
         fAuth = FirebaseAuth.getInstance();
+
+        if (fAuth.getCurrentUser()!=null){
+            Intent main = new Intent(getApplicationContext(), MainActivityT.class);
+            startActivity(main);
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +125,14 @@ public class Login extends AppCompatActivity {
                 });
 
                 passResetDialog.create().show();
+            }
+        });
+
+
+        podnadpis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
     }

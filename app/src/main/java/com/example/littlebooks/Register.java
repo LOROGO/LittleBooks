@@ -33,7 +33,7 @@ public class Register extends AppCompatActivity {
 
     public static final String TAG = "TAG";
 
-    TextView nazov, podnadpis, alreadyExist;
+    TextView nazov, podnadpis, podnadpis2, alreadyExist;
     EditText email, password1, meno, password2, priezvisko;
     Button button;
     FirebaseAuth fAuth;
@@ -48,6 +48,7 @@ public class Register extends AppCompatActivity {
 
         nazov = findViewById(R.id.nazov);
         podnadpis = findViewById(R.id.podnadpis);
+        podnadpis2 = findViewById(R.id.podnadpis2);
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
@@ -152,6 +153,19 @@ public class Register extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        if (fAuth.getCurrentUser()!=null){
+            Intent main = new Intent(getApplicationContext(), MainActivityT.class);
+            startActivity(main);
+        }
+
+
+        podnadpis2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
             }
         });
 
