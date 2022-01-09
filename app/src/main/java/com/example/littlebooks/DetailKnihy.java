@@ -1,7 +1,6 @@
 package com.example.littlebooks;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,15 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.littlebooks.old.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -105,10 +104,10 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         odoslat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://159.223.112.133/user1.php?action=newReview";
+                String url = "http://159.223.112.133/recenzia.php?action=newReview";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
-
+                            Log.d("DetailKJur", response);
                         },
                         error -> {
                             Log.d("RegE", error.toString());
