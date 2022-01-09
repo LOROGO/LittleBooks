@@ -38,7 +38,7 @@
             app:srcCompat="@drawable/user" />
 
         <TextView
-            android:id="@+id/nazovKnihy"
+            android:id="@+id/menoUsera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -58,11 +58,11 @@
             android:layout_marginTop="15dp"
             android:hint="Sem napíšte svoju recenziu..."
             app:layout_constraintStart_toEndOf="@+id/pouzivatel"
-            app:layout_constraintTop_toBottomOf="@+id/nazovKnihy"
+            app:layout_constraintTop_toBottomOf="@+id/menoUsera"
             android:textColor="@color/black"/>
 
         <ImageView
-            android:id="@+id/srdiecko1"
+            android:id="@+id/hviezdicky"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginTop="18dp"

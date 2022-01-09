@@ -1,6 +1,7 @@
 package com.example.littlebooks;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -104,7 +105,7 @@ public class Register extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
 
 
-                            String url = "http://165.227.134.175/user1.php";
+                            String url = "http://159.223.112.133/user1.php";
                             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                                     response -> {
 
@@ -154,11 +155,11 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        alreadyExist.setOnClickListener(new View.OnClickListener() {
+        /*alreadyExist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
-        });
+        });*/
     }
 }

@@ -1,24 +1,44 @@
 package com.example.littlebooks;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.littlebooks.old.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback {
-    TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia;
-    ImageView obrazokKnihy;
+
+public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback, BackgroundTask.CallbackReview {
+    TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia, meno;
+    ImageView obrazokKnihy, pouzivatel, hviezdicky;
+    EditText recenziaPopis;
+    Button odoslat;
     java.sql.Connection conn;
     String result = "";
+    String id;
+
+    FirebaseAuth fAuth;
+    RequestQueue requestQueue;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -31,20 +51,26 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         pocetStran2 = findViewById(R.id.pocetStran2);
         autor = findViewById(R.id.autor);
         autor2 = findViewById(R.id.autor2);
-        nazovKnihy = findViewById(R.id.nazovKnihy);
+        nazovKnihy = findViewById(R.id.menoUsera);
         nazovKnihy2 = findViewById(R.id.nazovKnihy2);
         obsah = findViewById(R.id.obsah);
-        //obsah2 = findViewById(R.id.obsah2);
+        obsah2 = findViewById(R.id.obsah2);
         obrazokKnihy = findViewById(R.id.obrazokKnihy);
-        //recenzia = findViewById(R.id.recenzia);
+        recenzia = findViewById(R.id.recenzia);
+        pouzivatel = findViewById(R.id.pouzivatel);
+        hviezdicky = findViewById(R.id.hviezdicky);
+        recenziaPopis = findViewById(R.id.recenziaPopis);
+        odoslat = findViewById(R.id.odoslat);
 
         autor.setPaintFlags(autor.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         nazovKnihy.setPaintFlags(nazovKnihy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         obsah.setPaintFlags(obsah.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        //recenzia.setPaintFlags(recenzia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        recenzia.setPaintFlags(recenzia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        fAuth = FirebaseAuth.getInstance();
 
         Bundle extras = getIntent().getExtras();
-        String id = "";
+        id = "";
         if (extras != null) {
              id = extras.getString("id");
         }
@@ -54,7 +80,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }catch (Exception e){
             Log.e("DetailKnihy", e.toString());
         }
-        BackgroundTask backgroundTask = new BackgroundTask();
+
+        BackgroundTask backgroundTask = new BackgroundTask(2);
         backgroundTask.table = "kniha";
         backgroundTask.action = "select";
         backgroundTask.scr = "1";
@@ -63,7 +90,46 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
 
+
+
+        BackgroundTask backgroundTask1 = new BackgroundTask(4);
+        backgroundTask1.action = "selectReview";
+        backgroundTask1.php = "recenzia";
+        backgroundTask1.uid = fAuth.getUid();
+        backgroundTask1.id_kniha = id;
+        backgroundTask1.popis = recenziaPopis.getText().toString();
+        backgroundTask1.hodnotenie = "5";
+        backgroundTask1.setApiCallback1(this);
+        backgroundTask1.execute();
+
+        odoslat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://159.223.112.133/user1.php?action=newReview";
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        response -> {
+
+                        },
+                        error -> {
+                            Log.d("RegE", error.toString());
+                        }
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                        Map<String, String> params = new HashMap<>();
+                        params.put("uid", fAuth.getUid());
+                        params.put("popis", recenziaPopis.getText().toString());
+                        params.put("hodnotenie", "5");
+                        params.put("id_kniha", id);
+                        return params;
+                    }
+                };
+                requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+                requestQueue.add(stringRequest);
+            }
+        });
     }
+
 
     @Override
     public void populateLay(JSONArray obj) {
@@ -85,6 +151,11 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }catch (Exception e){
             Log.d("popDet", e.getMessage());
         }
+
+    }
+
+    @Override
+    public void populateLayReview(JSONArray obj) {
 
     }
 }

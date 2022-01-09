@@ -48,7 +48,7 @@
             app:srcCompat="@drawable/beedl" />
 
         <TextView
-            android:id="@+id/nazovKnihy"
+            android:id="@+id/menoUsera"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|top"

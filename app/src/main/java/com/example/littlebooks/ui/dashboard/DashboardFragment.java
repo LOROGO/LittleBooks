@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.littlebooks.Account;
-import com.example.littlebooks.Adapter;
+import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.old.BooksActivity;
 import com.example.littlebooks.old.MainActivity;
@@ -135,9 +135,9 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
             }
 
         }
-        Adapter adapter = new Adapter(knihy, getActivity());
+        AdapterBooks adapterBooks = new AdapterBooks(knihy, getActivity(), "");
         // Attach the adapter to the recyclerview to populate items
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterBooks);
         // Set layout manager to position the items
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new SlideInLeftAnimator());
@@ -285,9 +285,9 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
         activity.startActivity(intent);
     }
     public void populateRecyclerView(){
-        Adapter adapter = new Adapter(mKnihy, getActivity());
+        AdapterBooks adapterBooks = new AdapterBooks(mKnihy, getActivity(),"");
         // Attach the adapter to the recyclerview to populate items
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterBooks);
         // Set layout manager to position the items
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new SlideInLeftAnimator());

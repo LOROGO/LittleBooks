@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.littlebooks.Account;
-import com.example.littlebooks.Adapter;
+import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
@@ -152,7 +152,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
         //zavolanie a poslanie parametrov do triedy Background task ktora komunikuje s php
         if (mKnihy==null) {
-            BackgroundTask bs = new BackgroundTask();
+            BackgroundTask bs = new BackgroundTask(1);
             bs.table = "kniha";
             bs.action = "select";
             bs.scr = "2";
@@ -212,7 +212,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
     private void searchRequest(String text) {
         Log.d("url", text);
-        BackgroundTask bs = new BackgroundTask();
+        BackgroundTask bs = new BackgroundTask(3);
         bs.table = "kniha";
         bs.action = "select";
         bs.scr = "3";
@@ -262,19 +262,22 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         public void populateRecView(List<ModelMainData> knihy, View root){
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         if (currentScene == sceneMain){
-            Adapter adapter = new Adapter(knihy, getActivity());
+            AdapterBooks adapterBooks = new AdapterBooks(knihy, getActivity(), "main");
             // Attach the adapter to the recyclerview to populate items
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapterBooks);
             // Set layout manager to position the items
-
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+            //animacia
             recyclerView.setItemAnimator(new SlideInLeftAnimator());
+
+            //na stred - 3
             SnapHelper snapHelper = new LinearSnapHelper();
             snapHelper.attachToRecyclerView(recyclerView);
         }else {
-            Adapter adapter = new Adapter(knihy, getActivity());
+            AdapterBooks adapterBooks = new AdapterBooks(knihy, getActivity(), "search");
             // Attach the adapter to the recyclerview to populate items
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapterBooks);
             // Set layout manager to position the items
 
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
@@ -358,9 +361,9 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         activity.startActivity(intent);
     }
     public void populateRecyclerView(){
-        Adapter adapter = new Adapter(mKnihy, getActivity());
+        AdapterBooks adapterBooks = new AdapterBooks(mKnihy, getActivity(),"");
         // Attach the adapter to the recyclerview to populate items
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterBooks);
         // Set layout manager to position the items
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new SlideInLeftAnimator());

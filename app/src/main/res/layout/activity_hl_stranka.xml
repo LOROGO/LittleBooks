@@ -68,7 +68,7 @@
             app:srcCompat="@drawable/beedl" />
 
         <TextView
-            android:id="@+id/nazovKnihy"
+            android:id="@+id/menoUsera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rozprávky Beedla"
@@ -90,7 +90,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.155"
-            app:layout_constraintStart_toEndOf="@+id/nazovKnihy"
+            app:layout_constraintStart_toEndOf="@+id/menoUsera"
             app:layout_constraintTop_toBottomOf="@+id/obrazok1" />
 
         <TextView

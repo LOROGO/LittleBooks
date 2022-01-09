@@ -24,34 +24,48 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     public String podmienka= "";
     public String search= "";
     public String scr= "";
+    public String uid= "";
+    public String id_kniha= "";
+    public String popis="";
+    public String hodnotenie="";
+    public int vyber = 0;
 
     JSONArray obj;
     ApiCallback apiCallback;
+    CallbackReview callbackReview;
 
     //konstruktor - prva metoda,kt sa zavola - urobi url ktora vola php
-    public BackgroundTask(){
-
+    public BackgroundTask(int vyber){
+        this.vyber = vyber;
+        Log.d("url", "som v backgt");
     }
 
     //riesi interface idk
     public void setApiCallback(ApiCallback apiCallback){
         this.apiCallback = apiCallback;
     }
+    public void setApiCallback1(CallbackReview callbackReview){
+        this.callbackReview = callbackReview;
+    }
+
 
     //nic
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        if (podmienka.isEmpty()&&search.isEmpty()) {
-            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
+        if (vyber==1) {//main
+            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
             Log.d("url1", url);
         }
-        else if (search.isEmpty()) {
-            url = "http://165.227.134.175/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&podmienka=" + podmienka;
+        else if (vyber==2) {//detail
+            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&podmienka=" + podmienka;
             Log.d("url2", url);
-        }else{
-            url = "http://165.227.134.175/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
+        }else if(vyber==3){//search
+            url = "http://159.223.112.133/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
             Log.d("url3", url);
+        }
+        else if (vyber==4){//recenzia
+            url ="http://159.223.112.133/"+php+".php?uid="+uid+"&id_kniha="+id_kniha+"&popis="+popis+"&hodnotenie="+hodnotenie;
         }
 
     }
@@ -64,6 +78,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
 
 
     //riesi poziadavku, dostane odpoved z php a spracuje zo stringu na JSON
+    //zoberie vsetko z webu a ulozi do stringu JSON
     @Override
     protected String doInBackground(Void... voids) {
         Log.d("BackG", "...");
@@ -119,5 +134,8 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     //interface - zavola metodu populateLay z metody kde bola trieda zavolana - home fragment / detail knihy
     public interface ApiCallback{
         void populateLay(JSONArray obj);
+    }
+    public interface CallbackReview{
+        void populateLayReview(JSONArray obj);
     }
 }

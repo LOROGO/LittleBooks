@@ -15,31 +15,36 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Adapter extends
-        RecyclerView.Adapter<Adapter.ViewHolder> {
+public class AdapterBooks extends RecyclerView.Adapter<AdapterBooks.ViewHolder> {
     public List<ModelMainData> mKnihy;
     public Context con;
+    public String scena;
 
-    public Adapter(List<ModelMainData> knihy, Context context) {
+    public AdapterBooks(List<ModelMainData> knihy, Context context, String scena) {
         //1. zavola sa tato metoda, ulozi ten poslany zoznam do lokalnej premennej mKnihy
         mKnihy = knihy;
         Log.d("KnihySize", Integer.toString(getItemCount()));
         con = context;
+        this.scena = scena;
     }
 
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterBooks.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //vytvorenie viewu idk
         LayoutInflater inflater = LayoutInflater.from(con);
-        View knihyView = inflater.inflate(R.layout.single_book_main, parent, false);
+        View knihyView;
+        if (scena=="search") {
+             knihyView = inflater.inflate(R.layout.single_book_main, parent, false);
+        }else
+             knihyView = inflater.inflate(R.layout.single_book_main, parent, false);
 
-        return new Adapter.ViewHolder(knihyView);
+        return new AdapterBooks.ViewHolder(knihyView);
 
     }
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterBooks.ViewHolder holder, int position) {
 
         //
         ModelMainData kniha = mKnihy.get(holder.getAdapterPosition());
@@ -93,7 +98,7 @@ public class Adapter extends
         public ViewHolder(View itemView) {
         // ulozenie tych veci z layoutu u know idk
             super(itemView);
-            nazovKnihy = (TextView) itemView.findViewById(R.id.nazovKnihy);
+            nazovKnihy = (TextView) itemView.findViewById(R.id.menoUsera);
             obrazok = itemView.findViewById(R.id.pouzivatel);
         }
     }

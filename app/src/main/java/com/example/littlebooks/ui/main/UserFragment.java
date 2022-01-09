@@ -65,7 +65,7 @@ public class UserFragment extends Fragment{
 
 
 
-        String url = "http://165.227.134.175/user1.php";
+        String url = "http://159.223.112.133/user1.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
                     Log.d("RegR", response.toString());

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/uvodpozadie"
+    android:background="@drawable/pozadie"
     tools:context=".Register">
 
     <TextView
@@ -19,19 +19,34 @@
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/podnadpis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrácia"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nazov"
+        app:layout_constraintVertical_bias=".2"
+        android:layout_marginLeft="60dp"/>
+
+    <TextView
+        android:id="@+id/podnadpis2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prihlásenie"
+        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nazov"
-        app:layout_constraintVertical_bias=".2"/>
+        app:layout_constraintVertical_bias=".2"
+        android:layout_marginRight="60dp"/>
 
     <EditText
         android:id="@+id/email"
@@ -49,7 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".3"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/meno"
@@ -66,7 +82,8 @@
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintVertical_bias="0"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/priezvisko"
@@ -83,7 +100,8 @@
         app:layout_constraintTop_toBottomOf="@+id/meno"
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintVertical_bias="0"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/password1"
@@ -121,7 +139,7 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent=".8" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/alreadyExist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,7 +149,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias=".1"/>
+        app:layout_constraintVertical_bias=".1"
+        android:textColor="@color/black"/>-->
 
     <Button
         android:id="@+id/button"
