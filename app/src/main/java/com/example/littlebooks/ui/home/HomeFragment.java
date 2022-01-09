@@ -78,7 +78,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         mainTrans2 = TransitionInflater.from(getContext()).inflateTransition(R.transition.transition2);
         currentScene = sceneMain;
 
-
         createSceneMain(root);
         mainTrans2.addListener(new Transition.TransitionListener() {
             @Override

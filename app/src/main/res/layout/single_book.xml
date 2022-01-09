@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/pouzivatel"
+            android:id="@+id/obrazok"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginStart="24dp"
@@ -41,7 +41,7 @@
             app:srcCompat="@drawable/beedl" />
 
         <TextView
-            android:id="@+id/menoUsera"
+            android:id="@+id/nazovKnihy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -49,22 +49,22 @@
             android:layout_marginTop="16dp"
             android:text="Rozprávky barda Beedla"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
+            app:layout_constraintStart_toEndOf="@+id/obrazok"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/recenziaPopis"
+            android:id="@+id/autor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:text="J.K. Rowling"
-            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
-            app:layout_constraintTop_toBottomOf="@+id/menoUsera" />
+            app:layout_constraintStart_toEndOf="@+id/obrazok"
+            app:layout_constraintTop_toBottomOf="@+id/nazovKnihy" />
 
         <TextView
-            android:id="@+id/score1"
+            android:id="@+id/strany"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -72,7 +72,7 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.03"
             app:layout_constraintStart_toEndOf="@+id/pocetStran"
-            app:layout_constraintTop_toBottomOf="@+id/recenziaPopis" />
+            app:layout_constraintTop_toBottomOf="@+id/autor" />
 
         <TextView
             android:id="@+id/pocetStran"
@@ -82,8 +82,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:text="144"
-            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
-            app:layout_constraintTop_toBottomOf="@+id/recenziaPopis" />
+            app:layout_constraintStart_toEndOf="@+id/obrazok"
+            app:layout_constraintTop_toBottomOf="@+id/autor" />
 
         <ImageView
             android:id="@+id/hviezdicky"
