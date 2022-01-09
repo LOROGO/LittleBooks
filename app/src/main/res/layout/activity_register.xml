@@ -8,6 +8,7 @@
     android:background="@drawable/pozadie"
     tools:context=".Register">
 
+
     <TextView
         android:id="@+id/nazov"
         android:layout_width="wrap_content"
@@ -65,7 +66,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".3"
         app:layout_constraintWidth_percent=".8"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:nextFocusDown="@id/meno"/>
 
     <EditText
         android:id="@+id/meno"
@@ -83,7 +85,9 @@
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:nextFocusDown="@id/priezvisko"
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/priezvisko"
@@ -101,7 +105,9 @@
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:nextFocusDown="@id/password1"
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/password1"
@@ -119,7 +125,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priezvisko"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        android:nextFocusDown="@id/password2"/>
 
     <EditText
         android:id="@+id/password2"

@@ -37,7 +37,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     //konstruktor - prva metoda,kt sa zavola - urobi url ktora vola php
     public BackgroundTask(int vyber){
         this.vyber = vyber;
-        Log.d("url", "som v backgt");
+        Log.d("url", "som v backgt"+vyber);
     }
 
     //riesi interface idk
@@ -66,6 +66,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
         }
         else if (vyber==4){//recenzia
             url ="http://159.223.112.133/"+php+".php?id_kniha="+id_kniha+"&action="+action;
+            Log.d("url3", url);
         }
 
     }

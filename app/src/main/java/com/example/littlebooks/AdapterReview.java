@@ -47,25 +47,6 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         holder.menoUsera.setText(mReview.get(holder.getAdapterPosition()).getMeno().trim());
         holder.recenziaPopis.setText(mReview.get(holder.getAdapterPosition()).getPopis().trim());
 
-        if (mReview.get(holder.getAdapterPosition()).getHodnotenie().equals("0")){
-            holder.hviezdicky.setBackgroundResource(R.drawable.rating);
-        }
-        else if (mReview.get(holder.getAdapterPosition()).getHodnotenie().equals("1")){
-            holder.hviezdicky.setBackgroundResource(R.drawable.rating1);
-        }
-        else if (mReview.get(holder.getAdapterPosition()).getHodnotenie().equals("2")){
-            holder.hviezdicky.setBackgroundResource(R.drawable.rating2);
-        }
-        else if (mReview.get(holder.getAdapterPosition()).getHodnotenie().equals("3")){
-            holder.hviezdicky.setBackgroundResource(R.drawable.rating3);
-        }
-        else if (mReview.get(holder.getAdapterPosition()).getHodnotenie().equals("4")){
-            holder.hviezdicky.setBackgroundResource(R.drawable.rating4);
-        }
-        else if (mReview.get(holder.getAdapterPosition()).getHodnotenie().equals("5")){
-            holder.hviezdicky.setBackgroundResource(R.drawable.rating5);
-        }
-
         //nastavenie obrazka to split je tam preto lebo v db mame ze napr obrazky/obrazok1.jpg+a kopec bludov za tym takze takto len tie bludy dame prec
         String imageUri = null;
         imageUri = mReview.get(position).getObrazok();

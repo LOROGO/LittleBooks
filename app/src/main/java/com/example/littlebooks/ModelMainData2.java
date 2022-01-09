@@ -5,16 +5,16 @@ public class ModelMainData2 {
     private String popis;
     private String hodnotenie;
     private String id_kniha;
-    private String id_recenzie;
+    //private String id_recenzie;
     private String obrazok;
     private String meno;
 
-    public ModelMainData2(String uid, String popis, String hodnotenie, String id_kniha, String id_recenzie, String obrazok, String meno, String priezvisko) {
+    public ModelMainData2(String uid, String popis, String hodnotenie, String id_kniha, String obrazok, String meno, String priezvisko) {
         this.uid = uid;
         this.popis = popis;
         this.hodnotenie = hodnotenie;
         this.id_kniha = id_kniha;
-        this.id_recenzie = id_recenzie;
+        //this.id_recenzie = id_recenzie;
         this.obrazok = obrazok;
         this.meno = meno+" "+priezvisko;
     }
@@ -51,13 +51,13 @@ public class ModelMainData2 {
         this.id_kniha = id_kniha;
     }
 
-    public String getId_recenzie() {
+   /* public String getId_recenzie() {
         return id_recenzie;
     }
 
     public void setId_recenzie(String id_recenzie) {
         this.id_recenzie = id_recenzie;
-    }
+    }*/
 
     public String getObrazok() {
         return obrazok;

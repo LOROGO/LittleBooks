@@ -11,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,8 +28,14 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+
+import static com.google.android.material.internal.ContextUtils.getActivity;
 
 
 public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback, BackgroundTask.CallbackReview {
@@ -32,6 +43,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     ImageView obrazokKnihy, pouzivatel, hviezdicky;
     EditText recenziaPopis;
     Button odoslat;
+    RecyclerView recyclerView;
     java.sql.Connection conn;
     String result = "";
     String id;
@@ -60,6 +72,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         hviezdicky = findViewById(R.id.hviezdicky);
         recenziaPopis = findViewById(R.id.recenziaPopis);
         odoslat = findViewById(R.id.odoslat);
+        recyclerView = findViewById(R.id.recyclerViewRecenzia);
 
         autor.setPaintFlags(autor.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         nazovKnihy.setPaintFlags(nazovKnihy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -79,7 +92,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }catch (Exception e){
             Log.e("DetailKnihy", e.toString());
         }
-
+        //nacitanie udajov o knihe detail>background>php>db>php>background a tu
         BackgroundTask backgroundTask = new BackgroundTask(2);
         backgroundTask.table = "kniha";
         backgroundTask.action = "select";
@@ -90,7 +103,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         backgroundTask.execute();
 
 
-
+        //zobrazenie recenzii ku danej knihe
+        Log.d("url1", "detail2");
         BackgroundTask backgroundTask1 = new BackgroundTask(4);
         backgroundTask1.action = "getReviews";
         backgroundTask1.php = "recenzia";
@@ -122,8 +136,11 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                 };
                 requestQueue = Volley.newRequestQueue(DetailKnihy.this);
                 requestQueue.add(stringRequest);
+
+
             }
         });
+
     }
 
 
@@ -136,7 +153,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             nazovKnihy2.setText(a.getString("autor"));
             autor2.setText(a.getString("nazov"));
             //obsah2.setText(a.getString("obsah"));
-            //zaner.setText(a.getString("zaner"));
+            zaner.setText(a.getString("podkategoria"));
             pocetStran.setText(a.getString("pocet_stran"));
 
             Picasso.with(DetailKnihy.this).load("https://images-ext-2.discordapp.net/external/LKjW88WNz2jZApjPZm9y5as66RrkbQAjwmEKoCdUBqA/https/www.pantarhei.sk/media/catalog/product/cache/8e1ec8304136dcb6f8c9c4e5913fff01/4/9/b22329f-00491129-23.jpg").into(obrazokKnihy);
@@ -152,6 +169,44 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
     @Override
     public void populateLayReview(JSONArray obj) {
+        //vytvorenie noveho listu
+        List<ModelMainData2> recenzie = new ArrayList<>();
+        if (obj!=null){
+            for (int i = 0; i < obj.length(); i++) {
+                try {
+                    //spracuje json a da do listu
+                    JSONObject a = obj.getJSONObject(i);
+                    recenzie.add(new ModelMainData2(
 
+                            a.getString("uid"),
+                            a.getString("popis"),
+                            a.getString("hodnotenie"),
+                            id,
+                            a.getString("obrazok"),
+                            a.getString("meno"),
+                            a.getString("priezvisko")
+
+                    ));
+                }catch (Exception e){
+                    Log.e("PopulateRec", e.getMessage());
+                }
+
+            }
+
+            //posle list do adapteru a nastavi adapter pre recyclerview
+            populateRecView2(recenzie);
+        }
+    }
+
+    public void populateRecView2(List<ModelMainData2> recenzie){
+            AdapterReview adapterReview = new AdapterReview(recenzie, DetailKnihy.this);
+            // Attach the adapter to the recyclerview to populate items
+            recyclerView.setAdapter(adapterReview);
+            // Set layout manager to position the items
+
+            recyclerView.setLayoutManager(new LinearLayoutManager(DetailKnihy.this));
+            recyclerView.setItemAnimator(new SlideInLeftAnimator());
+            SnapHelper snapHelper = new LinearSnapHelper();
+            //snapHelper.attachToRecyclerView(recyclerView);
     }
 }
