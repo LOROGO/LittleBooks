@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,8 +33,6 @@ import java.util.List;
 import java.util.Map;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-
-import static com.google.android.material.internal.ContextUtils.getActivity;
 
 
 public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback, BackgroundTask.CallbackReview {
@@ -118,7 +115,16 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                 String url = "http://159.223.112.133/recenzia.php?action=newReview";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
+
+                            recenziaPopis.setText("");
                             Log.d("DetailKJur", response);
+                            BackgroundTask backgroundTask1 = new BackgroundTask(4);
+                            backgroundTask1.action = "getReviews";
+                            backgroundTask1.php = "recenzia";
+                            backgroundTask1.id_kniha = id;
+                            backgroundTask1.setApiCallback1(DetailKnihy.this);
+                            backgroundTask1.execute();
+
                         },
                         error -> {
                             Log.d("RegE", error.toString());
