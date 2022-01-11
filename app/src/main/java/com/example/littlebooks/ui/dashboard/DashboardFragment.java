@@ -214,15 +214,11 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
                                 barcodeData = barcodes.valueAt(0).email.address;
                                 barcodeText.setText(barcodeData);
                                 toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
-                                String url = "http://159.223.112.133/get_knihy4.php";
-                                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                                String url = "http://159.223.112.133/get_knihy4.php?action=checkISBN&isbn="+barcodeData;
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                         response -> {
 
-                                            if (response.equals("ok")){
 
-
-                                            }
-                                            else
                                                 Log.d("RegR", response.toString());
                                         },
                                         error -> {
@@ -233,9 +229,7 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
                                     @Override
                                     protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
                                         Map<String, String> params = new HashMap<>();
-                                        params.put("action", "checkISBN");
-                                        params.put("isbn", barcodeData);
-                                        Log.d("Dashboard", barcodeData);
+
                                         return params;
                                     }
                                 };
@@ -244,16 +238,16 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
                             } else {
 
                                 barcodeData = barcodes.valueAt(0).displayValue;
-                                String url = "http://159.223.112.133/get_knihy4.php";
-                                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                                String url = "http://159.223.112.133/get_knihy4.php?action=checkISBN&isbn="+barcodeData;
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                         response -> {
                                                 Log.d("RegR", response.toString());
                                             try {
                                                 JSONArray array = new JSONArray(response);
                                                 JSONObject object = array.getJSONObject(0);
-                                                Log.d("RegR", object.getString("idk_kniha"));
+                                                Log.d("RegR", object.getString("id_kniha"));
                                             } catch (JSONException e) {
-                                                e.printStackTrace();
+                                                Log.d("RegR", e.getMessage());
                                             }
 
                                         },
