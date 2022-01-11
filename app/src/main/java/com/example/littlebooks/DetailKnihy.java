@@ -162,7 +162,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             zaner.setText(a.getString("podkategoria"));
             pocetStran.setText(a.getString("pocet_stran"));
 
-            Picasso.with(DetailKnihy.this).load("https://images-ext-2.discordapp.net/external/LKjW88WNz2jZApjPZm9y5as66RrkbQAjwmEKoCdUBqA/https/www.pantarhei.sk/media/catalog/product/cache/8e1ec8304136dcb6f8c9c4e5913fff01/4/9/b22329f-00491129-23.jpg").into(obrazokKnihy);
+            Picasso.with(DetailKnihy.this).load(a.getString("obrazok")).into(obrazokKnihy);
 
             Log.d("popDet", a.getString("nazov"));
 

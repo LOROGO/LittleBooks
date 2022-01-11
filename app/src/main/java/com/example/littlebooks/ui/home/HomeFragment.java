@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         bs.table = "kniha";
         bs.action = "select";
         bs.scr = "3";
-        bs.php = "getKniha";
+        bs.php = "get_knihy4";
         bs.search = text;
         bs.setApiCallback(this);
         String a = String.valueOf(bs.execute());

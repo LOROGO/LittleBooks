@@ -1,18 +1,28 @@
 package com.example.littlebooks.ui.dashboard;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.ToneGenerator;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -23,35 +33,44 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
-import com.example.littlebooks.old.BooksActivity;
-import com.example.littlebooks.old.MainActivity;
-import com.example.littlebooks.old.MainAdapter;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
+import com.example.littlebooks.old.BooksActivity;
+import com.example.littlebooks.old.MainActivity;
+import com.example.littlebooks.old.MainAdapter;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class DashboardFragment extends Fragment implements BackgroundTask.ApiCallback {
 
@@ -63,9 +82,19 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
     MainAdapter adapter;
     ImageView pozadie;
 
+    private SurfaceView surfaceView;
+    private BarcodeDetector barcodeDetector;
+    private CameraSource cameraSource;
+    private static final int REQUEST_CAMERA_PERMISSION = 201;
+    //This class provides methods to play DTMF tones
+    private ToneGenerator toneGen1;
+    private TextView barcodeText;
+    private String barcodeData;
+
 
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
+    RequestQueue requestQueue;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +111,10 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
 
+
+        surfaceView = root.findViewById(R.id.surface_view);
+        barcodeText = root.findViewById(R.id.barcode_text);
+        initialiseDetectorsAndSources();
 
        /* recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -115,6 +148,140 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
             }
         });
         return root;
+    }
+
+    private void initialiseDetectorsAndSources() {
+
+        //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
+
+        barcodeDetector = new BarcodeDetector.Builder(requireContext())
+                .setBarcodeFormats(Barcode.ALL_FORMATS)
+                .build();
+
+        cameraSource = new CameraSource.Builder(requireContext(), barcodeDetector)
+                .setRequestedPreviewSize(1920, 1080)
+                .setAutoFocusEnabled(true) //you should add this feature
+                .build();
+
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                try {
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        cameraSource.start(surfaceView.getHolder());
+                    } else {
+                        ActivityCompat.requestPermissions(getActivity(), new
+                                String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                cameraSource.stop();
+            }
+        });
+
+
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
+                // Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<Barcode> detections) {
+                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
+                if (barcodes.size() != 0) {
+
+
+                    barcodeText.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            if (barcodes.valueAt(0).email != null) {
+                                barcodeText.removeCallbacks(null);
+                                barcodeData = barcodes.valueAt(0).email.address;
+                                barcodeText.setText(barcodeData);
+                                toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+                                String url = "http://159.223.112.133/get_knihy4.php";
+                                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                                        response -> {
+
+                                            if (response.equals("ok")){
+
+
+                                            }
+                                            else
+                                                Log.d("RegR", response.toString());
+                                        },
+                                        error -> {
+                                            Log.d("RegE", error.toString());
+
+                                        }
+                                ){
+                                    @Override
+                                    protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                                        Map<String, String> params = new HashMap<>();
+                                        params.put("action", "checkISBN");
+                                        params.put("isbn", barcodeData);
+                                        Log.d("Dashboard", barcodeData);
+                                        return params;
+                                    }
+                                };
+                                requestQueue = Volley.newRequestQueue(getContext());
+                                requestQueue.add(stringRequest);
+                            } else {
+
+                                barcodeData = barcodes.valueAt(0).displayValue;
+                                String url = "http://159.223.112.133/get_knihy4.php";
+                                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                                        response -> {
+                                                Log.d("RegR", response.toString());
+                                            try {
+                                                JSONArray array = new JSONArray(response);
+                                                JSONObject object = array.getJSONObject(0);
+                                                Log.d("RegR", object.getString("idk_kniha"));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        },
+                                        error -> {
+                                            Log.d("RegE", error.toString());
+
+                                        }
+                                ){
+                                    @Override
+                                    protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                                        Map<String, String> params = new HashMap<>();
+                                        params.put("action", "checkISBN");
+                                        params.put("isbn", barcodeData);
+                                        Log.d("Dashboard", barcodeData);
+                                        return params;
+                                    }
+                                };
+                                requestQueue = Volley.newRequestQueue(getContext());
+                                requestQueue.add(stringRequest);
+                                barcodeText.setText(barcodeData);
+
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
     }
 
     @Override
