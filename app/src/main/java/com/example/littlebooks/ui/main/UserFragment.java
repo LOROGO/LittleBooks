@@ -72,10 +72,9 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         fAuth = FirebaseAuth.getInstance();
         String uid = fAuth.getUid();
 
-
         String url = "http://159.223.112.133/user1.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                response -> {
+                response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
                     Log.d("RegR", response.toString());
 
                     try {
@@ -101,8 +100,6 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                     catch (JSONException e) {
                         Log.d("uid", fAuth.getUid());
                     }
-
-
                 },
                 error -> {
                     Log.d("RegE", error.toString());
@@ -110,7 +107,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                 }
         ){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() throws AuthFailureError {     //posiela udaje do php, tie co zadam v appke
                 Map<String, String> params = new HashMap<>();
                 params.put("action", "selectUser");
                 params.put("uid", uid);

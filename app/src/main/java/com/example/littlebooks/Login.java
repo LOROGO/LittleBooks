@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.email);
         pass = findViewById(R.id.pass);
         button = findViewById(R.id.button);
-        alreadyExist = findViewById(R.id.alreadyExist);
+        //alreadyExist = findViewById(R.id.alreadyExist);
         forgotPass = findViewById(R.id.forgotPass);
 
         fAuth = FirebaseAuth.getInstance();
@@ -84,12 +84,12 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        alreadyExist.setOnClickListener(new View.OnClickListener() {
+        /*alreadyExist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
             }
-        });
+        });*/
 
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +133,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
+                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
     }
 }

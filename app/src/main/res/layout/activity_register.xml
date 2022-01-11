@@ -24,10 +24,10 @@
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/podnadpis"
+        android:id="@+id/podnadpis2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrácia"
+        android:text="Prihlásenie"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/email"
@@ -38,10 +38,10 @@
         android:clickable="true"/>
 
     <TextView
-        android:id="@+id/podnadpis2"
+        android:id="@+id/podnadpis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prihlásenie"
+        android:text="Registrácia"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/email"

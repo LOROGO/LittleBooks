@@ -14,7 +14,7 @@ public class SplashAcitivity extends AppCompatActivity {
     Animation topanim;
     ImageView knihy;
 
-    private static int Splash_time = 3000;
+    private static int Splash_time = 1000; //3000
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

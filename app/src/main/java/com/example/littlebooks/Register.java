@@ -55,7 +55,7 @@ public class Register extends AppCompatActivity {
         meno = findViewById(R.id.meno);
         priezvisko = findViewById(R.id.priezvisko);
         button = findViewById(R.id.button);
-        alreadyExist = findViewById(R.id.alreadyExist);
+        //alreadyExist = findViewById(R.id.alreadyExist);
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -166,6 +166,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Login.class));
+                overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
             }
         });
 
@@ -175,5 +176,11 @@ public class Register extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });*/
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
     }
 }

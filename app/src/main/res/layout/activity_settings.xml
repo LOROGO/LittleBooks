@@ -18,22 +18,55 @@
         android:layout_marginTop="35dp"/>
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/meno"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_bg"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="Meno"
+        android:inputType="textPersonName"
+        android:nextFocusDown="@id/priezvisko"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".3"
-        app:layout_constraintWidth_percent=".8"/>
+        app:layout_constraintTop_toBottomOf="@+id/user"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/priezvisko"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Priezvisko"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meno"
+        app:layout_constraintWidth_percent=".8"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:nextFocusDown="@id/password1"
+        android:inputType="textPersonName"/>
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="zmeniť"
+        app:layout_constraintEnd_toEndOf="@+id/priezvisko"
+        app:layout_constraintStart_toStartOf="@+id/priezvisko"
+        app:layout_constraintTop_toBottomOf="@+id/priezvisko"
+        android:layout_marginTop="20dp"
+        android:clickable="true"/>
 
 
    <!-- <View
