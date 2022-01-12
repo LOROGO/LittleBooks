@@ -136,6 +136,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     @Override
     public void populateLay(JSONArray obj) {
         //vytvorenie noveho listu
+
         List<ModelMainDataFavourite> knihy = new ArrayList<>();
         if (obj!=null){
             for (int i = 0; i < obj.length(); i++) {

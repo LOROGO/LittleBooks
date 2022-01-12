@@ -170,7 +170,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                         return params;
                     }
                 };
-                requestQueue = Volley.newRequestQueue();
+                requestQueue = Volley.newRequestQueue(DetailKnihy.this);
                 requestQueue.add(stringRequest);
             }
         });

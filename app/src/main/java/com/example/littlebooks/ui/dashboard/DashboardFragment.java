@@ -41,6 +41,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
+import com.example.littlebooks.DetailKnihy;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
@@ -246,6 +247,9 @@ public class DashboardFragment extends Fragment implements BackgroundTask.ApiCal
                                                 JSONArray array = new JSONArray(response);
                                                 JSONObject object = array.getJSONObject(0);
                                                 Log.d("RegR", object.getString("id_kniha"));
+                                                Intent i = new Intent(getContext(), DetailKnihy.class);
+                                                i.putExtra("id",object.getString("id_kniha"));
+                                                getContext().startActivity(i);
                                             } catch (JSONException e) {
                                                 Log.d("RegR", e.getMessage());
                                             }
