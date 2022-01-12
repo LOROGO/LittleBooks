@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHolder> {
+public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHolder> {             //naplnenie jedneho riadku recycler view a uloženie dat do recycler view, nie vypísanie
     public List<ModelMainDataFavourite> mKnihy;
     public Context con;
     public String scena;

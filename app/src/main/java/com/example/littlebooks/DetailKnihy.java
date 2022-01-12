@@ -37,7 +37,7 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback, BackgroundTask.CallbackReview {
     TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia, meno;
-    ImageView obrazokKnihy, pouzivatel, hviezdicky;
+    ImageView obrazokKnihy, pouzivatel, srdiecko;
     EditText recenziaPopis;
     Button odoslat;
     RecyclerView recyclerView;
@@ -66,7 +66,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         obrazokKnihy = findViewById(R.id.obrazokKnihy);
         recenzia = findViewById(R.id.recenzia);
         pouzivatel = findViewById(R.id.pouzivatel);
-        hviezdicky = findViewById(R.id.hviezdicky);
+        srdiecko = findViewById(R.id.srdiecko);
         recenziaPopis = findViewById(R.id.recenziaPopis);
         odoslat = findViewById(R.id.odoslat);
         recyclerView = findViewById(R.id.recyclerViewRecenzia);
@@ -144,6 +144,34 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                 requestQueue.add(stringRequest);
 
 
+            }
+        });
+
+
+        srdiecko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://159.223.112.133/get_knihy4.php?&action=insertOblubene"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        response -> {
+
+
+                            Log.d("RegR", response.toString());
+                        },
+                        error -> {
+                            Log.d("RegE", error.toString());
+
+                        }
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                        Map<String, String> params = new HashMap<>();
+
+                        return params;
+                    }
+                };
+                requestQueue = Volley.newRequestQueue();
+                requestQueue.add(stringRequest);
             }
         });
 

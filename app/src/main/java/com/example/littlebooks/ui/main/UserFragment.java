@@ -49,7 +49,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
     JSONArray jsonArray;
-    TextView userName;
+    TextView priezviskoMeno;
     RecyclerView recyclerview;
     View root;
 
@@ -61,14 +61,15 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         root = inflater.inflate(R.layout.fragment_user, container, false);
 
-        Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG);
+
+        Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG).show();
 
         recyclerview =root.findViewById(R.id.recyclerView);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
 
-        userName = root.findViewById(R.id.userName);
+        priezviskoMeno = root.findViewById(R.id.priezviskoMeno);
         fAuth = FirebaseAuth.getInstance();
         String uid = fAuth.getUid();
 
@@ -85,13 +86,15 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                     JSONObject a = null;
                     try {
                         a = jsonArray.getJSONObject(0);
-                        Log.d("RegR", a.toString());
+                        Log.d("RegR", "cele: "+a.toString());
+                        Log.d("RegR1", "meno: " + a.getString("meno"));
                         try {
                             Log.d("RegR", a.getString("meno"));
-                            userName.setText(a.getString("meno"));
-                            userName.append(" "+a.getString("priezvisko"));
+                            priezviskoMeno.setText(a.getString("meno"));
+                            priezviskoMeno.append(" "+a.getString("priezvisko"));
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d("RegR", e.getMessage());
                         }
                     }
                     catch (NullPointerException e){
@@ -129,6 +132,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         return root;
     }
 
+
     @Override
     public void populateLay(JSONArray obj) {
         //vytvorenie noveho listu
@@ -156,7 +160,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     }
 
 
-    public void populateRecView(List<ModelMainDataFavourite> knihy, View root){
+    public void populateRecView(List<ModelMainDataFavourite> knihy, View root){             //knihy z db da do layoutu
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
         AdapterOblubene adapterOblubene = new AdapterOblubene(knihy, getActivity(), "");
             // Attach the adapter to the recyclerview to populate items
@@ -169,6 +173,4 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
             //snapHelper.attachToRecyclerView(recyclerView);
     }
 
-    private void populateRecView(List<ModelMainDataFavourite> knihy) {
-    }
 }

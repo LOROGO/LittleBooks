@@ -62,6 +62,18 @@
                 android:elevation="1dp"
                 android:layout_marginStart="30dp"/>
 
+            <ImageView
+                android:id="@+id/srdiecko"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toTopOf="@+id/zaner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+                app:srcCompat="@drawable/ic_favorite_prazdne"
+                app:layout_constraintHorizontal_bias="1"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"/>
+
 
             <TextView
                 android:id="@+id/zaner"

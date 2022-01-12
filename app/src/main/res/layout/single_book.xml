@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/autor" />
 
         <ImageView
-            android:id="@+id/hviezdicky"
+            android:id="@+id/srdiecko"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

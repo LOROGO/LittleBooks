@@ -19,7 +19,7 @@
         android:layout_marginTop="35dp"/>
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/priezviskoMeno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Meno Priezvisko"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="OBĽÚBENÉ"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="20dp"
         android:clickable="true"/>
@@ -48,7 +48,7 @@
         android:text="PREČÍTAŤ"
         app:layout_constraintEnd_toStartOf="@+id/precitane"
         app:layout_constraintStart_toEndOf="@+id/oblubene"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginTop="20dp"
         android:clickable="true"/>
 
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="PREČÍTANÉ"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginRight="45dp"
         android:layout_marginTop="20dp"
         android:clickable="true"/>
