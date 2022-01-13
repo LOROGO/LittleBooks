@@ -6,7 +6,17 @@
     android:id="@+id/test02"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.UserFragment">
+    tools:context=".ui.main.UserFragment"
+    android:background="@color/creme">
+
+    <RelativeLayout
+        android:id="@+id/pozadiePouzivatela"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/pozadie9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/user"
@@ -38,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginLeft="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:clickable="true"/>
 
     <TextView
@@ -49,7 +59,7 @@
         app:layout_constraintEnd_toStartOf="@+id/precitane"
         app:layout_constraintStart_toEndOf="@+id/oblubene"
         app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:clickable="true"/>
 
     <TextView
@@ -60,12 +70,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginRight="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:clickable="true"/>
 
     <View
         android:id="@+id/view"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="2dp"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"

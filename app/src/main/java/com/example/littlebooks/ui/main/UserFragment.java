@@ -24,8 +24,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.AdapterOblubene;
 import com.example.littlebooks.BackgroundTask;
+import com.example.littlebooks.MainActivityT;
 import com.example.littlebooks.ModelMainDataFavourite;
 import com.example.littlebooks.R;
+import com.example.littlebooks.old.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,6 +42,8 @@ import java.util.List;
 import java.util.Map;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+
+import static androidx.core.app.ActivityCompat.recreate;
 
 public class UserFragment extends Fragment implements BackgroundTask.ApiCallback{
 
