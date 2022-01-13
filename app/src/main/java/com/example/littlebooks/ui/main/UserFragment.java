@@ -24,10 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.AdapterOblubene;
 import com.example.littlebooks.BackgroundTask;
-import com.example.littlebooks.MainActivityT;
 import com.example.littlebooks.ModelMainDataFavourite;
 import com.example.littlebooks.R;
-import com.example.littlebooks.old.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,8 +40,6 @@ import java.util.List;
 import java.util.Map;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-
-import static androidx.core.app.ActivityCompat.recreate;
 
 public class UserFragment extends Fragment implements BackgroundTask.ApiCallback{
 
@@ -135,45 +131,56 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         backgroundTask.scr = "4";
         backgroundTask.php = "get_knihy4";
         backgroundTask.uid = uid;
-        backgroundTask.setApiCallback(this);
+        backgroundTask.setApiCallback(UserFragment.this);
         backgroundTask.execute();
+
+
 
         oblubene.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 mKnihy.clear();
+                BackgroundTask backgroundTask = new BackgroundTask(5);
+                backgroundTask.table = "kniha";
+                backgroundTask.action = "select";
+                backgroundTask.scr = "4";
+                backgroundTask.php = "get_knihy4";
+                backgroundTask.uid = uid;
+                backgroundTask.setApiCallback(UserFragment.this);
                 backgroundTask.execute();
             }
         });
 
-        BackgroundTask backgroundTask1 = new BackgroundTask(5);
-        backgroundTask1.table = "kniha";
-        backgroundTask1.action = "select";
-        backgroundTask1.scr = "6";
-        backgroundTask1.php = "get_knihy4";
-        backgroundTask1.uid = uid;
-        backgroundTask1.setApiCallback(this);
+
 
         chcemPrecitat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mKnihy.clear();
+                BackgroundTask backgroundTask1 = new BackgroundTask(5);
+                backgroundTask1.table = "kniha";
+                backgroundTask1.action = "select";
+                backgroundTask1.scr = "6";
+                backgroundTask1.php = "get_knihy4";
+                backgroundTask1.uid = uid;
+                backgroundTask1.setApiCallback(UserFragment.this);
                 backgroundTask1.execute();
             }
         });
 
-        BackgroundTask backgroundTask2 = new BackgroundTask(5);
-        backgroundTask2.table = "kniha";
-        backgroundTask2.action = "select";
-        backgroundTask2.scr = "5";
-        backgroundTask2.php = "get_knihy4";
-        backgroundTask2.uid = uid;
-        backgroundTask2.setApiCallback(this);
+
 
         precitane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mKnihy.clear();
+                BackgroundTask backgroundTask2 = new BackgroundTask(5);
+                backgroundTask2.table = "kniha";
+                backgroundTask2.action = "select";
+                backgroundTask2.scr = "5";
+                backgroundTask2.php = "get_knihy4";
+                backgroundTask2.uid = uid;
+                backgroundTask2.setApiCallback(UserFragment.this);
                 backgroundTask2.execute();
             }
         });
@@ -185,6 +192,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     @Override
     public void populateLay(JSONArray obj) {
         //vytvorenie noveho listu
+        Log.d("UserFrJ", "populateLay");
 
         List<ModelMainDataFavourite> knihy = new ArrayList<>();
         if (obj!=null){
