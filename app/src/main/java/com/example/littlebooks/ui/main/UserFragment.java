@@ -50,6 +50,8 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     private UserViewModel userViewModel;
     private UserViewModel mViewModel;
 
+    TextView oblubene, chcemPrecitat, precitane;
+
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
     JSONArray jsonArray;
@@ -69,6 +71,9 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG).show();
 
         recyclerview =root.findViewById(R.id.recyclerView);
+        oblubene = root.findViewById(R.id.oblubene);
+        chcemPrecitat = root.findViewById(R.id.chcemPrecitat);
+        precitane = root.findViewById(R.id.precitane);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
@@ -132,6 +137,46 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         backgroundTask.uid = uid;
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
+
+        oblubene.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 mKnihy.clear();
+                backgroundTask.execute();
+            }
+        });
+
+        BackgroundTask backgroundTask1 = new BackgroundTask(5);
+        backgroundTask1.table = "kniha";
+        backgroundTask1.action = "select";
+        backgroundTask1.scr = "6";
+        backgroundTask1.php = "get_knihy4";
+        backgroundTask1.uid = uid;
+        backgroundTask1.setApiCallback(this);
+
+        chcemPrecitat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mKnihy.clear();
+                backgroundTask1.execute();
+            }
+        });
+
+        BackgroundTask backgroundTask2 = new BackgroundTask(5);
+        backgroundTask2.table = "kniha";
+        backgroundTask2.action = "select";
+        backgroundTask2.scr = "5";
+        backgroundTask2.php = "get_knihy4";
+        backgroundTask2.uid = uid;
+        backgroundTask2.setApiCallback(this);
+
+        precitane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mKnihy.clear();
+                backgroundTask2.execute();
+            }
+        });
 
         return root;
     }

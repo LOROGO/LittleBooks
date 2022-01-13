@@ -41,10 +41,10 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     }
 
     //riesi interface idk
-    public void setApiCallback(ApiCallback apiCallback){
+    public void setApiCallback(ApiCallback apiCallback){            //knihy
         this.apiCallback = apiCallback;
     }
-    public void setApiCallback1(CallbackReview callbackReview){
+    public void setApiCallback1(CallbackReview callbackReview){     //recenzia
         this.callbackReview = callbackReview;
     }
 
@@ -68,10 +68,9 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
             url ="http://159.223.112.133/"+php+".php?id_kniha="+id_kniha+"&action="+action;
             Log.d("url3", url);
         }
-        else if(vyber == 5){//oblubene
+        else if(vyber == 5){//oblubene, precitane, precitat                         select z tabulky
             url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr+ "&uid=" + uid;
             Log.d("url", url);
-
         }
 
     }

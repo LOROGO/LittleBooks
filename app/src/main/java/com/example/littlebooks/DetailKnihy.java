@@ -37,7 +37,7 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback, BackgroundTask.CallbackReview {
     TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia, meno;
-    ImageView obrazokKnihy, pouzivatel, srdiecko;
+    ImageView obrazokKnihy, pouzivatel, srdiecko, book;
     EditText recenziaPopis;
     Button odoslat;
     RecyclerView recyclerView;
@@ -67,6 +67,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         recenzia = findViewById(R.id.recenzia);
         pouzivatel = findViewById(R.id.pouzivatel);
         srdiecko = findViewById(R.id.srdiecko);
+        book = findViewById(R.id.book);
         recenziaPopis = findViewById(R.id.recenziaPopis);
         odoslat = findViewById(R.id.odoslat);
         recyclerView = findViewById(R.id.recyclerViewRecenzia);
@@ -148,10 +149,37 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         });
 
 
-        srdiecko.setOnClickListener(new View.OnClickListener() {
+        srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
             @Override
             public void onClick(View v) {
                 String url = "http://159.223.112.133/get_knihy4.php?&action=insertOblubene"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        response -> {
+
+
+                            Log.d("RegR", response.toString());
+                        },
+                        error -> {
+                            Log.d("RegE", error.toString());
+
+                        }
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                        Map<String, String> params = new HashMap<>();
+
+                        return params;
+                    }
+                };
+                requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+                requestQueue.add(stringRequest);
+            }
+        });
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://159.223.112.133/get_knihy4.php?&action=insertPrecitat"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         response -> {
 
