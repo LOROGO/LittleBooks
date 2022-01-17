@@ -3,7 +3,9 @@ package com.example.littlebooks;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +39,7 @@ public class Settings extends AppCompatActivity {
     RequestQueue requestQueue;
     JSONArray jsonArray;
     Button update;
+    ImageView logout;
     EditText meno, priezvisko;
 
     @Override
@@ -46,6 +50,7 @@ public class Settings extends AppCompatActivity {
         meno = findViewById(R.id.meno);
         priezvisko = findViewById(R.id.priezvisko);
         update = findViewById(R.id.update);
+        logout = findViewById(R.id.logout);
 
         fAuth = FirebaseAuth.getInstance();
         String uid = fAuth.getUid();
@@ -96,6 +101,30 @@ public class Settings extends AppCompatActivity {
         });
 
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+                builder.setTitle("Odhlásenie");
+                builder.setMessage("Ste si istý, že sa chcete odhlásiť?");
+                builder.setPositiveButton("Áno", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        Settings.this.finishAffinity();
+                        System.exit(0);
+                    }
+                });
+                builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
 
     }
 }

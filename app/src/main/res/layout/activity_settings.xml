@@ -17,6 +17,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="35dp"/>
 
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"/>
+
     <EditText
         android:id="@+id/meno"
         android:layout_width="0dp"

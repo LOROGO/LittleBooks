@@ -68,9 +68,6 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         root = inflater.inflate(R.layout.fragment_user, container, false);
 
-
-        Toast.makeText(getActivity(), "oncreate", Toast.LENGTH_LONG).show();
-
         recyclerview =root.findViewById(R.id.recyclerView);
         oblubene = root.findViewById(R.id.oblubene);
         chcemPrecitat = root.findViewById(R.id.chcemPrecitat);
