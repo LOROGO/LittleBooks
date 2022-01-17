@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -135,7 +136,6 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         backgroundTask.execute();
 
 
-
         oblubene.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +145,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                 backgroundTask.scr = "4";
                 backgroundTask.php = "get_knihy4";
                 backgroundTask.uid = uid;
+                //v.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
                 backgroundTask.setApiCallback(UserFragment.this);
                 backgroundTask.execute();
             }
@@ -163,6 +164,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                 backgroundTask1.scr = "6";
                 backgroundTask1.php = "get_knihy4";
                 backgroundTask1.uid = uid;
+                //v.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
                 backgroundTask1.setApiCallback(UserFragment.this);
                 backgroundTask1.execute();
             }
@@ -180,9 +182,11 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                 backgroundTask2.scr = "5";
                 backgroundTask2.php = "get_knihy4";
                 backgroundTask2.uid = uid;
+                //v.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
                 backgroundTask2.setApiCallback(UserFragment.this);
                 backgroundTask2.execute();
             }
+
         });
 
         return root;
@@ -227,6 +231,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
 
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setItemAnimator(new SlideInLeftAnimator());
+            recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
             SnapHelper snapHelper = new LinearSnapHelper();
             //snapHelper.attachToRecyclerView(recyclerView);
     }
