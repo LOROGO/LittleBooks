@@ -1,5 +1,7 @@
 package com.example.littlebooks;
 
+import static com.example.littlebooks.R.drawable.ic_baseline_favorite_24;
+
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -44,6 +47,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     java.sql.Connection conn;
     String result = "";
     String id;
+    String LOG;
 
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
@@ -53,6 +57,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_knihy);
+        LOG = "DetailKnihy4";
 
         zaner = findViewById(R.id.zaner);
         pocetStran = findViewById(R.id.pocetStran);
@@ -148,33 +153,64 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             }
         });
 
+        String url = "http://159.223.112.133/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
+        Log.d(LOG, url);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
 
-        srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
-            @Override
-            public void onClick(View v) {
-                String url = "http://159.223.112.133/get_knihy4.php?&action=insertOblubene"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        response -> {
+                    Log.d("DetailKJur", response);
+                    JSONObject sprava;
+                    try {
+                        sprava = (JSONObject) new JSONArray(response).get(0);
+                        try {
+                            sprava.getString("id_kniha");
+                            //zafarbi na cerveno srdiecko
 
-
-                            Log.d("RegR", response.toString());
-                        },
-                        error -> {
-                            Log.d("RegE", error.toString());
+                            srdiecko.setImageResource(ic_baseline_favorite_24);
+                            srdiecko.setOnClickListener(new View.OnClickListener() {        //delete
+                                @Override
+                                public void onClick(View v) {
+                                    deleteOCP("deleteOblubene");
+                                }
+                            });
+                        }catch (Exception e){
+                            Log.d("DetailKJur1", e.getMessage());
+                            srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                            srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
+                                @Override
+                                public void onClick(View v) {
+                                    insertOCP("insertOblubene");
+                                }
+                            });
 
                         }
-                ){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
-                        Map<String, String> params = new HashMap<>();
+                    } catch (JSONException e) {
+                        Log.d("DetailKJur1", e.getMessage());
+                        srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                        srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
+                            @Override
+                            public void onClick(View v) {
+                                insertOCP("insertOblubene");
+                            }
+                        });                    }
 
-                        return params;
-                    }
-                };
-                requestQueue = Volley.newRequestQueue(DetailKnihy.this);
-                requestQueue.add(stringRequest);
+
+
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+                return params;
             }
-        });
+        };
+        requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+        requestQueue.add(stringRequest);
+
+
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +241,64 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
     }
 
+
+    public  void deleteOCP(String action){
+        String url = "http://159.223.112.133/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+        Log.d(LOG, "deleteOCP "+url);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    if (response.equals("ok")){
+                        srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                        srdiecko.setOnClickListener(v -> insertOCP("insertOblubene"));
+
+
+                    }
+
+                    Log.d("RegR", response.toString());
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+        requestQueue.add(stringRequest);
+    }
+    public void insertOCP(String action){
+        String url = "http://159.223.112.133/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+        Log.d(LOG, "insertOCP "+url);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    if (response.equals("ok")){
+                        srdiecko.setImageResource(ic_baseline_favorite_24);
+                        srdiecko.setOnClickListener(v -> deleteOCP("deleteOblubene"));
+                    }
+
+                    Log.d("RegR", response.toString());
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+        requestQueue.add(stringRequest);
+    }
 
     @Override
     public void populateLay(JSONArray obj) {
