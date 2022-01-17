@@ -5,6 +5,7 @@ import static com.example.littlebooks.R.drawable.ic_baseline_favorite_24;
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -304,6 +305,20 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue = Volley.newRequestQueue(DetailKnihy.this);
         requestQueue.add(stringRequest);
     }
+    public void setMinObsah(){
+        obsah2.setMaxLines(5);
+        obsah.setEllipsize(TextUtils.TruncateAt.END);
+        obsah2.setOnClickListener(v -> {
+            setMaxObsah();
+        });
+    }
+    public void setMaxObsah(){
+        obsah2.setMaxLines(Integer.MAX_VALUE);
+        obsah2.setOnClickListener(v -> {
+            setMinObsah();
+        });
+
+    }
 
     @Override
     public void populateLay(JSONArray obj) {
@@ -313,7 +328,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             //meno editextu.append(a.getString("meno stlpca v tabulke")); - append pridava text na koniec napr ked je ze Nazov: po append je to Nazov: Basne
             nazovKnihy2.setText(a.getString("autor"));
             autor2.setText(a.getString("nazov"));
-            //obsah2.setText(a.getString("obsah"));
+            obsah2.setText(a.getString("obsah"));
+            setMinObsah();
             zaner.setText(a.getString("podkategoria"));
             pocetStran.setText(a.getString("pocet_stran"));
 
