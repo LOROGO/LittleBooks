@@ -170,6 +170,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             srdiecko.setOnClickListener(new View.OnClickListener() {        //delete
                                 @Override
                                 public void onClick(View v) {
+                                    Log.d(LOG, "setDel");
                                     deleteOCP("deleteOblubene");
                                 }
                             });
@@ -179,6 +180,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
                                 @Override
                                 public void onClick(View v) {
+                                    Log.d(LOG, "setInsert");
                                     insertOCP("insertOblubene");
                                 }
                             });
@@ -243,6 +245,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
 
     public  void deleteOCP(String action){
+
         String url = "http://159.223.112.133/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
         Log.d(LOG, "deleteOCP "+url);
 
@@ -250,6 +253,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                 response -> {
                     if (response.equals("ok")){
                         srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                        Log.d(LOG, "deleteSetInsert");
                         srdiecko.setOnClickListener(v -> insertOCP("insertOblubene"));
 
 
@@ -278,14 +282,15 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     if (response.equals("ok")){
+                        Log.d(LOG, "insertSetDel");
                         srdiecko.setImageResource(ic_baseline_favorite_24);
                         srdiecko.setOnClickListener(v -> deleteOCP("deleteOblubene"));
                     }
 
-                    Log.d("RegR", response.toString());
+                    Log.d(LOG, response.toString());
                 },
                 error -> {
-                    Log.d("RegE", error.toString());
+                    Log.d(LOG, error.toString());
 
                 }
         ){
