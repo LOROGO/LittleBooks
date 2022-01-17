@@ -1,12 +1,14 @@
 package com.example.littlebooks.ui.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import com.example.littlebooks.AdapterOblubene;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.ModelMainDataFavourite;
 import com.example.littlebooks.R;
+import com.example.littlebooks.Settings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -48,6 +51,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     private UserViewModel mViewModel;
 
     TextView oblubene, chcemPrecitat, precitane;
+    ImageView settings;
 
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
@@ -71,6 +75,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         oblubene = root.findViewById(R.id.oblubene);
         chcemPrecitat = root.findViewById(R.id.chcemPrecitat);
         precitane = root.findViewById(R.id.precitane);
+        settings = root.findViewById(R.id.settings);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
@@ -78,6 +83,14 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         priezviskoMeno = root.findViewById(R.id.priezviskoMeno);
         fAuth = FirebaseAuth.getInstance();
         String uid = fAuth.getUid();
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Settings.class);
+                startActivity(intent);
+            }
+        });
 
         String url = "http://159.223.112.133/user1.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

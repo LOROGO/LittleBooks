@@ -3,10 +3,12 @@ package com.example.littlebooks;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,18 +53,25 @@ public class Settings extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("connPEP", "ok");
                 String menoo = meno.getText().toString().trim();
                 String priezviskoo = priezvisko.getText().toString().trim();
 
                 String url = "http://159.223.112.133/user1.php";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
+                    Log.d("connPP", response);
                     if (response.equals("Row was updated!")){
+
+                        //klavesnica hide
+                        InputMethodManager imm =  (InputMethodManager) Settings.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
                         Intent intent = new Intent(Settings.this, UserFragment.class);
                         startActivity(intent);
                         finish();
                         startActivity(new Intent(getApplicationContext(), UserFragment.class));
+
                     }
                         },
                         error ->{
@@ -72,7 +81,7 @@ public class Settings extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<>();
-                        params.put("action", "newUser");
+                        params.put("action", "updateUser");
                         params.put("meno", menoo);
                         params.put("priezvisko", priezviskoo);
                         params.put("uid", uid);
