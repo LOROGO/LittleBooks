@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,23 +88,39 @@ public class MainActivityT extends AppCompatActivity {
 
         setupViewPager(viewPager);
     }
-    boolean doubleBackToExitPressedOnce = false;
+    int back = 0;
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
+         if (back == 1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivityT.this);
+           // builder.setTitle("Odhlásenie");
+            builder.setMessage("Si si istý, že nas chceš opustit ?");
+            builder.setPositiveButton("Áno", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MainActivityT.this.finishAffinity();
+                    System.exit(0);
+                }
+            });
+            builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
             return;
         }
 
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "ikd", Toast.LENGTH_LONG).show();
+        this.back +=1;
+        //Toast.makeText(this, "ikd", Toast.LENGTH_LONG).show();
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                back=0;
             }
         }, 2000);
     }
