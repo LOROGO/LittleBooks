@@ -376,9 +376,11 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     }
 
     public void populateRecView2(List<ModelMainData2> recenzie){
+        recyclerView.setVisibility(View.VISIBLE);
             AdapterReview adapterReview = new AdapterReview(recenzie, DetailKnihy.this);
             // Attach the adapter to the recyclerview to populate items
             recyclerView.setAdapter(adapterReview);
+
             // Set layout manager to position the items
 
             recyclerView.setLayoutManager(new LinearLayoutManager(DetailKnihy.this));

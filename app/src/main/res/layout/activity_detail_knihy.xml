@@ -314,6 +314,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/recyclerViewRecenzia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

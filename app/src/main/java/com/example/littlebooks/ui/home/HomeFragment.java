@@ -174,6 +174,16 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         });
 
     }
+
+
+
+    @Override
+    public void onStart() {
+        //Toast.makeText(getContext(), "satrt", Toast.LENGTH_SHORT).show();
+
+        super.onStart();
+    }
+
     public void createSceneSearch(View root){       //scena2
         searchBar = root.findViewById(R.id.vyhladavanie);
         recyclerView = root.findViewById(R.id.recyclerViewMain);

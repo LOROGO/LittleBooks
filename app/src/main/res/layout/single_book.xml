@@ -17,14 +17,12 @@
             android:layout_width="0dp"
             android:layout_height="125dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:background="@drawable/container_bg"
+            android:backgroundTint="@color/purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@color/purple"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/obrazok"
@@ -44,16 +42,19 @@
 
         <TextView
             android:id="@+id/nazovKnihy"
-            android:layout_width="wrap_content"
+            android:layout_width="216dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+
+            android:layout_marginEnd="47dp"
             android:text="Rozprávky barda Beedla"
+            android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/obrazok"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            android:textColor="@color/white"/>
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <TextView
             android:id="@+id/autor"
@@ -91,7 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/autor"
             android:textColor="@color/white"/>
 
-        <ImageView
+      <!--  <ImageView
             android:id="@+id/srdiecko"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +101,7 @@
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:srcCompat="@drawable/ic_favorite_prazdne" />
+            app:srcCompat="@drawable/ic_baseline_favorite_24" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

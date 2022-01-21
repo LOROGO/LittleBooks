@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -149,6 +148,8 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         oblubene.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mKnihy.clear();
+
                 BackgroundTask backgroundTask = new BackgroundTask(5);
                 backgroundTask.table = "kniha";
                 backgroundTask.action = "select";
@@ -202,6 +203,22 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         return root;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mKnihy.clear();
+
+        BackgroundTask backgroundTask = new BackgroundTask(5);
+        backgroundTask.table = "kniha";
+        backgroundTask.action = "select";
+        backgroundTask.scr = "4";
+        backgroundTask.php = "get_knihy4";
+        backgroundTask.uid = fAuth.getUid();
+        //v.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
+        backgroundTask.setApiCallback(UserFragment.this);
+        backgroundTask.execute();
+
+    }
 
     @Override
     public void populateLay(JSONArray obj) {
@@ -234,7 +251,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
 
     public void populateRecView(List<ModelMainDataFavourite> knihy, View root){             //knihy z db da do layoutu
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
-        AdapterOblubene adapterOblubene = new AdapterOblubene(knihy, getActivity(), "");
+        AdapterOblubene adapterOblubene = new AdapterOblubene(mKnihy, getActivity(), "");
             // Attach the adapter to the recyclerview to populate items
             recyclerView.setAdapter(adapterOblubene);
             // Set layout manager to position the items
