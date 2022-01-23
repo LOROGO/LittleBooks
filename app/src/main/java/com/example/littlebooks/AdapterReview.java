@@ -1,7 +1,6 @@
 package com.example.littlebooks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -52,7 +49,8 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         imageUri = mReview.get(position).getObrazok();
         Log.d("recenzieObrazok", "Kniha "+imageUri+"\n");
 
-        Picasso.with(con).load(imageUri).into(holder.pouzivatel);
+        //Picasso.with(con).load(imageUri).into(holder.pouzivatel);
+       // holder.pouzivatel.setImageDrawable(R.drawable.user);
         Log.d("recenzieAdapter", "Kniha "+mReview.get(holder.getAdapterPosition()).toString()+"\n");
 
     }

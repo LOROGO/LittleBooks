@@ -206,7 +206,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     @Override
     public void onStart() {
         super.onStart();
-        mKnihy.clear();
+
 
         BackgroundTask backgroundTask = new BackgroundTask(5);
         backgroundTask.table = "kniha";
@@ -214,7 +214,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         backgroundTask.scr = "4";
         backgroundTask.php = "get_knihy4";
         backgroundTask.uid = fAuth.getUid();
-        //v.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
+        root.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.enter_from_right));
         backgroundTask.setApiCallback(UserFragment.this);
         backgroundTask.execute();
 

@@ -1,8 +1,5 @@
 package com.example.littlebooks;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,25 +11,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.littlebooks.old.MainActivity;
 import com.example.littlebooks.ui.main.UserFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.security.AccessController.getContext;
 
 public class Settings extends AppCompatActivity {
     FirebaseAuth fAuth;
@@ -113,7 +106,7 @@ public class Settings extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
                         Settings.this.finishAffinity();
-                        System.exit(0);
+                        //System.exit(0);
                     }
                 });
                 builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {

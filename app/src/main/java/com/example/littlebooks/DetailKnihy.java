@@ -52,6 +52,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
+    JSONArray jsonArray;
+    JSONObject jsonObject;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -77,6 +79,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         recenziaPopis = findViewById(R.id.recenziaPopis);
         odoslat = findViewById(R.id.odoslat);
         recyclerView = findViewById(R.id.recyclerViewRecenzia);
+        meno = findViewById(R.id.meno);
 
         autor.setPaintFlags(autor.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         nazovKnihy.setPaintFlags(nazovKnihy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -116,6 +119,54 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         backgroundTask1.setApiCallback1(this);
         backgroundTask1.execute();
 
+
+        String url = "http://159.223.112.133/user1.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
+                    Log.d("RegR", response.toString());
+
+                    try {
+                        jsonArray = new JSONArray(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JSONObject a = null;
+                    try {
+                        a = jsonArray.getJSONObject(0);
+                        Log.d("RegR", "cele: "+a.toString());
+                        Log.d("RegR1", "meno: " + a.getString("meno"));
+                        try {
+                            Log.d("RegR", a.getString("meno"));
+                            meno.setText(a.getString("meno"));
+                            meno.append(" "+a.getString("priezvisko"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("RegR", e.getMessage());
+                        }
+                    }
+                    catch (NullPointerException e){
+                        Log.d("uid", fAuth.getUid());
+                    }
+                    catch (JSONException e) {
+                        Log.d("uid", fAuth.getUid());
+                    }
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {     //posiela udaje do php, tie co zadam v appke
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "selectUser");
+                params.put("uid", fAuth.getUid());
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+        requestQueue.add(stringRequest);
+
         odoslat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,9 +205,9 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             }
         });
 
-        String url = "http://159.223.112.133/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://159.223.112.133/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
 
                     Log.d("DetailKJur", response);
@@ -383,7 +434,12 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
             // Set layout manager to position the items
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(DetailKnihy.this));
+            recyclerView.setLayoutManager(new LinearLayoutManager(DetailKnihy.this){
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            });
             recyclerView.setItemAnimator(new SlideInLeftAnimator());
             SnapHelper snapHelper = new LinearSnapHelper();
             //snapHelper.attachToRecyclerView(recyclerView);
