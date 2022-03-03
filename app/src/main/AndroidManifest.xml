@@ -13,7 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LittleBooks"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Settings"></activity>
+        <activity
+            android:name=".KnihyZkat"
+            android:exported="false" />
+        <activity
+            android:name=".ISBN"
+            android:exported="false" />
+        <activity android:name=".Settings" />
         <activity android:name=".MainActivityT" />
         <activity
             android:name=".old.MainActivity2"

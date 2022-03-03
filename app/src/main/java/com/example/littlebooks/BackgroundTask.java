@@ -73,6 +73,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
             Log.d("url", url);
         }
 
+
     }
     //nic
     @Override

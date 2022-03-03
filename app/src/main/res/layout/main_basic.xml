@@ -36,6 +36,16 @@
             </RelativeLayout>
 
             <ImageView
+                android:id="@+id/fotak"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/isbn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"/>
+
+            <ImageView
                 android:id="@+id/obrazok"
                 android:layout_width="120dp"
                 android:layout_height="176dp"

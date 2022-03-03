@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ import androidx.recyclerview.widget.SnapHelper;
 import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
+import com.example.littlebooks.ISBN;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NewBook;
@@ -61,6 +63,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     static Scene sceneSearch;
     Scene currentScene;
     ImageButton back;
+    ImageView isbn;
     Transition mainTrans;
     Transition mainTrans2;          //prechody
     View root;
@@ -148,6 +151,13 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         drawerLayout = root.findViewById(R.id.drawer_layout);
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         searchBar = root.findViewById(R.id.vyhladavanie);
+        isbn = root.findViewById(R.id.fotak);
+        isbn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ISBN.class));
+            }
+        });
 
         //zavolanie a poslanie parametrov do triedy Background task ktora komunikuje s php
         if (mKnihy==null) {
@@ -201,6 +211,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
                 imm.hideSoftInputFromWindow(root.getWindowToken(), 0);
                 TransitionManager.go(sceneMain, mainTrans2);
                 currentScene = sceneMain;
+                mKnihy=null;
             }
         });
 
