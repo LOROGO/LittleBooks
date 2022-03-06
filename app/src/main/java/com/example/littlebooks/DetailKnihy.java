@@ -108,7 +108,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         backgroundTask.action = "select";
         backgroundTask.scr = "1";
         backgroundTask.php = "get_knihy4";
-        backgroundTask.podmienka = "id_kniha="+id;
+        backgroundTask.id_kniha = id;
         backgroundTask.setApiCallback(this);
         backgroundTask.execute();
 
@@ -554,6 +554,9 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             a.getString("obrazok"),
                             a.getString("meno"),
                             a.getString("priezvisko")
+
+
+
 
                     ));
                 }catch (Exception e){

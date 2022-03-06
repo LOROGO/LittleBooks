@@ -58,7 +58,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
             Log.d("url1", url);
         }
         else if (vyber==2) {//detail
-            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&podmienka=" + podmienka;
+            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&id_kniha=" + id_kniha;
             Log.d("url2", url);
         }else if(vyber==3){//search
             url = "http://159.223.112.133/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
