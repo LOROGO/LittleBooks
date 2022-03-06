@@ -78,7 +78,7 @@
                 android:layout_marginBottom="30dp"/>
 
             <ImageView
-                android:id="@+id/book"
+                android:id="@+id/precitat"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="30dp"
@@ -87,7 +87,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
-                app:srcCompat="@drawable/ic_book" />
+                app:srcCompat="@drawable/plusprazdna" />
+
+            <ImageView
+                android:id="@+id/precitane"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/precitat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+                app:srcCompat="@drawable/precitaneciste" />
 
 
             <TextView
@@ -136,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:text="0518518512185612"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
@@ -148,7 +160,7 @@
                 android:id="@+id/autor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Autor:"
+                android:text="Názov knihy:"
                 android:textStyle="italic"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -173,7 +185,7 @@
                 android:id="@+id/menoUsera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Názov knihy:"
+                android:text="Autor:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="italic"

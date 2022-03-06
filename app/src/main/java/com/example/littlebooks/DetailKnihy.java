@@ -1,6 +1,8 @@
 package com.example.littlebooks;
 
 import static com.example.littlebooks.R.drawable.ic_baseline_favorite_24;
+import static com.example.littlebooks.R.drawable.plusfarebne;
+import static com.example.littlebooks.R.drawable.precitanefarebne;
 
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
@@ -41,7 +43,7 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class DetailKnihy extends AppCompatActivity implements BackgroundTask.ApiCallback, BackgroundTask.CallbackReview {
     TextView zaner, pocetStran, pocetStran2, autor, autor2, nazovKnihy, nazovKnihy2, obsah, obsah2, recenzia, meno;
-    ImageView obrazokKnihy, pouzivatel, srdiecko, book;
+    ImageView obrazokKnihy, pouzivatel, srdiecko, book, book2;
     EditText recenziaPopis;
     Button odoslat;
     RecyclerView recyclerView;
@@ -75,7 +77,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         recenzia = findViewById(R.id.recenzia);
         pouzivatel = findViewById(R.id.pouzivatel);
         srdiecko = findViewById(R.id.srdiecko);
-        book = findViewById(R.id.book);
+        book = findViewById(R.id.precitat);
+        book2 = findViewById(R.id.precitane);
         recenziaPopis = findViewById(R.id.recenziaPopis);
         odoslat = findViewById(R.id.odoslat);
         recyclerView = findViewById(R.id.recyclerViewRecenzia);
@@ -248,7 +251,121 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             }
                         });                    }
 
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+        requestQueue.add(stringRequest);
 
+
+        url = "http://159.223.112.133/get_knihy4.php?action=checkPrecitat&uid="+fAuth.getUid()+"&id_kniha="+id;
+        Log.d(LOG, url);
+        stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+
+                    Log.d("DetailKJur", response);
+                    JSONObject sprava;
+                    try {
+                        sprava = (JSONObject) new JSONArray(response).get(0);
+                        try {
+                            sprava.getString("id_kniha");
+                            //zafarbi na cerveno srdiecko
+
+                            book.setImageResource(R.drawable.plusfarebne);
+                            book.setOnClickListener(new View.OnClickListener() {        //delete
+                                @Override
+                                public void onClick(View v) {
+                                    Log.d(LOG, "setDel");
+                                    deleteOCP("deletePrecitat");
+                                }
+                            });
+                        }catch (Exception e){
+                            Log.d("DetailKJur1", e.getMessage());
+                            book.setImageResource(R.drawable.plusprazdna);
+                            book.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
+                                @Override
+                                public void onClick(View v) {
+                                    Log.d(LOG, "setInsert");
+                                    insertOCP("insertPrecitat");
+                                }
+                            });
+
+                        }
+                    } catch (JSONException e) {
+                        Log.d("DetailKJur1", e.getMessage());
+                        book.setImageResource(R.drawable.plusprazdna);
+                        book.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
+                            @Override
+                            public void onClick(View v) {
+                                insertOCP("insertPrecitat");
+                            }
+                        });                    }
+
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(DetailKnihy.this);
+        requestQueue.add(stringRequest);
+
+
+        url = "http://159.223.112.133/get_knihy4.php?action=checkPrecitane&uid="+fAuth.getUid()+"&id_kniha="+id;
+        Log.d(LOG, url);
+        stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+
+                    Log.d("DetailKJur", response);
+                    JSONObject sprava;
+                    try {
+                        sprava = (JSONObject) new JSONArray(response).get(0);
+                        try {
+                            sprava.getString("id_kniha");
+                            //zafarbi na cerveno srdiecko
+
+                            book2.setImageResource(precitanefarebne);
+                            book2.setOnClickListener(new View.OnClickListener() {        //delete
+                                @Override
+                                public void onClick(View v) {
+                                    Log.d(LOG, "setDel");
+                                    deleteOCP("deletePrecitane");
+                                }
+                            });
+                        }catch (Exception e){
+                            Log.d("DetailKJur1", e.getMessage());
+                            book2.setImageResource(R.drawable.precitaneciste);
+                            book2.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
+                                @Override
+                                public void onClick(View v) {
+                                    Log.d(LOG, "setInsert");
+                                    insertOCP("insertPrecitane");
+                                }
+                            });
+
+                        }
+                    } catch (JSONException e) {
+                        Log.d("DetailKJur1", e.getMessage());
+                        book2.setImageResource(R.drawable.precitaneciste);
+                        book2.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
+                            @Override
+                            public void onClick(View v) {
+                                insertOCP("insertPrecitane");
+                            }
+                        });                    }
 
                 },
                 error -> {
@@ -266,7 +383,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
 
 
-        book.setOnClickListener(new View.OnClickListener() {
+       /* book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = "http://159.223.112.133/get_knihy4.php?&action=insertPrecitat"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
@@ -291,24 +408,33 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                 requestQueue = Volley.newRequestQueue(DetailKnihy.this);
                 requestQueue.add(stringRequest);
             }
-        });
+        });*/
 
     }
 
 
     public  void deleteOCP(String action){
-
         String url = "http://159.223.112.133/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
         Log.d(LOG, "deleteOCP "+url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
-                    if (response.equals("ok")){
+                    if (response.equals("ok-oblubene")){
                         srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
                         Log.d(LOG, "deleteSetInsert");
                         srdiecko.setOnClickListener(v -> insertOCP("insertOblubene"));
+                    }
 
+                    else if (response.equals("ok-precitat")){
+                        book.setImageResource(R.drawable.plusprazdna);
+                        Log.d(LOG, "deleteSetInsert");
+                        book.setOnClickListener(v -> insertOCP("insertPrecitat"));
+                    }
 
+                    else if (response.equals("ok-precitane")){
+                        book2.setImageResource(R.drawable.precitaneciste);
+                        Log.d(LOG, "deleteSetInsert");
+                        book2.setOnClickListener(v -> insertOCP("insertPrecitane"));
                     }
 
                     Log.d("RegR", response.toString());
@@ -333,13 +459,26 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         Log.d(LOG, "insertOCP "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
-                    if (response.equals("ok")){
+                    if (response.equals("ok-oblubene")){
                         Log.d(LOG, "insertSetDel");
                         srdiecko.setImageResource(ic_baseline_favorite_24);
                         srdiecko.setOnClickListener(v -> deleteOCP("deleteOblubene"));
                     }
+                    else if(response.equals("ok-precitat")) {
+                        Log.d(LOG, "insertSetDel");
+                        book.setImageResource(plusfarebne);
+                        book.setOnClickListener(v -> deleteOCP("deletePrecitat"));
 
-                    Log.d(LOG, response.toString());
+                        Log.d(LOG, response.toString());
+                    }
+
+                    else if(response.equals("ok-precitane")) {
+                        Log.d(LOG, "insertSetDel");
+                        book2.setImageResource(precitanefarebne);
+                        book2.setOnClickListener(v -> deleteOCP("deletePrecitane"));
+
+                        Log.d(LOG, response.toString());
+                    }
                 },
                 error -> {
                     Log.d(LOG, error.toString());
@@ -356,6 +495,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue = Volley.newRequestQueue(DetailKnihy.this);
         requestQueue.add(stringRequest);
     }
+
+
     public void setMinObsah(){
         obsah2.setMaxLines(5);
         obsah.setEllipsize(TextUtils.TruncateAt.END);
