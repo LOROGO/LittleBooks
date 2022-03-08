@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/drawable/dialog_bg.xml" value="0.2703125" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/drawable/edit_text2.xml" value="0.2703125" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/drawable/edit_text_bg.xml" value="0.2703125" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_account.xml" value="0.24094202898550723" />
-        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_detail_knihy.xml" value="0.38977635782747605" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_detail_knihy.xml" value="0.152" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_isbn.xml" value="0.25416666666666665" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_knihy_zkat.xml" value="0.25416666666666665" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_main_t.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_settings.xml" value="0.190625" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/fragment_user.xml" value="0.190625" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/main_basic.xml" value="0.25416666666666665" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/main_search.xml" value="0.25416666666666665" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/single_review.xml" value="0.536" />

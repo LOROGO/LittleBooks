@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.transition.Scene;
 import android.transition.Transition;
@@ -20,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,11 +41,14 @@ import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.ISBN;
+
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.MojeKnihy;
+import com.example.littlebooks.NetworkChangeListener;
 import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
 import com.example.littlebooks.old.BooksActivity;
+import com.google.android.gms.common.internal.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
@@ -67,8 +73,10 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     Transition mainTrans;
     Transition mainTrans2;          //prechody
     View root;
+    ProgressBar progressBar;
 
     public List<ModelMainData> mKnihy;
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();         //internet
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -82,6 +90,8 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         currentScene = sceneMain;
 
         createSceneMain(root);
+
+
         mainTrans2.addListener(new Transition.TransitionListener() {
             @Override
             public void onTransitionStart(Transition transition) {
@@ -152,12 +162,16 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         recyclerView = root.findViewById(R.id.recyclerViewMain);
         searchBar = root.findViewById(R.id.vyhladavanie);
         isbn = root.findViewById(R.id.fotak);
+        progressBar = root.findViewById(R.id.progressBar);
         isbn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), ISBN.class));
             }
         });
+
+        //LoadingDialog loadingDialog = new LoadingDialog(getActivity());
+
 
         //zavolanie a poslanie parametrov do triedy Background task ktora komunikuje s php
         if (mKnihy==null) {
@@ -185,13 +199,18 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
     }
 
-
+    @Override
+    public void onStart() {         //internet
+        //Toast.makeText(getContext(), "satrt", Toast.LENGTH_SHORT).show();
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        a.registerReceiver(networkChangeListener, filter);
+        super.onStart();
+    }
 
     @Override
-    public void onStart() {
-        //Toast.makeText(getContext(), "satrt", Toast.LENGTH_SHORT).show();
-
-        super.onStart();
+    public void onStop() {         //internet
+        a.unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 
     public void createSceneSearch(View root){       //scena2

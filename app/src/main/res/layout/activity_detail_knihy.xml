@@ -38,7 +38,7 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/dolnepozadie"
                 android:backgroundTint="@color/purple"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -249,19 +249,25 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="#D9D0DE"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recenzia">
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="#D9D0DE"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/recenziaPopis"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <ImageView
                     android:id="@+id/pouzivatel"
@@ -272,7 +278,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="centerCrop"
-                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/user" />
 
@@ -281,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="14dp"
                     android:text="Meno Priezvisko"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -307,10 +313,9 @@
                     android:id="@+id/hviezdicky"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/starplna" />
 
                 <Button
@@ -318,9 +323,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="odoslať"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/recenziaPopis"
-                    android:layout_marginEnd="20dp"/>
+                    app:layout_constraintHorizontal_bias="0.85"
+                    app:layout_constraintStart_toStartOf="@+id/recenziaPopis"
+                    app:layout_constraintTop_toBottomOf="@+id/recenziaPopis" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

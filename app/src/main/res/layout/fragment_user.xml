@@ -60,7 +60,8 @@
         app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="25dp"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/chcemPrecitat"
@@ -71,7 +72,8 @@
         app:layout_constraintStart_toEndOf="@+id/oblubene"
         app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginTop="25dp"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/precitane"
@@ -82,7 +84,8 @@
         app:layout_constraintTop_toBottomOf="@+id/priezviskoMeno"
         android:layout_marginRight="45dp"
         android:layout_marginTop="25dp"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:textColor="@color/black"/>
 
     <View
         android:id="@+id/view"

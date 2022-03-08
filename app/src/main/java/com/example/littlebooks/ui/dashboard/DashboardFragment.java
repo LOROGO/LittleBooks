@@ -86,7 +86,6 @@ public class DashboardFragment extends Fragment {
     ImageView imageView;
 
 
-
     DatabaseReference mbase;
     public List<ModelMainData> mKnihy;
     RequestQueue requestQueue;
@@ -111,43 +110,39 @@ public class DashboardFragment extends Fragment {
     }
 
 
-
-
-
-
     public static void closeDrawer(DrawerLayout drawerLayout) {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
 
 
-    public void ClickBooks(View view){
+    public void ClickBooks(View view) {
         MainActivity.redirectActivity(getActivity(), BooksActivity.class);
     }
 
-    public void ClickAccount(View view){
+    public void ClickAccount(View view) {
         MainActivity.redirectActivity(getActivity(), Account.class);
     }
 
-    public void ClickNewBook(View view){
+    public void ClickNewBook(View view) {
         startActivity(new Intent(getActivity(), NewBook.class));
     }
 
-    public void ClickLogout(View view){
+    public void ClickLogout(View view) {
         logout(getActivity());
     }
 
-    public void ClickMojeKnihy(View view){
+    public void ClickMojeKnihy(View view) {
         MainActivity.redirectActivity(getActivity(), MojeKnihy.class);
     }
 
-    public void ClickDomov(View view){
+    public void ClickDomov(View view) {
         //recreate();
     }
 
 
-    public static void logout(final Activity activity){
+    public static void logout(final Activity activity) {
         FirebaseAuth.getInstance().signOut();
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Odhlásenie");
@@ -170,14 +165,14 @@ public class DashboardFragment extends Fragment {
     }
 
 
-
     public static void redirectActivity(Activity activity, Class aClass) {
         Intent intent = new Intent(activity, aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
-    public void populateRecyclerView(){
-        AdapterBooks adapterBooks = new AdapterBooks(mKnihy, getActivity(),"");
+
+    public void populateRecyclerView() {
+        AdapterBooks adapterBooks = new AdapterBooks(mKnihy, getActivity(), "");
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapterBooks);
         // Set layout manager to position the items
