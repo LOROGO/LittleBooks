@@ -10,13 +10,29 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder> {
-    public List<ModelMainData2> mReview;
+    public List<ModelRecenzia> mReview;
     public Context con;
+    String TAG = "ARecenzia";
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    RequestQueue requestQueue;
+    String url;
+    StringRequest stringRequest;
+    ViewHolder holder;
 
-    public AdapterReview(List<ModelMainData2> recenzie, Context context) {
+
+    public AdapterReview(List<ModelRecenzia> recenzie, Context context) {
         //1. zavola sa tato metoda, ulozi ten poslany zoznam do lokalnej premennej mReview
         mReview = recenzie;
         Log.d("recenzieSize", Integer.toString(getItemCount()));
@@ -36,14 +52,43 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(AdapterReview.ViewHolder holder, int position) {
+        this.holder = holder;
 
         //
-        ModelMainData2 recenzia = mReview.get(holder.getAdapterPosition());
+        ModelRecenzia recenzia = mReview.get(holder.getAdapterPosition());
 
         // nastavenie nazvu holder.getAdapterPosition je cisclo itemviewu ktory chceme naplnit datami, ktore zoberieme z mReview
-        holder.menoUsera.setText(mReview.get(holder.getAdapterPosition()).getMeno().trim());
-        holder.recenziaPopis.setText(mReview.get(holder.getAdapterPosition()).getPopis().trim());
+        holder.menoUsera.setText(recenzia.getMeno().trim());
+        holder.menoUsera.setOnClickListener(view -> Log.d("A", "meno"));
+        holder.recenziaPopis.setText(recenzia.getPopis().trim());
+        holder.horeSipka.setOnClickListener(view -> {
+            insertHod(recenzia.getId_kniha(), "up");
+        });
+        holder.doleSipka.setOnClickListener(view -> {
+            insertHod(recenzia.getId_kniha(), "down");
+        });
 
+
+        if (recenzia.getUp()=='n') {//neni ohodnotene
+
+        }else if (recenzia.getUp()=='1') {//je liknute
+            holder.horeSipka.setImageResource(R.drawable.hore);
+            holder.horeSipka.setOnClickListener(view -> {
+                deleteHod(recenzia.getId_kniha());
+            });
+            holder.doleSipka.setOnClickListener(view -> {
+                insertHod(recenzia.getId_kniha(), "down");
+            });
+        }else
+        if (recenzia.getUp()=='0') {//je disliknute
+            holder.doleSipka.setImageResource(R.drawable.dole);
+            holder.horeSipka.setOnClickListener(view -> {
+                insertHod(recenzia.getId_kniha(), "up");
+            });
+            holder.doleSipka.setOnClickListener(view -> {
+                deleteHod(recenzia.getId_kniha());
+            });
+        }
         //nastavenie obrazka to split je tam preto lebo v db mame ze napr obrazky/obrazok1.jpg+a kopec bludov za tym takze takto len tie bludy dame prec
         String imageUri = null;
         imageUri = mReview.get(position).getObrazok();
@@ -67,17 +112,87 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         //2. zadefinovanie premennych z layoutu
         public TextView recenziaPopis, menoUsera;
-        public ImageView hviezdicky, pouzivatel;
+        public ImageView hviezdicky, pouzivatel, horeSipka, doleSipka;
 
 
         public ViewHolder(View itemView) {
             // ulozenie tych veci z layoutu u know idk
             super(itemView);
+            horeSipka = itemView.findViewById(R.id.hore);
+            doleSipka = itemView.findViewById(R.id.dole);
             recenziaPopis = (TextView) itemView.findViewById(R.id.recenziaPopis);
             hviezdicky = itemView.findViewById(R.id.hviezdicky);
             menoUsera = itemView.findViewById(R.id.menoUsera);
             pouzivatel = itemView.findViewById(R.id.pouzivatel);
 
         }
+    }
+
+    public  void deleteHod(String id_recenzia){
+        String url = "http://198.199.77.54/recenzia.php?&action=deleteHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia;
+        Log.d(TAG, "deleteOCP "+url);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    if (response.equals("ok-hodnotenie")){
+                        holder.doleSipka.setImageResource(R.drawable.sivadole);
+                        holder.horeSipka.setImageResource(R.drawable.sivahore);
+                        holder.horeSipka.setOnClickListener(v -> insertHod(id_recenzia,"up"));
+                        holder.doleSipka.setOnClickListener(v -> insertHod(id_recenzia,"down"));
+
+                    }
+
+
+
+                    Log.d("RegR", response.toString());
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(con);
+        requestQueue.add(stringRequest);
+    }
+    public void insertHod(String id_recenzia, String hodnotenie){
+        deleteHod(id_recenzia);
+        String url = "http://198.199.77.54/recenzia.php?&action=addHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia + "&hodnotenie=" + hodnotenie;
+        Log.d(TAG, "insertOCP "+url);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    if (response.equals("ok")){
+                        Log.d(TAG, "insertSetDel");
+                        if (hodnotenie.equals("up")) {
+                            holder.horeSipka.setImageResource(R.drawable.hore);
+                            holder.horeSipka.setOnClickListener(v -> deleteHod(id_recenzia));
+                        }else if(hodnotenie.equals("down")) {
+                            holder.doleSipka.setImageResource(R.drawable.dole);
+                            holder.doleSipka.setOnClickListener(v -> deleteHod(id_recenzia));
+                        }
+
+                    }
+
+                },
+                error -> {
+                    Log.d(TAG, error.toString());
+
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError { //berie to udaje z editextov a posiela ich do php
+                Map<String, String> params = new HashMap<>();
+
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(con);
+        requestQueue.add(stringRequest);
     }
 }

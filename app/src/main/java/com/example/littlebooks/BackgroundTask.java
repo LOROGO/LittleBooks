@@ -17,6 +17,7 @@ import java.net.URL;
 public class BackgroundTask extends AsyncTask<Void, Void, String> {
     public String url= "";
     public String json_string= "";
+    String TAG = "BackgroundTask:  ";
 
     public String table= "";
     public String action= "";
@@ -54,22 +55,22 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         if (vyber==1) {//main
-            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
+            url = "http://198.199.77.54/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
             Log.d("url1", url);
         }
         else if (vyber==2) {//detail
-            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&id_kniha=" + id_kniha;
+            url = "http://198.199.77.54/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&id_kniha=" + id_kniha;
             Log.d("url2", url);
         }else if(vyber==3){//search
-            url = "http://159.223.112.133/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
+            url = "http://198.199.77.54/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
             Log.d("url3", url);
         }
         else if (vyber==4){//recenzia
-            url ="http://159.223.112.133/"+php+".php?id_kniha="+id_kniha+"&action="+action;
+            url ="http://198.199.77.54/"+php+".php?id_kniha="+id_kniha+"&action="+action+"&uid="+uid;
             Log.d("url3", url);
         }
         else if(vyber == 5){//oblubene, precitane, precitat                         select z tabulky
-            url = "http://159.223.112.133/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr+ "&uid=" + uid;
+            url = "http://198.199.77.54/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr+ "&uid=" + uid;
             Log.d("url", url);
         }
 
@@ -126,6 +127,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String aVoid) {
         super.onPostExecute(aVoid);
         if (vyber==4){
+            Log.d(TAG, "onPostExecute: "+obj.toString());
             callbackReview.populateLayReview(obj);
         }else
         apiCallback.populateLay(obj);

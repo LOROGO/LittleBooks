@@ -88,7 +88,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
             }
         });
 
-        String url = "http://159.223.112.133/user1.php";
+        String url = "http://198.199.77.54/user1.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
                     Log.d("RegR", response.toString());

@@ -51,7 +51,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     String result = "";
     String id;
     String LOG;
-
+    String TAG = "DetailKnihy:   ";
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
     JSONArray jsonArray;
@@ -118,12 +118,13 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         BackgroundTask backgroundTask1 = new BackgroundTask(4);
         backgroundTask1.action = "getReviews";
         backgroundTask1.php = "recenzia";
+        backgroundTask1.uid = fAuth.getUid();
         backgroundTask1.id_kniha = id;
         backgroundTask1.setApiCallback1(this);
         backgroundTask1.execute();
 
 
-        String url = "http://159.223.112.133/user1.php";
+        String url = "http://198.199.77.54/user1.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
                     Log.d("RegR", response.toString());
@@ -173,7 +174,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         odoslat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://159.223.112.133/recenzia.php?action=newReview";
+                String url = "http://198.199.77.54/recenzia.php?action=newReview";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
 
@@ -208,7 +209,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             }
         });
 
-        url = "http://159.223.112.133/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://198.199.77.54/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
         stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -266,7 +267,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
 
 
-        url = "http://159.223.112.133/get_knihy4.php?action=checkPrecitat&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://198.199.77.54/get_knihy4.php?action=checkPrecitat&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
         stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -324,7 +325,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
 
 
-        url = "http://159.223.112.133/get_knihy4.php?action=checkPrecitane&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://198.199.77.54/get_knihy4.php?action=checkPrecitane&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
         stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -386,7 +387,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
        /* book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://159.223.112.133/get_knihy4.php?&action=insertPrecitat"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+                String url = "http://198.199.77.54/get_knihy4.php?&action=insertPrecitat"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         response -> {
 
@@ -414,7 +415,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
 
     public  void deleteOCP(String action){
-        String url = "http://159.223.112.133/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+        String url = "http://198.199.77.54/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
         Log.d(LOG, "deleteOCP "+url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -455,7 +456,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
     }
     public void insertOCP(String action){
-        String url = "http://159.223.112.133/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+        String url = "http://198.199.77.54/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
         Log.d(LOG, "insertOCP "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
@@ -539,13 +540,20 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
     @Override
     public void populateLayReview(JSONArray obj) {
         //vytvorenie noveho listu
-        List<ModelMainData2> recenzie = new ArrayList<>();
+        List<ModelRecenzia> recenzie = new ArrayList<>();
+        char up = 'n';
         if (obj!=null){
             for (int i = 0; i < obj.length(); i++) {
                 try {
+
                     //spracuje json a da do listu
                     JSONObject a = obj.getJSONObject(i);
-                    recenzie.add(new ModelMainData2(
+                    try {
+                        up = a.getString("up").charAt(0);
+                    }catch (Exception e){
+                        Log.d(TAG, "populateLayReview: ");
+                    }
+                    recenzie.add(new ModelRecenzia(
 
                             a.getString("uid"),
                             a.getString("popis"),
@@ -553,7 +561,8 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             id,
                             a.getString("obrazok"),
                             a.getString("meno"),
-                            a.getString("priezvisko")
+                            a.getString("priezvisko"),
+                            up
 
 
 
@@ -570,7 +579,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         }
     }
 
-    public void populateRecView2(List<ModelMainData2> recenzie){
+    public void populateRecView2(List<ModelRecenzia> recenzie){
         recyclerView.setVisibility(View.VISIBLE);
             AdapterReview adapterReview = new AdapterReview(recenzie, DetailKnihy.this);
             // Attach the adapter to the recyclerview to populate items

@@ -214,7 +214,7 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
 
                                 barcodeText.setText(barcodeData);
                                 toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
-                                String url = "http://159.223.112.133/get_knihy4.php?action=checkISBN&isbn="+barcodeData;
+                                String url = "http://198.199.77.54/get_knihy4.php?action=checkISBN&isbn="+barcodeData;
                                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                         response -> {
 
@@ -238,7 +238,7 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
                             } else {
 
                                 barcodeData = barcodes.valueAt(0).displayValue;
-                                String url = "http://159.223.112.133/get_knihy4.php?action=checkISBN&isbn="+barcodeData;
+                                String url = "http://198.199.77.54/get_knihy4.php?action=checkISBN&isbn="+barcodeData;
                                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                         response -> {
                                             Log.d("RegR", response.toString());

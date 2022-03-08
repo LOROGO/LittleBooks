@@ -1,6 +1,6 @@
 package com.example.littlebooks;
 
-public class ModelMainData2 {
+public class ModelRecenzia {
     private String uid;
     private String popis;
     private String hodnotenie;
@@ -8,8 +8,9 @@ public class ModelMainData2 {
     //private String id_recenzie;
     private String obrazok;
     private String meno;
+    private char up;
 
-    public ModelMainData2(String uid, String popis, String hodnotenie, String id_kniha, String obrazok, String meno, String priezvisko) {
+    public ModelRecenzia(String uid, String popis, String hodnotenie, String id_kniha, String obrazok, String meno, String priezvisko, char up) {
         this.uid = uid;
         this.popis = popis;
         this.hodnotenie = hodnotenie;
@@ -17,6 +18,15 @@ public class ModelMainData2 {
         //this.id_recenzie = id_recenzie;
         this.obrazok = obrazok;
         this.meno = meno+" "+priezvisko;
+        this.up = up;
+    }
+
+    public char getUp() {
+        return up;
+    }
+
+    public void setUp(char up) {
+        this.up = up;
     }
 
     public String getUid() {
