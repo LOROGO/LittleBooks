@@ -124,7 +124,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.95" />
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/viac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,9 +136,9 @@
                 app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.95" />
+                app:layout_constraintVertical_bias="0.95" />-->
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="VIAC"
@@ -149,7 +149,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/obrazok"
                 app:layout_constraintVertical_bias="0.9"
-                app:layout_constraintHorizontal_bias="0.8"/>
+                app:layout_constraintHorizontal_bias="0.8"/>-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewMain"
