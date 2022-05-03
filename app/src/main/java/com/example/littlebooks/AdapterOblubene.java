@@ -89,7 +89,7 @@ public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHo
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
         //2. zadefinovanie premennych z layoutu
-        public TextView nazovKnihy, autor;
+        public TextView nazovKnihy, autor, cislo;
         public ImageView obrazok;
 
 
@@ -99,6 +99,7 @@ public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHo
             nazovKnihy = (TextView) itemView.findViewById(R.id.nazovKnihy);
             obrazok = itemView.findViewById(R.id.obrazok);
             autor = itemView.findViewById(R.id.autor);
+
         }
     }
 }

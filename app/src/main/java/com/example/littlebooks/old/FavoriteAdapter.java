@@ -1,4 +1,4 @@
-package com.example.littlebooks;
+package com.example.littlebooks.old;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,7 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.littlebooks.old.Obsah;
+import com.example.littlebooks.MojeKnihy;
+import com.example.littlebooks.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;

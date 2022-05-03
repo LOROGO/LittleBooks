@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.littlebooks.old.BooksActivity;
+import com.example.littlebooks.old.FavoriteAdapter;
+import com.example.littlebooks.old.FavoriteBook;
 import com.example.littlebooks.old.MainActivity;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;

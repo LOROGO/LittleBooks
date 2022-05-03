@@ -106,7 +106,7 @@ public class Register extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
 
 
-                            String url = "http://198.199.77.54/user1.php";
+                            String url = "http://178.62.196.85/user1.php";
                             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                                     response -> {
 

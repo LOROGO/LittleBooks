@@ -55,22 +55,22 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         if (vyber==1) {//main
-            url = "http://198.199.77.54/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
+            url = "http://178.62.196.85/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
             Log.d("url1", url);
         }
         else if (vyber==2) {//detail
-            url = "http://198.199.77.54/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&id_kniha=" + id_kniha;
+            url = "http://178.62.196.85/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr + "&id_kniha=" + id_kniha;
             Log.d("url2", url);
         }else if(vyber==3){//search
-            url = "http://198.199.77.54/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
+            url = "http://178.62.196.85/"+php+".php?table="+table+"&action="+action+"&scr="+scr+"&searchS="+search;
             Log.d("url3", url);
         }
         else if (vyber==4){//recenzia
-            url ="http://198.199.77.54/"+php+".php?id_kniha="+id_kniha+"&action="+action+"&uid="+uid;
+            url ="http://178.62.196.85/"+php+".php?id_kniha="+id_kniha+"&action="+action+"&uid="+uid;
             Log.d("url3", url);
         }
         else if(vyber == 5){//oblubene, precitane, precitat                         select z tabulky
-            url = "http://198.199.77.54/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr+ "&uid=" + uid;
+            url = "http://178.62.196.85/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr+ "&uid=" + uid;
             Log.d("url", url);
         }
 
@@ -127,7 +127,11 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String aVoid) {
         super.onPostExecute(aVoid);
         if (vyber==4){
+<<<<<<< Updated upstream
             //Log.d(TAG, "onPostExecute: "+obj.toString());
+=======
+//            Log.d(TAG, "onPostExecute: "+obj.toString());
+>>>>>>> Stashed changes
             callbackReview.populateLayReview(obj);
         }else
         apiCallback.populateLay(obj);

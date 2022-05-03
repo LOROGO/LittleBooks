@@ -55,7 +55,7 @@ public class Settings extends AppCompatActivity {
                 String menoo = meno.getText().toString().trim();
                 String priezviskoo = priezvisko.getText().toString().trim();
 
-                String url = "http://198.199.77.54/user1.php";
+                String url = "http://178.62.196.85/user1.php";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
                     Log.d("connPP", response);

@@ -63,6 +63,7 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         holder.recenziaPopis.setText(recenzia.getPopis().trim());
         holder.horeSipka.setOnClickListener(view -> {
             insertHod(recenzia.getId_kniha(), "up");
+            holder.cislo.setText(Integer.toString(Integer.parseInt(holder.cislo.getText().toString())+1));
         });
         holder.doleSipka.setOnClickListener(view -> {
             insertHod(recenzia.getId_kniha(), "down");
@@ -111,7 +112,7 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
         //2. zadefinovanie premennych z layoutu
-        public TextView recenziaPopis, menoUsera;
+        public TextView recenziaPopis, menoUsera, cislo;
         public ImageView hviezdicky, pouzivatel, horeSipka, doleSipka;
 
 
@@ -124,12 +125,13 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
             hviezdicky = itemView.findViewById(R.id.hviezdicky);
             menoUsera = itemView.findViewById(R.id.menoUsera);
             pouzivatel = itemView.findViewById(R.id.pouzivatel);
+            cislo = itemView.findViewById(R.id.textView4);
 
         }
     }
 
     public  void deleteHod(String id_recenzia){
-        String url = "http://198.199.77.54/recenzia.php?&action=deleteHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia;
+        String url = "http://178.62.196.85/recenzia.php?&action=deleteHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia;
         Log.d(TAG, "deleteOCP "+url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -163,7 +165,7 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     }
     public void insertHod(String id_recenzia, String hodnotenie){
         deleteHod(id_recenzia);
-        String url = "http://198.199.77.54/recenzia.php?&action=addHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia + "&hodnotenie=" + hodnotenie;
+        String url = "http://178.62.196.85/recenzia.php?&action=addHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia + "&hodnotenie=" + hodnotenie;
         Log.d(TAG, "insertOCP "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {

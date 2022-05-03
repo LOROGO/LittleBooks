@@ -124,7 +124,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         backgroundTask1.execute();
 
 
-        String url = "http://198.199.77.54/user1.php";
+        String url = "http://178.62.196.85/user1.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
                     Log.d("RegR", response.toString());
@@ -174,7 +174,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         odoslat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://198.199.77.54/recenzia.php?action=newReview";
+                String url = "http://178.62.196.85/recenzia.php?action=newReview";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
 
@@ -209,7 +209,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             }
         });
 
-        url = "http://198.199.77.54/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://178.62.196.85/get_knihy4.php?action=checkOblubene&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
         stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -267,7 +267,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
 
 
-        url = "http://198.199.77.54/get_knihy4.php?action=checkPrecitat&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://178.62.196.85/get_knihy4.php?action=checkPrecitat&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
         stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -325,7 +325,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
 
 
-        url = "http://198.199.77.54/get_knihy4.php?action=checkPrecitane&uid="+fAuth.getUid()+"&id_kniha="+id;
+        url = "http://178.62.196.85/get_knihy4.php?action=checkPrecitane&uid="+fAuth.getUid()+"&id_kniha="+id;
         Log.d(LOG, url);
         stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -387,7 +387,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
        /* book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://198.199.77.54/get_knihy4.php?&action=insertPrecitat"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+                String url = "http://178.62.196.85/get_knihy4.php?&action=insertPrecitat"+ "&uid=" + fAuth.getUid() + "&id_kniha=" + id;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         response -> {
 
@@ -415,7 +415,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
 
 
     public  void deleteOCP(String action){
-        String url = "http://198.199.77.54/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+        String url = "http://178.62.196.85/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
         Log.d(LOG, "deleteOCP "+url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -456,7 +456,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
     }
     public void insertOCP(String action){
-        String url = "http://198.199.77.54/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
+        String url = "http://178.62.196.85/get_knihy4.php?&action="+action+"&uid=" + fAuth.getUid() + "&id_kniha=" + id;
         Log.d(LOG, "insertOCP "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
