@@ -24,7 +24,7 @@
                 android:id="@+id/include"
                 layout="@layout/main_toolbar"/>-->
 
-            <RelativeLayout
+            <!--<RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
@@ -32,7 +32,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+            </RelativeLayout>-->
 
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/pozadienove"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
             </RelativeLayout>
 
             <ImageView

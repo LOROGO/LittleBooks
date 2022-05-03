@@ -4,18 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:backgroundTint="@color/creme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/purple">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="#D9D0DE">
 
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
@@ -23,8 +29,10 @@
             android:background="#D9D0DE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />-->
 
         <ImageView
             android:id="@+id/pouzivatel"
@@ -54,13 +62,14 @@
 
         <TextView
             android:id="@+id/recenziaPopis"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
+            android:layout_marginRight="15dp"
             android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/pouzivatel"
+            app:layout_constraintEnd_toEndOf="@+id/hviezdicky"
+            app:layout_constraintStart_toStartOf="@+id/menoUsera"
             app:layout_constraintTop_toBottomOf="@+id/menoUsera" />
 
         <TextView
@@ -96,15 +105,19 @@
             android:id="@+id/hore"
             android:layout_width="50dp"
             android:layout_height="30dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pouzivatel"
             app:layout_constraintTop_toBottomOf="@+id/recenziaPopis"
-            app:srcCompat="@drawable/sivahore" />
+            app:srcCompat="@drawable/sivahore"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="0"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -115,16 +128,20 @@
             android:id="@+id/dole"
             android:layout_width="50dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/recenziaPopis"
-            app:srcCompat="@drawable/sivadole"
-            android:layout_marginLeft="30dp"/>
+            app:srcCompat="@drawable/sivadole" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="0"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"

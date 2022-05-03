@@ -9,11 +9,11 @@
     tools:context=".ui.main.UserFragment"
     android:background="@color/creme">
 
-   <!-- <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/pozadiePouzivatela"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:background="@drawable/pozadie9"
+        android:background="@drawable/skuska"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->

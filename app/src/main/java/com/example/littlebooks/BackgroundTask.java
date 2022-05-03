@@ -127,11 +127,7 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String aVoid) {
         super.onPostExecute(aVoid);
         if (vyber==4){
-<<<<<<< Updated upstream
-            //Log.d(TAG, "onPostExecute: "+obj.toString());
-=======
-//            Log.d(TAG, "onPostExecute: "+obj.toString());
->>>>>>> Stashed changes
+
             callbackReview.populateLayReview(obj);
         }else
         apiCallback.populateLay(obj);
