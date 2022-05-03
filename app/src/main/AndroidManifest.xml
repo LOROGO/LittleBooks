@@ -28,10 +28,6 @@
         <activity android:name=".DetailKnihy" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".LoginRegister" />
-        <activity android:name=".MojeKnihy" />
-        <activity android:name=".NewBook" />
-        <activity android:name=".Account" />
         <activity android:name=".old.Obsah" />
         <activity android:name=".SplashAcitivity">
             <intent-filter>

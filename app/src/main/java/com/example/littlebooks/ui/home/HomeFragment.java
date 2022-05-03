@@ -37,18 +37,13 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import com.example.littlebooks.Account;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
 import com.example.littlebooks.ISBN;
 
 import com.example.littlebooks.ModelMainData;
-import com.example.littlebooks.MojeKnihy;
 import com.example.littlebooks.NetworkChangeListener;
-import com.example.littlebooks.NewBook;
 import com.example.littlebooks.R;
-import com.example.littlebooks.old.BooksActivity;
-import com.google.android.gms.common.internal.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
@@ -346,7 +341,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     }
 
 
-    public void ClickBooks(View view){
+    /*public void ClickBooks(View view){
         redirectActivity(getActivity(), BooksActivity.class);
     }
 
@@ -368,7 +363,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
 
     public void ClickDomov(View view){
         //recreate();
-    }
+    }*/
 
 
     public static void logout(final Activity activity){

@@ -36,9 +36,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.littlebooks.old.BooksActivity;
-import com.example.littlebooks.old.MainActivity;
-import com.example.littlebooks.old.MainAdapter;
 import com.example.littlebooks.ui.dashboard.DashboardViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,7 +70,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
     RecyclerView recyclerView;
     //pridat adapter a prepojenie knih
     FirebaseAuth fAuth;
-    MainAdapter adapter;
     ImageView pozadie;
 
     private SurfaceView surfaceView;
@@ -413,7 +409,7 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
     }
 
 
-    public void ClickBooks(View view){
+    /*public void ClickBooks(View view){
         MainActivity.redirectActivity(ISBN.this, BooksActivity.class);
     }
 
@@ -435,7 +431,7 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
 
     public void ClickDomov(View view){
         //recreate();
-    }
+    }*/
 
 
     public static void logout(final Activity activity){

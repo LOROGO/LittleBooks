@@ -19,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.littlebooks.old.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -112,7 +111,7 @@ public class Register extends AppCompatActivity {
 
                                         if (response.equals("ok")){
 
-                                            Intent mainIntent = new Intent(Register.this, MainActivity.class);
+                                            Intent mainIntent = new Intent(Register.this, MainActivityT.class);
                                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(mainIntent);
                                             finish();
