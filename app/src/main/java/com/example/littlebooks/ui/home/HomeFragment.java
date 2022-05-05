@@ -37,8 +37,13 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
+import com.example.littlebooks.DetailKnihy;
 import com.example.littlebooks.ISBN;
 
 import com.example.littlebooks.ModelMainData;
@@ -47,10 +52,13 @@ import com.example.littlebooks.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
@@ -85,7 +93,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         currentScene = sceneMain;
 
         createSceneMain(root);
-
+        //najKniha();
 
         mainTrans2.addListener(new Transition.TransitionListener() {
             @Override
@@ -255,6 +263,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         bs.setApiCallback(this);
         String a = String.valueOf(bs.execute());
     }
+
 
     Activity a;
     @Override

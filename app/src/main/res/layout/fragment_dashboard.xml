@@ -9,81 +9,110 @@
     tools:context=".ui.dashboard.DashboardFragment"
     android:background="@color/creme">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/beletria"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_weight="1"
                 android:src="@drawable/beletria"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"/>
 
             <ImageView
+                android:id="@+id/rodicia"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:src="@drawable/rodicia"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/deti"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:src="@drawable/deti"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
+
+            <ImageView
+                android:id="@+id/poezia"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:src="@drawable/poezia"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_weight="1">
+
+            <ImageView
                 android:id="@+id/hobby"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_weight="1"
                 android:src="@drawable/hobby"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/psych"
+                android:id="@+id/odborna"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_weight="1"
-                android:src="@drawable/psych"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
-
-            <ImageView
-                android:id="@+id/scifi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/scifi"
+                android:src="@drawable/odborna"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/pc"
+                android:id="@+id/bio"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_weight="1"
-                android:src="@drawable/pc"
+                android:src="@drawable/bio"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"/>
 
             <ImageView
-                android:id="@+id/historia"
+                android:id="@+id/nic"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_weight="1"
-                android:src="@drawable/historia"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"/>
         </TableRow>
-
 
     </TableLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -73,6 +73,10 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
             url = "http://178.62.196.85/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr+ "&uid=" + uid;
             Log.d("url", url);
         }
+        else if(vyber == 6){//naj kniha
+            url = "http://178.62.196.85/" + php + ".php?table=" + table + "&action=" + action + "&scr=" + scr;
+            Log.d("url", url);
+        }
 
 
     }

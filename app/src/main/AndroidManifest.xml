@@ -22,13 +22,9 @@
             android:exported="false" />
         <activity android:name=".Settings" />
         <activity android:name=".MainActivityT" />
-        <activity
-            android:name=".old.MainActivity2"
-            android:label="@string/title_activity_main2" />
         <activity android:name=".DetailKnihy" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".old.Obsah" />
         <activity android:name=".SplashAcitivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".old.MainActivity" />
     </application>
 
 </manifest>
