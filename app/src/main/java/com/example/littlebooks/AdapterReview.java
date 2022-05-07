@@ -1,6 +1,9 @@
 package com.example.littlebooks;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +19,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder> {
     public List<ModelRecenzia> mReview;
@@ -61,6 +67,10 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         holder.menoUsera.setText(recenzia.getMeno().trim());
         holder.menoUsera.setOnClickListener(view -> Log.d("A", "meno"));
         holder.recenziaPopis.setText(recenzia.getPopis().trim());
+        if (!recenzia.getObrazok().isEmpty()){
+            Picasso.with(con).load(recenzia.getObrazok()).into(holder.pouzivatel);
+        }
+
         holder.horeSipka.setOnClickListener(view -> {
             insertHod(recenzia.getId_kniha(), "up");
             holder.cislo.setText(Integer.toString(Integer.parseInt(holder.cislo.getText().toString())+1));
@@ -113,7 +123,8 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         //2. zadefinovanie premennych z layoutu
         public TextView recenziaPopis, menoUsera, cislo;
-        public ImageView hviezdicky, pouzivatel, horeSipka, doleSipka;
+        public ImageView hviezdicky, horeSipka, doleSipka;
+        public CircleImageView pouzivatel;
 
 
         public ViewHolder(View itemView) {
@@ -141,10 +152,7 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
                         holder.horeSipka.setImageResource(R.drawable.sivahore);
                         holder.horeSipka.setOnClickListener(v -> insertHod(id_recenzia,"up"));
                         holder.doleSipka.setOnClickListener(v -> insertHod(id_recenzia,"down"));
-
                     }
-
-
 
                     Log.d("RegR", response.toString());
                 },

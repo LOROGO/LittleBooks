@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -47,18 +48,22 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Settings extends AppCompatActivity {
     FirebaseAuth fAuth;
     RequestQueue requestQueue;
     JSONArray jsonArray;
     Button update;
-    ImageView logout, user;
+    ImageView logout;
+    CircleImageView user;
     EditText meno, priezvisko;
 
     String uid;
     String menoP;
     String priezviskoP;
     String obrazok;
+    String userP;
 
     private Uri imageUri;
     private static final int PICK_IMAGE = 100;
@@ -78,6 +83,9 @@ public class Settings extends AppCompatActivity {
         user = findViewById(R.id.user);
         progressDialog = new ProgressDialog(this);
 
+        progressDialog.setTitle("Uploading...");
+        progressDialog.show();
+
         fAuth = FirebaseAuth.getInstance();
         uid = fAuth.getUid();
 
@@ -87,8 +95,11 @@ public class Settings extends AppCompatActivity {
         if(bundle != null){
             menoP = bundle.getString("Meno");
             priezviskoP = bundle.getString("Priezvisko");
+            userP = bundle.getString("Obrazok");
             meno.setText(menoP);
             priezvisko.setText(priezviskoP);
+            Picasso.with(this).load(Uri.parse(userP)).into(user);
+            progressDialog.dismiss();
         }
 
         update.setOnClickListener(new View.OnClickListener() {
@@ -115,9 +126,9 @@ public class Settings extends AppCompatActivity {
                         InputMethodManager imm =  (InputMethodManager) Settings.this.getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                        Intent intent = new Intent(Settings.this, UserFragment.class);
+                        /*Intent intent = new Intent(Settings.this, UserFragment.class);
                         startActivity(intent);
-                        finish();
+                        finish();*/
                         startActivity(new Intent(getApplicationContext(), UserFragment.class));
 
                     }
@@ -188,7 +199,7 @@ public class Settings extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){      //po skonceni obrazka
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             imageUri = data.getData();

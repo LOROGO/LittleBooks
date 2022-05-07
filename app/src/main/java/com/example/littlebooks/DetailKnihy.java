@@ -134,15 +134,18 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    JSONObject a = null;
+                    JSONObject json = null;
                     try {
-                        a = jsonArray.getJSONObject(0);
-                        Log.d("RegR", "cele: "+a.toString());
-                        Log.d("RegR1", "meno: " + a.getString("meno"));
+                        json = jsonArray.getJSONObject(0);
+                        Log.d("RegR", "cele: "+json.toString());
+                        Log.d("RegR1", "meno: " + json.getString("meno"));
                         try {
-                            Log.d("RegR", a.getString("meno"));
-                            meno.setText(a.getString("meno"));
-                            meno.append(" "+a.getString("priezvisko"));
+                            Log.d("RegR", json.getString("meno"));
+                            meno.setText(json.getString("meno"));
+                            meno.append(" "+json.getString("priezvisko"));
+                            if (!json.getString("obrazok").isEmpty()){
+                                Picasso.with(this).load(json.getString("obrazok")).into(pouzivatel);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("RegR", e.getMessage());
@@ -563,10 +566,6 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             a.getString("meno"),
                             a.getString("priezvisko"),
                             up
-
-
-
-
                     ));
                 }catch (Exception e){
                     Log.e("PopulateRec", e.getMessage());

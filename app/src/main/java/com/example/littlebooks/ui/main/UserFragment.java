@@ -2,6 +2,7 @@ package com.example.littlebooks.ui.main;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import com.example.littlebooks.Settings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class UserFragment extends Fragment implements BackgroundTask.ApiCallback{
@@ -57,10 +60,13 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     JSONArray jsonArray;
     TextView priezviskoMeno;
     RecyclerView recyclerview;
+    CircleImageView user;
     View root;
 
     String menoP = "";
     String priezviskoP = "";
+    String obrazokP = "";
+
 
     DatabaseReference mbase;
     public List<ModelMainDataFavourite> mKnihy;
@@ -75,6 +81,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         chcemPrecitat = root.findViewById(R.id.chcemPrecitat);
         precitane = root.findViewById(R.id.precitane);
         settings = root.findViewById(R.id.settings);
+        user = root.findViewById(R.id.user);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         mbase = FirebaseDatabase.getInstance("https://kniznicaprosim-default-rtdb.firebaseio.com/").getReferenceFromUrl("https://kniznicaprosim-default-rtdb.firebaseio.com/");
@@ -89,6 +96,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                 Intent intent = new Intent(getContext(), Settings.class);
                 intent.putExtra("Meno", menoP);
                 intent.putExtra("Priezvisko", priezviskoP);
+                intent.putExtra("Obrazok", obrazokP);
                 startActivity(intent);
             }
         });
@@ -103,18 +111,22 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    JSONObject a = null;
+                    JSONObject json = null;
                     try {
-                        a = jsonArray.getJSONObject(0);
-                        Log.d("RegR", "cele: "+a.toString());
-                        Log.d("RegR1", "meno: " + a.getString("meno"));
-                        try {
-                            Log.d("RegR", a.getString("meno"));
-                            priezviskoMeno.setText(a.getString("meno"));
-                            priezviskoMeno.append(" "+a.getString("priezvisko"));
+                        json = jsonArray.getJSONObject(0);
+                        Log.d("RegR", "cele: "+json.toString());
+                        Log.d("RegR1", "meno: " + json.getString("meno"));
+                        Log.d("RegObr", "obrazok: " + json.getString("obrazok"));
 
-                            menoP = a.getString("meno");
-                            priezviskoP = a.getString("priezvisko");
+                        try {
+                            Log.d("RegR", json.getString("meno"));
+                            priezviskoMeno.setText(json.getString("meno"));
+                            priezviskoMeno.append(" "+json.getString("priezvisko"));
+                            Picasso.with(getContext()).load(Uri.parse(json.getString("obrazok"))).into(user);
+
+                            menoP = json.getString("meno");
+                            priezviskoP = json.getString("priezvisko");
+                            obrazokP = json.getString("obrazok");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -143,6 +155,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
         };
         requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
+
 
         BackgroundTask backgroundTask = new BackgroundTask(5);
         backgroundTask.table = "kniha";
