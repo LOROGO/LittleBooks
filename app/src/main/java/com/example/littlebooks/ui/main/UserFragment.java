@@ -59,6 +59,9 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
     RecyclerView recyclerview;
     View root;
 
+    String menoP = "";
+    String priezviskoP = "";
+
     DatabaseReference mbase;
     public List<ModelMainDataFavourite> mKnihy;
 
@@ -84,6 +87,8 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Settings.class);
+                intent.putExtra("Meno", menoP);
+                intent.putExtra("Priezvisko", priezviskoP);
                 startActivity(intent);
             }
         });
@@ -107,6 +112,10 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                             Log.d("RegR", a.getString("meno"));
                             priezviskoMeno.setText(a.getString("meno"));
                             priezviskoMeno.append(" "+a.getString("priezvisko"));
+
+                            menoP = a.getString("meno");
+                            priezviskoP = a.getString("priezvisko");
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("RegR", e.getMessage());
