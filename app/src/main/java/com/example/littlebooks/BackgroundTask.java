@@ -22,13 +22,10 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
     public String table= "";
     public String action= "";
     public String php= "";
-    public String podmienka= "";
     public String search= "";
     public String scr= "";
     public String uid= "";
     public String id_kniha= "";
-    public String popis="";
-    public String hodnotenie="";
     public int vyber = 0;
 
     JSONArray obj;
@@ -126,6 +123,8 @@ public class BackgroundTask extends AsyncTask<Void, Void, String> {
 
         return json_string;
     }
+
+
     //metoda ktora sa zavola po dokonceni poziadavky - vola interface dole
     @Override
     protected void onPostExecute(String aVoid) {

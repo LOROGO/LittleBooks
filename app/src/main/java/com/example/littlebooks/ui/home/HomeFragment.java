@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.transition.Scene;
 import android.transition.Transition;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +41,7 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.AdapterBooks;
@@ -50,6 +53,7 @@ import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.NetworkChangeListener;
 import com.example.littlebooks.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,11 +76,17 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     static Scene sceneSearch;
     Scene currentScene;
     ImageButton back;
-    ImageView isbn;
+    ImageView isbn, obrazok;
+    TextView text, text1, text2;
+
     Transition mainTrans;
     Transition mainTrans2;          //prechody
+    String TAG = "HomeFragment";
+
     View root;
     ProgressBar progressBar;
+    JSONArray jsonArray;
+    RequestQueue requestQueue;
 
     public List<ModelMainData> mKnihy;
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();         //internet
@@ -166,6 +176,10 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         searchBar = root.findViewById(R.id.vyhladavanie);
         isbn = root.findViewById(R.id.fotak);
         progressBar = root.findViewById(R.id.progressBar);
+        text = root.findViewById(R.id.text);
+        text1 = root.findViewById(R.id.text1);
+        text2 = root.findViewById(R.id.text2);
+        obrazok = root.findViewById(R.id.obrazok);
         isbn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,6 +214,49 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             }
         });
 
+        String url = "http://178.62.196.85/get_knihy4.php?action=select&table=kniha&scr=8";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
+                    Log.d(TAG, "createSceneMain: "+response);
+
+                    try {
+                        jsonArray = new JSONArray(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JSONObject json = null;
+                    try {
+                        json = jsonArray.getJSONObject(0);
+                        try {
+                            Log.d("Reggg", json.toString());
+                            text.setText(json.getString("autor"));
+                            text1.setText(json.getString("nazov"));
+                            text2.setText(json.getString("podkategoria"));
+                            Picasso.with(getContext()).load(Uri.parse(json.getString("obrazok"))).into(obrazok);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                            Log.d("RegRe", e.getMessage());
+                        }
+                    }
+                    catch (NullPointerException e){
+                        Log.d("RegRer", e.getMessage());
+                    }
+                    catch (JSONException e) {
+                        Log.d("RegRere", e.getMessage());
+                    }
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+
+                }
+        ){
+
+        };
+        requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+
     }
 
     @Override
@@ -207,6 +264,7 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         //Toast.makeText(getContext(), "satrt", Toast.LENGTH_SHORT).show();
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         a.registerReceiver(networkChangeListener, filter);
+
         super.onStart();
     }
 
@@ -287,7 +345,6 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
                     //spracuje json a da do listu
                     JSONObject a = obj.getJSONObject(i);
                     knihy.add(new ModelMainData(
-
                             a.getString("id_kniha"),
                             a.getString("nazov"),
                             a.getString("obrazok")
@@ -331,51 +388,8 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
     }
 
 
-    public void ClickMenu(View view){
-        openDrawer(drawerLayout);
-    }
 
-    public static void openDrawer(DrawerLayout drawerLayout){
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    public void ClickLogo(View view){
-        closeDrawer(drawerLayout);
-    }
-
-    public static void closeDrawer(DrawerLayout drawerLayout) {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
-
-
-    /*public void ClickBooks(View view){
-        redirectActivity(getActivity(), BooksActivity.class);
-    }
-
-    public void ClickAccount(View view){
-        redirectActivity(getActivity(), Account.class);
-    }
-
-    public void ClickNewBook(View view){
-        startActivity(new Intent(getActivity(), NewBook.class));
-    }
-
-    public void ClickLogout(View view){
-        logout(getActivity());
-    }
-
-    public void ClickMojeKnihy(View view){
-        redirectActivity(getActivity(), MojeKnihy.class);
-    }
-
-    public void ClickDomov(View view){
-        //recreate();
-    }*/
-
-
-    public static void logout(final Activity activity){
+   /* public static void logout(final Activity activity){
         FirebaseAuth.getInstance().signOut();
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Odhlásenie");
@@ -395,10 +409,10 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
             }
         });
         builder.show();
-    }
+    }*/
 
 
-    public static void redirectActivity(Activity activity, Class aClass) {
+   /* public static void redirectActivity(Activity activity, Class aClass) {
         Intent intent = new Intent(activity, aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
@@ -413,5 +427,5 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
 
-    }
+    }*/
 }

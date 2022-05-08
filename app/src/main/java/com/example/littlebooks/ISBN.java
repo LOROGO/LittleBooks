@@ -1,12 +1,9 @@
 package com.example.littlebooks;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +24,6 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +33,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.ui.dashboard.DashboardViewModel;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -68,9 +62,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
     private DashboardViewModel dashboardViewModel;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
-    //pridat adapter a prepojenie knih
-    FirebaseAuth fAuth;
-    ImageView pozadie;
 
     private SurfaceView surfaceView;
     private BarcodeDetector barcodeDetector;
@@ -114,25 +105,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
         });
         initialiseDetectorsAndSources();
 
-
-       /* recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-        FirebaseRecyclerOptions<Main> options
-                = new FirebaseRecyclerOptions.Builder<Main>()
-                .setQuery(mbase.child("Books"), Main.class)
-                .build();
-
-        adapter = new MainAdapter(options, MainActivity.this);
-
-        recyclerView.setAdapter(adapter);
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
-        // Lookup the recyclerview in activity layout
-
-
-        // Initialize contacts
-
         // Create adapter passing in the sample user data
         try {
             //new Async().execute();
@@ -150,8 +122,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
         barcodeDetector = new BarcodeDetector.Builder(ISBN.this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
-
-
 
         cameraSource = new CameraSource.Builder(ISBN.this, barcodeDetector)
                 .setRequestedPreviewSize(1920, 1080)
@@ -219,7 +189,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
                                         },
                                         error -> {
                                             Log.d("RegE", error.toString());
-
                                         }
                                 ){
                                     @Override
@@ -286,11 +255,9 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
                                 requestQueue = Volley.newRequestQueue(ISBN.this);
                                 requestQueue.add(stringRequest);
                                 barcodeText.setText(barcodeData);
-
                             }
                         }
                     });
-
                 }
             }
         });
@@ -327,8 +294,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
 
     public class Async extends AsyncTask<Void, Void, Void> {
 
-
-
         String records = "",error="";
         public List<ModelMainData> knihy;
 
@@ -337,10 +302,7 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
         protected Void doInBackground(Void... voids) {
             knihy = new ArrayList<>();
 
-            try
-
-            {
-
+            try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:mysql://db-mysql-fra1-76684-do-user-10334479-0.b.db.ondigitalocean.com:25060/defaultdb", "doadmin", "vhVfELGWlFZ7nzOa");
                 Statement statement = connection.createStatement();
@@ -353,23 +315,16 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
                             resultSet.getString(2),
                             resultSet.getString(3))
                     );
-
                 }
             }
-
             catch(Exception e)
             {
                 error = e.toString();
             }
-
             return null;
-
         }
 
-
-
         @Override
-
         protected void onPostExecute(Void aVoid) {
             if (!knihy.isEmpty()) {
                 mKnihy = knihy;
@@ -383,11 +338,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
             super.onPostExecute(aVoid);
 
         }
-
-
-
-
-
     }
 
     public void ClickMenu(View view){
@@ -407,31 +357,6 @@ public class ISBN extends AppCompatActivity implements BackgroundTask.ApiCallbac
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
-
-
-    /*public void ClickBooks(View view){
-        MainActivity.redirectActivity(ISBN.this, BooksActivity.class);
-    }
-
-    public void ClickAccount(View view){
-        MainActivity.redirectActivity(ISBN.this, Account.class);
-    }
-
-    public void ClickNewBook(View view){
-        startActivity(new Intent(ISBN.this, NewBook.class));
-    }
-
-    public void ClickLogout(View view){
-        logout(ISBN.this);
-    }
-
-    public void ClickMojeKnihy(View view){
-        MainActivity.redirectActivity(ISBN.this, MojeKnihy.class);
-    }
-
-    public void ClickDomov(View view){
-        //recreate();
-    }*/
 
 
     public static void logout(final Activity activity){

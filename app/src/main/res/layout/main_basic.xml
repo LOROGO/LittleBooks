@@ -57,13 +57,14 @@
             <ImageView
                 android:id="@+id/obrazok"
                 android:layout_width="120dp"
-                android:layout_height="176dp"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/queens_gambit"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerViewMain"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.6"
+                app:layout_constraintVertical_bias="0.62"
                 app:layout_constraintHorizontal_bias="0.13" />
 
             <TextView
@@ -76,7 +77,7 @@
                 app:layout_constraintStart_toEndOf="@+id/obrazok"
                 app:layout_constraintTop_toTopOf="@+id/obrazok"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="55dp"/>
+                android:layout_marginTop="50dp"/>
 
             <TextView
                 android:id="@+id/text1"

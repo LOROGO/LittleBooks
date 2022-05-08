@@ -5,17 +5,17 @@ public class ModelRecenzia {
     private String popis;
     private String hodnotenie;
     private String id_kniha;
-    //private String id_recenzie;
+    private String id_recenzie;
     private String obrazok;
     private String meno;
     private char up;
 
-    public ModelRecenzia(String uid, String popis, String hodnotenie, String id_kniha, String obrazok, String meno, String priezvisko, char up) {
+    public ModelRecenzia(String uid, String popis, String hodnotenie, String id_kniha, String id_recenzie, String obrazok, String meno, String priezvisko, char up) {
         this.uid = uid;
         this.popis = popis;
         this.hodnotenie = hodnotenie;
         this.id_kniha = id_kniha;
-        //this.id_recenzie = id_recenzie;
+        this.id_recenzie = id_recenzie;
         this.obrazok = obrazok;
         this.meno = meno+" "+priezvisko;
         this.up = up;
@@ -61,13 +61,13 @@ public class ModelRecenzia {
         this.id_kniha = id_kniha;
     }
 
-   /* public String getId_recenzie() {
+    public String getId_recenzie() {
         return id_recenzie;
     }
 
     public void setId_recenzie(String id_recenzie) {
         this.id_recenzie = id_recenzie;
-    }*/
+    }
 
     public String getObrazok() {
         return obrazok;
@@ -83,5 +83,19 @@ public class ModelRecenzia {
 
     public void setMeno(String meno) {
         this.meno = meno;
+    }
+
+    @Override
+    public String  toString() {
+        return "ModelRecenzia{" +
+                "uid='" + uid + '\'' +
+                ", popis='" + popis + '\'' +
+                ", hodnotenie='" + hodnotenie + '\'' +
+                ", id_kniha='" + id_kniha + '\'' +
+                ", id_recenzie='" + id_recenzie + '\'' +
+                ", obrazok='" + obrazok + '\'' +
+                ", meno='" + meno + '\'' +
+                ", up=" + up +
+                '}';
     }
 }

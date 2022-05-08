@@ -1,9 +1,7 @@
 package com.example.littlebooks;
 
-import static java.security.AccessController.getContext;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +34,7 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     String url;
     StringRequest stringRequest;
     ViewHolder holder;
-
+    View item;
 
     public AdapterReview(List<ModelRecenzia> recenzie, Context context) {
         //1. zavola sa tato metoda, ulozi ten poslany zoznam do lokalnej premennej mReview
@@ -63,6 +61,7 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         //
         ModelRecenzia recenzia = mReview.get(holder.getAdapterPosition());
 
+
         // nastavenie nazvu holder.getAdapterPosition je cisclo itemviewu ktory chceme naplnit datami, ktore zoberieme z mReview
         holder.menoUsera.setText(recenzia.getMeno().trim());
         holder.menoUsera.setOnClickListener(view -> Log.d("A", "meno"));
@@ -71,35 +70,36 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
             Picasso.with(con).load(recenzia.getObrazok()).into(holder.pouzivatel);
         }
 
+/*
         holder.horeSipka.setOnClickListener(view -> {
-            insertHod(recenzia.getId_kniha(), "up");
+            insertHod(recenzia.getId_recenzie(), "up");
             holder.cislo.setText(Integer.toString(Integer.parseInt(holder.cislo.getText().toString())+1));
         });
         holder.doleSipka.setOnClickListener(view -> {
-            insertHod(recenzia.getId_kniha(), "down");
-        });
+            insertHod(recenzia.getId_recenzie(), "down");
+        });*/
 
 
-        if (recenzia.getUp()=='n') {//neni ohodnotene
+       /* if (recenzia.getUp()=='n') {//neni ohodnotene
 
         }else if (recenzia.getUp()=='1') {//je liknute
             holder.horeSipka.setImageResource(R.drawable.hore);
             holder.horeSipka.setOnClickListener(view -> {
-                deleteHod(recenzia.getId_kniha());
+                deleteHod(recenzia.getId_recenzie());
             });
             holder.doleSipka.setOnClickListener(view -> {
-                insertHod(recenzia.getId_kniha(), "down");
+                insertHod(recenzia.getId_recenzie(), "down");
             });
         }else
         if (recenzia.getUp()=='0') {//je disliknute
             holder.doleSipka.setImageResource(R.drawable.dole);
             holder.horeSipka.setOnClickListener(view -> {
-                insertHod(recenzia.getId_kniha(), "up");
+                insertHod(recenzia.getId_recenzie(), "up");
             });
             holder.doleSipka.setOnClickListener(view -> {
-                deleteHod(recenzia.getId_kniha());
+                deleteHod(recenzia.getId_recenzie());
             });
-        }
+        }*/
         //nastavenie obrazka to split je tam preto lebo v db mame ze napr obrazky/obrazok1.jpg+a kopec bludov za tym takze takto len tie bludy dame prec
         String imageUri = null;
         imageUri = mReview.get(position).getObrazok();
@@ -123,25 +123,25 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         //2. zadefinovanie premennych z layoutu
         public TextView recenziaPopis, menoUsera, cislo;
-        public ImageView hviezdicky, horeSipka, doleSipka;
+        /*public ImageView hviezdicky, horeSipka, doleSipka;*/
         public CircleImageView pouzivatel;
 
 
         public ViewHolder(View itemView) {
             // ulozenie tych veci z layoutu u know idk
             super(itemView);
-            horeSipka = itemView.findViewById(R.id.hore);
-            doleSipka = itemView.findViewById(R.id.dole);
+            /*horeSipka = itemView.findViewById(R.id.hore);
+            doleSipka = itemView.findViewById(R.id.dole);*/
             recenziaPopis = (TextView) itemView.findViewById(R.id.recenziaPopis);
-            hviezdicky = itemView.findViewById(R.id.hviezdicky);
+            //hviezdicky = itemView.findViewById(R.id.hviezdicky);
             menoUsera = itemView.findViewById(R.id.menoUsera);
             pouzivatel = itemView.findViewById(R.id.pouzivatel);
-            cislo = itemView.findViewById(R.id.textView4);
+            /*cislo = itemView.findViewById(R.id.textView4);*/
 
         }
     }
 
-    public  void deleteHod(String id_recenzia){
+    /*public  void deleteHod(String id_recenzia){
         String url = "http://178.62.196.85/recenzia.php?&action=deleteHodnotenie&uid=" + fAuth.getUid() + "&id_recenzia=" + id_recenzia;
         Log.d(TAG, "deleteOCP "+url);
 
@@ -204,5 +204,5 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         };
         requestQueue = Volley.newRequestQueue(con);
         requestQueue.add(stringRequest);
-    }
+    }*/
 }

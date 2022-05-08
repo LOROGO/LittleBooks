@@ -13,18 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--<include
-            android:id="@+id/include"
-            layout="@layout/main_toolbar"/>-->
-
-        <!--<RelativeLayout
-            android:id="@+id/relativeLayout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMain1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/creme"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </RelativeLayout>-->
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewMain"
@@ -36,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewMain1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

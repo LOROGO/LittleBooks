@@ -175,8 +175,10 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         requestQueue.add(stringRequest);
 
         odoslat.setOnClickListener(new View.OnClickListener() {
+            
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: prosim");
                 String url = "http://178.62.196.85/recenzia.php?action=newReview";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
@@ -562,6 +564,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             a.getString("popis"),
                             a.getString("hodnotenie"),
                             id,
+                            a.getString("id_recenzia"),
                             a.getString("obrazok"),
                             a.getString("meno"),
                             a.getString("priezvisko"),

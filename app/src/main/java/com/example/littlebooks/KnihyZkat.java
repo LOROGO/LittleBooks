@@ -1,24 +1,26 @@
 package com.example.littlebooks;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.transition.Scene;
-import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
-import com.example.littlebooks.ui.home.HomeViewModel;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -28,17 +30,10 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCallback {
 
-    private HomeViewModel homeViewModel;
-    DrawerLayout drawerLayout;
     RecyclerView recyclerView;
-    EditText searchBar;
-    Scene sceneMain;
-    static Scene sceneSearch;
-    Scene currentScene;
-    ImageButton back;
-    Transition mainTrans;
-    Transition mainTrans2;          //prechody
     View root;
+    JSONArray jsonArray;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +50,30 @@ public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCa
         bs.search = kategoria;
         bs.setApiCallback(this);
         String a = String.valueOf(bs.execute());
+
+
+        String url = "http://178.62.196.85/get_knihy4.php?action=select&table=kniha&scr=9&kategoria="+kategoria;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {                                               //spusti sa ak appka dostane odpoved v JSONE od php/db
+                    Log.d("RegRespons", response.toString());
+
+                    try {
+                        jsonArray = new JSONArray(response);
+                        populateLay1(jsonArray);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    Log.d("RegE", error.toString());
+
+                }
+        ){
+
+        };
+        requestQueue = Volley.newRequestQueue(KnihyZkat.this);
+        requestQueue.add(stringRequest);
+
     }
 
     @Override
@@ -66,7 +85,6 @@ public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCa
                     //spracuje json a da do listu
                     JSONObject a = obj.getJSONObject(i);
                     knihy.add(new ModelMainData(
-
                             a.getString("id_kniha"),
                             a.getString("nazov"),
                             a.getString("obrazok")
@@ -81,16 +99,63 @@ public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCa
         }
     }
 
-    public void populateRecView(List<ModelMainData> knihy, View root) {
 
-            AdapterBooks adapterBooks = new AdapterBooks(knihy, KnihyZkat.this, "search");
-            // Attach the adapter to the recyclerview to populate items
-            recyclerView.setAdapter(adapterBooks);
-            // Set layout manager to position the items
+    public void populateLay1(JSONArray obj) {
+        List<ModelMainPodkat> podkategorie = new ArrayList<>();
+        if (obj != null) {
+            for (int i = 0; i < obj.length(); i++) {
+                try {
+                    //spracuje json a da do listu
+                    JSONObject a = obj.getJSONObject(i);
+                    podkategorie.add(new ModelMainPodkat(
+                            a.getString("podkategoria")
+                    ));
+                } catch (Exception e) {
+                    Log.e("PopulateRec", e.getMessage());
+                }
 
-            recyclerView.setLayoutManager(new GridLayoutManager(KnihyZkat.this, 3));
-            recyclerView.setItemAnimator(new SlideInLeftAnimator());
-            SnapHelper snapHelper = new LinearSnapHelper();
-            //snapHelper.attachToRecyclerView(recyclerView);
+            }
+            //posle list do adapteru a nastavi adapter pre recyclerview
+            populateRecView2(podkategorie, root);
         }
     }
+
+    public void populateRecView(List<ModelMainData> knihy, View root) {
+
+        AdapterBooks adapterBooks = new AdapterBooks(knihy, KnihyZkat.this, "search");
+        // Attach the adapter to the recyclerview to populate items
+        recyclerView.setAdapter(adapterBooks);
+        // Set layout manager to position the items
+
+        recyclerView.setLayoutManager(new GridLayoutManager(KnihyZkat.this, 3));
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
+        SnapHelper snapHelper = new LinearSnapHelper();
+        //snapHelper.attachToRecyclerView(recyclerView);
+    }
+
+    public void populateRecView2(List<ModelMainPodkat> podkategorie, View root) {
+
+        AdapterPodkat adapterPodkat = new AdapterPodkat(podkategorie, KnihyZkat.this,"");
+        // Attach the adapter to the recyclerview to populate items
+        recyclerView.setAdapter(adapterPodkat);
+        // Set layout manager to position the items
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(KnihyZkat.this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
+        SnapHelper snapHelper = new LinearSnapHelper();
+        //snapHelper.attachToRecyclerView(recyclerView);
+    }
+
+
+    private void searchRequest(String text) {
+        Log.d("url", text);
+        BackgroundTask bs = new BackgroundTask(3);
+        bs.table = "kniha";
+        bs.action = "select";
+        bs.scr = "3";
+        bs.php = "get_knihy4";
+        bs.search = text;
+        bs.setApiCallback(this);
+        String a = String.valueOf(bs.execute());
+    }
+}
