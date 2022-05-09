@@ -8,7 +8,7 @@
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.202734375" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_account.xml" value="0.24094202898550723" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_books.xml" value="0.190625" />
-        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_detail_knihy.xml" value="0.2" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_detail_knihy.xml" value="0.3113456464379947" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_hl_stranka.xml" value="0.190625" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_isbn.xml" value="0.25416666666666665" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/activity_knihy_zkat.xml" value="0.25416666666666665" />
@@ -33,13 +33,12 @@
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/main_toolbar.xml" value="0.190625" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/single_book.xml" value="0.190625" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/single_book_main.xml" value="0.190625" />
+        <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/single_podkat.xml" value="0.72" />
         <entry key="..\:/AndoidStudioProjects/LittleBooks/app/src/main/res/layout/single_review.xml" value="0.4" />
         <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/activity_detail_knihy.xml" value="0.4" />
-        <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/activity_knihy_zkat.xml" value="0.2477355072463768" />
         <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/fragment_dashboard.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/single_book.xml" value="0.75" />
         <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/single_book_main.xml" value="0.2734375" />
-        <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/single_podkat.xml" value="0.6" />
         <entry key="..\:/Users/jbana/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/single_review.xml" value="0.4" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/activity_detail_knihy.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/lorog/AndroidStudioProjects/KoncorocnyProjekt/LittleBooks/app/src/main/res/layout/activity_main.xml" value="0.11354166666666667" />

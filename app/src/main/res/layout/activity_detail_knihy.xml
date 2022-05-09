@@ -65,38 +65,39 @@
 
             <ImageView
                 android:id="@+id/srdiecko"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:layout_constraintBottom_toTopOf="@+id/zaner"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
-                app:srcCompat="@drawable/ic_favorite_prazdne"
-                app:layout_constraintHorizontal_bias="1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+                app:layout_constraintTop_toBottomOf="@+id/precitat"
+                app:srcCompat="@drawable/srdceprazdne" />
 
             <ImageView
                 android:id="@+id/precitat"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/srdiecko"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+                app:layout_constraintTop_toBottomOf="@+id/precitane"
                 app:srcCompat="@drawable/plusprazdna" />
 
             <ImageView
                 android:id="@+id/precitane"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/precitat"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@+id/obrazokKnihy"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/precitaneciste" />
 
 
