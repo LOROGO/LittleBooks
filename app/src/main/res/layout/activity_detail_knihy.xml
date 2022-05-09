@@ -48,7 +48,6 @@
             </RelativeLayout>
 
 
-
             <ImageView
                 android:id="@+id/obrazokKnihy"
                 android:layout_width="155dp"

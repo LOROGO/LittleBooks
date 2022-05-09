@@ -1,8 +1,10 @@
 package com.example.littlebooks;
 
-import static com.example.littlebooks.R.drawable.ic_baseline_favorite_24;
+import static com.example.littlebooks.R.drawable.srddcefarebne;
 import static com.example.littlebooks.R.drawable.plusfarebne;
 import static com.example.littlebooks.R.drawable.precitanefarebne;
+import static com.example.littlebooks.R.drawable.srdceprazdne;
+import static com.example.littlebooks.R.drawable.srddcefarebne;
 
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
@@ -227,7 +229,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             sprava.getString("id_kniha");
                             //zafarbi na cerveno srdiecko
 
-                            srdiecko.setImageResource(ic_baseline_favorite_24);
+                            srdiecko.setImageResource(srddcefarebne);
                             srdiecko.setOnClickListener(new View.OnClickListener() {        //delete
                                 @Override
                                 public void onClick(View v) {
@@ -237,7 +239,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             });
                         }catch (Exception e){
                             Log.d("DetailKJur1", e.getMessage());
-                            srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                            srdiecko.setImageResource(R.drawable.srdceprazdne);
                             srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
                                 @Override
                                 public void onClick(View v) {
@@ -249,7 +251,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                         }
                     } catch (JSONException e) {
                         Log.d("DetailKJur1", e.getMessage());
-                        srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                        srdiecko.setImageResource(R.drawable.srdceprazdne);
                         srdiecko.setOnClickListener(new View.OnClickListener() {        //pridanie riadku do db
                             @Override
                             public void onClick(View v) {
@@ -426,7 +428,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     if (response.equals("ok-oblubene")){
-                        srdiecko.setImageResource(R.drawable.ic_favorite_prazdne);
+                        srdiecko.setImageResource(srdceprazdne);
                         Log.d(LOG, "deleteSetInsert");
                         srdiecko.setOnClickListener(v -> insertOCP("insertOblubene"));
                     }
@@ -467,7 +469,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                 response -> {
                     if (response.equals("ok-oblubene")){
                         Log.d(LOG, "insertSetDel");
-                        srdiecko.setImageResource(ic_baseline_favorite_24);
+                        srdiecko.setImageResource(srddcefarebne);
                         srdiecko.setOnClickListener(v -> deleteOCP("deleteOblubene"));
                     }
                     else if(response.equals("ok-precitat")) {
