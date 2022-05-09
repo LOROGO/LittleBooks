@@ -122,6 +122,7 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                             Log.d("RegR", json.getString("meno"));
                             priezviskoMeno.setText(json.getString("meno"));
                             priezviskoMeno.append(" "+json.getString("priezvisko"));
+                            if (!json.getString("obrazok").equals("null"))
                             Picasso.with(getContext()).load(Uri.parse(json.getString("obrazok"))).into(user);
 
                             menoP = json.getString("meno");

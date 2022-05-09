@@ -6,22 +6,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,7 +60,8 @@ public class AdapterReview extends RecyclerView.Adapter<AdapterReview.ViewHolder
         holder.menoUsera.setText(recenzia.getMeno().trim());
         holder.menoUsera.setOnClickListener(view -> Log.d("A", "meno"));
         holder.recenziaPopis.setText(recenzia.getPopis().trim());
-        if (!recenzia.getObrazok().isEmpty()){
+        if (!recenzia.getObrazok().equals("null")){
+            Log.d(TAG, "onBindViewHolder: obrazok  "+recenzia.getObrazok());
             Picasso.with(con).load(recenzia.getObrazok()).into(holder.pouzivatel);
         }
 
