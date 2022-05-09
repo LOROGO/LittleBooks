@@ -1,5 +1,10 @@
 package com.example.littlebooks;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,17 +12,10 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +28,7 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCallback {
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recyclerViewPod;
     View root;
     JSONArray jsonArray;
     RequestQueue requestQueue;
@@ -40,6 +38,8 @@ public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_knihy_zkat);
         recyclerView = findViewById(R.id.recyclerViewMain);
+        recyclerViewPod = findViewById(R.id.recyclerViewMain1);
+
         Intent intent = getIntent();
         String kategoria = intent.getStringExtra("kategoria");
         BackgroundTask bs = new BackgroundTask(3);
@@ -137,17 +137,17 @@ public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCa
 
         AdapterPodkat adapterPodkat = new AdapterPodkat(podkategorie, KnihyZkat.this,"");
         // Attach the adapter to the recyclerview to populate items
-        recyclerView.setAdapter(adapterPodkat);
+        recyclerViewPod.setAdapter(adapterPodkat);
         // Set layout manager to position the items
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(KnihyZkat.this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setItemAnimator(new SlideInLeftAnimator());
+        recyclerViewPod.setLayoutManager(new LinearLayoutManager(KnihyZkat.this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewPod.setItemAnimator(new SlideInLeftAnimator());
         SnapHelper snapHelper = new LinearSnapHelper();
         //snapHelper.attachToRecyclerView(recyclerView);
     }
 
 
-    private void searchRequest(String text) {
+    public void searchRequest(String text) {
         Log.d("url", text);
         BackgroundTask bs = new BackgroundTask(3);
         bs.table = "kniha";

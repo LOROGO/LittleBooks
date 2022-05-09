@@ -143,7 +143,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
                             Log.d("RegR", json.getString("meno"));
                             meno.setText(json.getString("meno"));
                             meno.append(" "+json.getString("priezvisko"));
-                            if (!json.getString("obrazok").isEmpty()){
+                            if (!json.getString("obrazok").equals("null")){
                                 Picasso.with(this).load(json.getString("obrazok")).into(pouzivatel);
                             }
                         } catch (JSONException e) {
@@ -530,7 +530,7 @@ public class DetailKnihy extends AppCompatActivity implements BackgroundTask.Api
             setMinObsah();
             zaner.setText(a.getString("podkategoria"));
             pocetStran.setText(a.getString("pocet_stran"));
-
+            if (!a.getString("obrazok").equals("null"))
             Picasso.with(DetailKnihy.this).load(a.getString("obrazok")).into(obrazokKnihy);
 
             Log.d("popDet", a.getString("nazov"));

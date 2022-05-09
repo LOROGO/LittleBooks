@@ -1,7 +1,6 @@
 package com.example.littlebooks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +32,8 @@ public class AdapterPodkat extends RecyclerView.Adapter<AdapterPodkat.ViewHolder
 
         knihyView = inflater.inflate(R.layout.single_podkat, parent, false);
 
+
+
         return new AdapterPodkat.ViewHolder(knihyView);
     }
 
@@ -42,6 +43,13 @@ public class AdapterPodkat extends RecyclerView.Adapter<AdapterPodkat.ViewHolder
 
         // nastavenie nazvu holder.getAdapterPosition je cisclo itemviewu ktory chceme naplnit datami, ktore zoberieme z podkategorie
         holder.podkategoria.setText(podkategorie.get(holder.getAdapterPosition()).getPodkategoria().trim());
+
+        holder.podkategoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((KnihyZkat)con).searchRequest(podkategorie.get(holder.getAdapterPosition()).getPodkategoria());
+            }
+        });
 
     }
 

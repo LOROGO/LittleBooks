@@ -1,7 +1,5 @@
 package com.example.littlebooks;
 
-import static java.security.AccessController.getContext;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,7 +14,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,25 +23,19 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.littlebooks.ui.home.HomeFragment;
 import com.example.littlebooks.ui.main.UserFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONArray;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,6 +89,7 @@ public class Settings extends AppCompatActivity {
             userP = bundle.getString("Obrazok");
             meno.setText(menoP);
             priezvisko.setText(priezviskoP);
+            if (userP!="null")
             Picasso.with(this).load(Uri.parse(userP)).into(user);
             progressDialog.dismiss();
         }

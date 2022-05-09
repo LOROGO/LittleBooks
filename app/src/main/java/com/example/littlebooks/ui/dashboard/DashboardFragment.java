@@ -1,8 +1,6 @@
 package com.example.littlebooks.ui.dashboard;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,33 +9,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import com.android.volley.RequestQueue;
-import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.KnihyZkat;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
-
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
 
     RecyclerView recyclerView;
-    ImageView imageView;
+    ImageView beletria, rodicia, deti, poezia, hobby, odborna, bio;
 
 
     DatabaseReference mbase;
@@ -48,55 +37,38 @@ public class DashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        imageView = root.findViewById(R.id.beletria);
+        beletria = root.findViewById(R.id.beletria);
+        rodicia = root.findViewById(R.id.rodicia);
+        deti = root.findViewById(R.id.deti);
+        poezia = root.findViewById(R.id.poezia);
+        hobby = root.findViewById(R.id.hobby);
+        odborna = root.findViewById(R.id.odborna);
+        bio = root.findViewById(R.id.bio);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), KnihyZkat.class);
-                intent.putExtra("kategoria", "Beletria");
-                startActivity(intent);
-            }
-        });
-
-
+        onClick1("Beletria", beletria, getActivity());
+        onClick1("Partnerstvo a rodičovstvo", rodicia, getActivity());
+        onClick1("Pre deti a mládež", deti, getActivity());
+        onClick1("Poézia", poezia, getActivity());
+        onClick1("Biografie", bio, getActivity());
+        onClick1("Hobby, voľný čas", hobby, getActivity());
+        onClick1("Odborná a náučná literatúra", odborna, getActivity());
         return root;
     }
 
-
-    public static void closeDrawer(DrawerLayout drawerLayout) {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
+    public void onClick1(String kategoria, ImageView imageView, Activity context){
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent((context), KnihyZkat.class);
+                intent.putExtra("kategoria", kategoria);
+                startActivity(intent);
+            }
+        });
     }
 
 
-   /* public void ClickBooks(View view) {
-        MainActivity.redirectActivity(getActivity(), BooksActivity.class);
-    }
 
-    public void ClickAccount(View view) {
-        MainActivity.redirectActivity(getActivity(), Account.class);
-    }
-
-    public void ClickNewBook(View view) {
-        startActivity(new Intent(getActivity(), NewBook.class));
-    }
-
-    public void ClickLogout(View view) {
-        logout(getActivity());
-    }
-
-    public void ClickMojeKnihy(View view) {
-        MainActivity.redirectActivity(getActivity(), MojeKnihy.class);
-    }
-
-    public void ClickDomov(View view) {
-        //recreate();
-    }*/
-
-
-    public static void logout(final Activity activity) {
+    /*public static void logout(final Activity activity) {
         FirebaseAuth.getInstance().signOut();
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Odhlásenie");
@@ -116,16 +88,16 @@ public class DashboardFragment extends Fragment {
             }
         });
         builder.show();
-    }
+    }*/
 
 
-    public static void redirectActivity(Activity activity, Class aClass) {
+    /*public static void redirectActivity(Activity activity, Class aClass) {
         Intent intent = new Intent(activity, aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
-    }
+    }*/
 
-    public void populateRecyclerView() {
+   /* public void populateRecyclerView() {
         AdapterBooks adapterBooks = new AdapterBooks(mKnihy, getActivity(), "");
         // Attach the adapter to the recyclerview to populate items
         recyclerView.setAdapter(adapterBooks);
@@ -135,5 +107,5 @@ public class DashboardFragment extends Fragment {
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
 
-    }
+    }*/
 }
