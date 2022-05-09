@@ -49,6 +49,7 @@ public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHo
         // nastavenie nazvu holder.getAdapterPosition je cisclo itemviewu ktory chceme naplnit datami, ktore zoberieme z mKnihy
         holder.nazovKnihy.setText(mKnihy.get(holder.getAdapterPosition()).getNazov().trim());
         holder.autor.setText(mKnihy.get(holder.getAdapterPosition()).getAutor().trim());
+        holder.pStran.setText(oblubene.getpStran());
 
         //nastavenie obrazka to split je tam preto lebo v db mame ze napr obrazky/obrazok1.jpg+a kopec bludov za tym takze takto len tie bludy dame prec
         String imageUri = null;
@@ -89,7 +90,7 @@ public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHo
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
         //2. zadefinovanie premennych z layoutu
-        public TextView nazovKnihy, autor, cislo;
+        public TextView nazovKnihy, autor, pStran;
         public ImageView obrazok;
 
 
@@ -99,6 +100,8 @@ public class AdapterOblubene extends RecyclerView.Adapter<AdapterOblubene.ViewHo
             nazovKnihy = (TextView) itemView.findViewById(R.id.nazovKnihy);
             obrazok = itemView.findViewById(R.id.obrazok);
             autor = itemView.findViewById(R.id.autor);
+            pStran = itemView.findViewById(R.id.pocetStran);
+
 
         }
     }

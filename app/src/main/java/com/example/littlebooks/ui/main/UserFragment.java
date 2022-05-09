@@ -258,7 +258,8 @@ public class UserFragment extends Fragment implements BackgroundTask.ApiCallback
                             a.getString("id_kniha"),
                             a.getString("nazov"),
                             a.getString("obrazok"),
-                            a.getString("autor")
+                            a.getString("autor"),
+                            a.getString("pocet_stran")
                     ));
                 }catch (Exception e){
                     Log.e("PopulateRec", e.getMessage());

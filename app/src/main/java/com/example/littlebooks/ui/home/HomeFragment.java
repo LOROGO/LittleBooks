@@ -42,6 +42,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.littlebooks.AdapterBooks;
 import com.example.littlebooks.BackgroundTask;
+import com.example.littlebooks.DetailKnihy;
 import com.example.littlebooks.ISBN;
 import com.example.littlebooks.ModelMainData;
 import com.example.littlebooks.NetworkChangeListener;
@@ -224,6 +225,18 @@ public class HomeFragment extends Fragment implements BackgroundTask.ApiCallback
                             text1.setText(json.getString("nazov"));
                             text2.setText(json.getString("podkategoria"));
                             Picasso.with(getContext()).load(Uri.parse(json.getString("obrazok"))).into(obrazok);
+                            obrazok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent i = new Intent(getContext(), DetailKnihy.class);
+                                    try {
+                                        i.putExtra("id",jsonArray.getJSONObject(0).getString("id_kniha"));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    getContext().startActivity(i);
+                                }
+                            });
 
                         } catch (JSONException e) {
                             e.printStackTrace();

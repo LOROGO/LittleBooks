@@ -143,7 +143,7 @@ public class KnihyZkat extends AppCompatActivity implements BackgroundTask.ApiCa
         recyclerViewPod.setLayoutManager(new LinearLayoutManager(KnihyZkat.this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewPod.setItemAnimator(new SlideInLeftAnimator());
         SnapHelper snapHelper = new LinearSnapHelper();
-        //snapHelper.attachToRecyclerView(recyclerView);
+        snapHelper.attachToRecyclerView(recyclerView);
     }
 
 

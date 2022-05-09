@@ -6,12 +6,14 @@ public class ModelMainDataFavourite {
     private String obrazok;
     private String id;
     private static int last;
+    private String pStran;
 
-    public ModelMainDataFavourite(String id, String nazov, String obrazok, String autor) {
+    public ModelMainDataFavourite(String id, String nazov, String obrazok, String autor, String pStran) {
         this.nazov = nazov;
         this.obrazok = obrazok;
         this.id = id;
         this.autor = autor;
+        this.pStran = pStran;
     }
 
     public ModelMainDataFavourite() {
@@ -47,6 +49,14 @@ public class ModelMainDataFavourite {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public String getpStran() {
+        return pStran;
+    }
+
+    public void setpStran(String pStran) {
+        this.pStran = pStran;
     }
 
     @Override

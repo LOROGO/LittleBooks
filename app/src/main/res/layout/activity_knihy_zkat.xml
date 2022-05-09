@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     tools:context=".KnihyZkat"
-    android:isScrollContainer="true">
+    android:isScrollContainer="true"
+    android:background="@color/creme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,6 +27,7 @@
             android:id="@+id/recyclerViewMain"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentBottom="true"
             android:background="@color/creme"
             app:layout_constraintBottom_toBottomOf="parent"
